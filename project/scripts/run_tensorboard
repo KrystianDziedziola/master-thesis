@@ -1,0 +1,1 @@
+tensorboard --logdir=master-thesis/repo/project/eeg_epilepsy_classification/logs/

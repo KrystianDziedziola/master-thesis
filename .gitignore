@@ -1,3 +1,5 @@
 .ipynb_checkpoints
 .idea
 project/eeg_epilepsy_classification/data
+project/eeg_epilepsy_classification/logs
+*.h5
