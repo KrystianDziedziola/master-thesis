@@ -2,4 +2,5 @@
 .idea
 project/eeg_epilepsy_classification/data
 project/eeg_epilepsy_classification/logs
+*.pyc
 *.h5
