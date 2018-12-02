@@ -1,7 +1,0 @@
-6910090.pdf:
-- standarizing each waveform to have mean 0 and standard devation 1
-- seizure = 10 seconds?
-- balanced data - same number of seizures and normal
-- 200 Hz?
-- split 90/5/5
-
