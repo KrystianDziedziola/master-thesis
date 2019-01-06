@@ -1,1 +1,2 @@
-tensorboard --logdir=master-thesis/repo/project/eeg_epilepsy_classification/logs/
+docker exec -it keras-full-gpu /bin/bash
+tensorboard --logdir=master-thesis/repo/project/eeg_epilepsy_classification/tmp/logs/
