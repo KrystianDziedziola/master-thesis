@@ -1,5 +1,18 @@
 import os
 import numpy as np
+import pickle
+
+from chunks_creator import prepare_chunks
+from chunks_creator import flatten_chunks
+
+from sklearn.preprocessing import StandardScaler
+
+INPUT_DATA_FILE_PATH='tmp/input.pckl'
+
+DATA_FREQUENCY = 500
+SAMPLING_RATE = 5
+FREQUENCY_TO_SAMPLING_RATIO = DATA_FREQUENCY // SAMPLING_RATE
+CHUNK_SIZE_IN_SECONDS = 4
 
 
 def parse_file(file, sampling_rate):
@@ -66,3 +79,49 @@ def read_data(data_path, sampling_rate, data_frequency, end=104):
     targets_data = read_target_files(end, data_path, sampling_rate, data_frequency)
 
     return input_data, targets_data, headers
+
+
+def load_data_to_file():
+    (input_data, target, headers) = read_data(data_path='data', 
+                                              sampling_rate=SAMPLING_RATE, 
+                                              data_frequency=DATA_FREQUENCY)
+
+    with open(INPUT_DATA_FILE_PATH, 'wb') as input_variable_file:
+        pickle.dump([input_data, target, headers], input_variable_file)
+
+    del input_data, target, headers
+    
+    
+def normalize(x, y):
+    scalers = {}
+    for channel_number in range(x.shape[1]):
+        scalers[channel_number] = StandardScaler()
+        x[:, channel_number, :] = scalers[channel_number].fit_transform(x[:, channel_number, :]) 
+    return x, y.astype(int)
+
+
+def load_input_data():
+    with open(INPUT_DATA_FILE_PATH, 'rb') as input_data_file:
+        input_data, target, headers = pickle.load(input_data_file)
+    
+    return input_data, target, headers
+
+
+def prepare_data(chunk_size_in_seconds):
+    input_data, target, headers = load_input_data()
+    
+    chunks_input, chunks_target = prepare_chunks(input_data, 
+                                                target, 
+                                                chunk_size_in_seconds=chunk_size_in_seconds, 
+                                                ratio=FREQUENCY_TO_SAMPLING_RATIO)
+    x, y = flatten_chunks(chunks_input, chunks_target)
+    x, y = normalize(x, y)
+    
+    return x, y
+
+
+def get_data(chunk_size_in_seconds, load_from_sources = False):
+    if (load_from_sources):
+        load_data_to_file()
+        
+    return prepare_data(chunk_size_in_seconds)
