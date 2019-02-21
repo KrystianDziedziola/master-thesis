@@ -4,3 +4,5 @@ project/eeg_epilepsy_classification/data
 project/eeg_epilepsy_classification/tmp
 *.pyc
 *.h5
+*pycache*
+
