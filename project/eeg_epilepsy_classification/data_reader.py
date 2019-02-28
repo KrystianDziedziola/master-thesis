@@ -7,13 +7,11 @@ from chunks_creator import flatten_chunks
 
 from sklearn.preprocessing import StandardScaler
 
-INPUT_DATA_FILE_PATH='tmp/input.pckl'
+INPUT_DATA_FILE_PATH='tmp/input-{}sec.pckl'
 
 DATA_FREQUENCY = 500
 SAMPLING_RATE = 5
 FREQUENCY_TO_SAMPLING_RATIO = DATA_FREQUENCY // SAMPLING_RATE
-CHUNK_SIZE_IN_SECONDS = 4
-
 
 def parse_file(file, sampling_rate):
     lines = file.split('\n')
@@ -81,12 +79,12 @@ def read_data(data_path, sampling_rate, data_frequency, end=104):
     return input_data, targets_data, headers
 
 
-def load_data_to_file():
+def load_data_to_file(chunk_size_in_seconds):
     (input_data, target, headers) = read_data(data_path='data', 
                                               sampling_rate=SAMPLING_RATE, 
                                               data_frequency=DATA_FREQUENCY)
 
-    with open(INPUT_DATA_FILE_PATH, 'wb') as input_variable_file:
+    with open(INPUT_DATA_FILE_PATH.format(chunk_size_in_seconds), 'wb') as input_variable_file:
         pickle.dump([input_data, target, headers], input_variable_file)
 
     del input_data, target, headers
@@ -100,15 +98,15 @@ def normalize(x, y):
     return x, y.astype(int)
 
 
-def load_input_data():
-    with open(INPUT_DATA_FILE_PATH, 'rb') as input_data_file:
+def load_input_data(chunk_size_in_seconds):
+    with open(INPUT_DATA_FILE_PATH.format(chunk_size_in_seconds), 'rb') as input_data_file:
         input_data, target, headers = pickle.load(input_data_file)
     
     return input_data, target, headers
 
 
 def prepare_data(chunk_size_in_seconds):
-    input_data, target, headers = load_input_data()
+    input_data, target, headers = load_input_data(chunk_size_in_seconds)
     
     chunks_input, chunks_target = prepare_chunks(input_data, 
                                                 target, 
@@ -120,8 +118,10 @@ def prepare_data(chunk_size_in_seconds):
     return x, y
 
 
-def get_data(chunk_size_in_seconds, load_from_sources = False):
-    if (load_from_sources):
-        load_data_to_file()
+def get_data(chunk_size_in_seconds):
+    file_exists = os.path.isfile(INPUT_DATA_FILE_PATH.format(chunk_size_in_seconds))
+    
+    if not file_exists:
+        load_data_to_file(chunk_size_in_seconds)
         
     return prepare_data(chunk_size_in_seconds)
