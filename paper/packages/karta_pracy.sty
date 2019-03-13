@@ -1,0 +1,201 @@
+%==========================================================================================
+% KARTA PRACY 
+%==========================================================================================
+
+
+%==========================================================================================
+% Deklaracja zmiennych
+%==========================================================================================
+
+%\def\autor2#1{\gdef\@autor2{#1}}
+%\def\tytulAngielski#1{\gdef\@tytulAngielski{#1}}
+%\def\konsultant#1{\gdef\@konsultant{#1}}
+%\def\celPracy#1{\gdef\@celPracy{#1}}
+%\def\specjalnosc#1{\gdef\@specjalnosc{#1}}
+%\def\kierunek#1{\gdef\@kierunek{#1}}
+%\def\zakresI#1{\gdef\@zakresI{#1}}
+%\def\zakresII#1{\gdef\@zakresII{#1}}
+%\def\zakresIII#1{\gdef\@zakresIII{#1}}
+%\def\zakresIV#1{\gdef\@zakresIV{#1}}
+%\def\zakresV#1{\gdef\@zakresV{#1}}
+%
+%\def\kierunek#1{\gdef\@kierunek{#1}}
+%==========================================================================================
+% Deklaracja fontow kapitalikowych z kodowaniem T1
+%==========================================================================================
+%\DeclareFontShape{T1}{lmr}{bx}{sc} { <-> ssub * cmr/bx/sc }{}
+%\DeclareFontShape{T1}{lmr}{bx}{scit}{<-> ssub * cmr/bx/scsl}{}
+%==========================================================================================
+% Inne deklaracje
+%==========================================================================================
+\newcommand{\firstLinie}{\rule{\linewidth}{0.1mm}}
+\newcommand{\secondLine}{\rule{\linewidth}{0.8mm}}
+
+\newcommand{\DrowLine}{\vspace*{-0.375cm}\noindent \noindent\firstLinie\\
+	\vspace*{-0.45cm}\noindent\noindent\secondLine\\
+	\vspace*{-0.45cm}\noindent\noindent\firstLinie\\}
+
+\newcommand{\DrawDots}{\tiny$	\cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots
+										\cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots
+										\cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots$ }
+
+\newcommand{\SignDots}{\tiny$\cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots 
+										\cdots\cdots\cdots$ }
+%==========================================================================================
+
+\def\kartapracy{
+\begin{center}
+	\Large\scshape\bfseries{U n i w e r s y t e t \ \ Z i e l o n o g ó r s k i}
+\end{center}
+%-----------------------------------------------------------------------------------------
+\vspace*{-0.75cm}
+\noindent\DrowLine
+\begin{center}
+	\textsc{\textbf{\@wydzial}}
+\end{center}
+%\begin{center}
+%	\textsc{\textbf{Instytut Sterowania i SystemÃ³w Informatycznych}}
+%\end{center}
+\begin{tabbing}
+	\hspace{0.15cm}\=\hspace*{4cm}\= \kill
+		\>\textsc{\small \textbf{Kierunek:}}\>
+				\normalsize{\scshape{\bfseries{\emph{\@kierunek}}}}\\
+ 		\>\>\DrawDots \\
+		\>\textsc{\small \textbf{Specjalnoœæ:}}\>
+			\normalsize{\scshape{\bfseries{\emph{\@specjalnosc}}}}\\
+\end{tabbing}
+\vspace*{-1.0cm}
+\noindent\DrowLine
+%-----------------------------------------------------------------------------------------
+\begin{tabbing}
+	\hspace{0.15cm}\=\hspace*{4cm}\= \kill	
+		\>\textsc{\small \textbf{Student(Grupa):}}\>
+			\normalsize{\scshape{\bfseries{\emph{\@author(\@grupa)}}}}\\
+ 		\>\>\DrawDots \\
+    	\>\textsc{\small \textbf{Promotor:}}\>
+			\normalsize{\scshape{\bfseries{\emph{\@promotor}}}}\\
+ 		\>\>\DrawDots \\
+    	\>\textsc{\small \textbf{Konsultant:}}\>
+			\normalsize{\scshape{\bfseries{\emph{\@konsultant}}}}\\
+ 		\>\>\DrawDots
+\end{tabbing}
+%-----------------------------------------------------------------------------------------
+\vspace*{-0.5cm}
+\begin{tabbing}
+	\hspace{0.15cm}\=\hspace{4cm}\= \kill	
+	\>\textsc{\small \textbf{Temat Pracy:}}\>\\
+	\>$\bullet$ \small  wersja polska\>
+			\begin{minipage}[t]{0.8\textwidth}
+			\large{\scshape{\bfseries{\emph{ \@title }}}}
+			\end{minipage}\\
+ 		\>\>\\
+	\>$\bullet$ \small  wersja angielska\>
+			\begin{minipage}[t]{0.8\textwidth}
+			\large{\scshape{\bfseries{\emph{ \@tytulAngielski }}}}
+			\end{minipage}
+\end{tabbing}
+%-----------------------------------------------------------------------------------------
+\begin{tabbing}
+	\hspace{0.15cm}\=\hspace{4cm}\= \kill	
+	\>\textsc{\small \textbf{Cel Pracy:}}\>\\
+	\> \begin{minipage}[t]{1\textwidth}
+			\small
+			\@celPracy
+	\end{minipage}\>
+\end{tabbing}
+%-----------------------------------------------------------------------------------------
+\begin{tabbing}
+	\hspace{0.15cm}\=\hspace{4cm}\= \kill	
+	\>\textsc{\small \textbf{Zakres Pracy:}}\>
+\end{tabbing}
+%-----------------------------------------------------------------------------------------
+% dodanie if
+%-----------------------------------------------------------------------------------------
+\ifnum\pdfstrcmp{\@numZakres}{2}=0
+	\begin{enumerate}
+		\item \small \@zakresI
+		\item \small \@zakresII
+	\end{enumerate}
+\fi
+\ifnum\pdfstrcmp{\@numZakres}{3}=0
+	\begin{enumerate}
+		\item \small \@zakresI
+		\item \small \@zakresII
+		\item \small \@zakresIII
+	\end{enumerate}
+\fi
+\ifnum\pdfstrcmp{\@numZakres}{4}=0
+	\begin{enumerate}
+		\item \small \@zakresI
+		\item \small \@zakresII
+		\item \small \@zakresIII
+		\item \small \@zakresIV
+	\end{enumerate}
+\fi
+\ifnum\pdfstrcmp{\@numZakres}{5}=0
+	\begin{enumerate}
+		\item \small \@zakresI
+		\item \small \@zakresII
+		\item \small \@zakresIII
+		\item \small \@zakresIV
+		\item \small \@zakresV
+	\end{enumerate}
+\fi
+\ifnum\pdfstrcmp{\@numZakres}{6}=0
+\begin{enumerate}
+		\item \small \@zakresI
+		\item \small \@zakresII
+		\item \small \@zakresIII
+		\item \small \@zakresIV
+		\item \small \@zakresV
+		\item \small \@zakresVI
+	\end{enumerate}
+\fi
+\ifnum\pdfstrcmp{\@numZakres}{7}=0
+\begin{enumerate}
+		\item \small \@zakresI
+		\item \small \@zakresII
+		\item \small \@zakresIII
+		\item \small \@zakresIV
+		\item \small \@zakresV
+		\item \small \@zakresVI
+		\item \small \@zakresVII
+	\end{enumerate}
+\fi
+%-----------------------------------------------------------------------------------------
+\vspace*{-0.2cm}
+\begin{tabbing}
+	\hspace{0.15cm}\=\hspace{6.5cm}\=\hspace{4cm}\= \kill	
+	\>\textsc{\small \textbf{Data podjêcia tematu:}} \>\hspace*{1cm} \@podjecieTematu \> \\ 
+	\> \> \SignDots \>
+\end{tabbing}
+\vspace*{-0.75cm}
+\begin{tabbing}
+	\hspace{0.15cm}\=\hspace{2cm}\=\hspace{9cm}\= \hspace{5cm}\=\kill	
+	\>\textsc{\small \textbf{Podpisy:}} \> \> \\
+	\>  \> \SignDots \> \SignDots\\
+	\>  \>\textsc{\small\hspace*{1cm} Promotor}  \> \textsc{\small\hspace*{1.5cm}Student}
+\end{tabbing}
+%-----------------------------------------------------------------------------------------
+\vspace*{-0.8cm}
+\noindent\DrowLine
+%-----------------------------------------------------------------------------------------
+\vspace*{-0.5cm}
+\begin{tabbing}
+	\hspace{0.15cm}\=\hspace{2cm}\=\hspace{9cm}\= \hspace{5cm}\=\kill	
+	\>\> \> \\
+	\>  \>  \SignDots \> \SignDots\\
+	\>  \>\textsc{\small Data przyjêcia pracy}  \> \textsc{\small\hspace*{.5cm}Podpis promotora}
+\end{tabbing}
+\vspace*{-0.75cm}
+\noindent\firstLinie\\
+Wyra¿am zgodê na wykorzystanie do celów dydaktycznych i badawczych wyników zawartych w pracy dyplomowej i powsta³ych programów komputerowych.
+\begin{tabbing}
+	\hspace{0.15cm}\=\hspace{2cm}\=\hspace{9cm}\= \hspace{5cm}\=\kill	
+	\>\> \> \\
+	\>  \>\SignDots  \> \SignDots\\
+	\>  \>\textsc{\small \hspace*{1.5cm}Data }  \> \textsc{\small\hspace*{.5cm}Podpis studenta}
+\end{tabbing}
+%-----------------------------------------------------------------------------------------
+ 
+}

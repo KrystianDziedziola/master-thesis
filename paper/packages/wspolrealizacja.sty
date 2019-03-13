@@ -1,0 +1,56 @@
+% ------------------------------------------------------------------------
+% OSWIADCZENIE O WSPÓ£REALIZACJI TEMATU PRACY DYPLOMOWEJ
+% ------------------------------------------------------------------------
+%
+
+
+\def\wspolrealizacja{
+
+	\noindent\textbf{\@author}  				\hfill Zielona Góra \@dzien\slash\@mm\slash\@rok\\
+	\textbf{\@autorDwa} \\
+	
+	\vspace{1cm}
+	\begin{center}
+		\Large \textbf{Oœwiadczenie o udziale w realizacji tematu pracy dyplomowej}
+	\end{center}
+	\vspace{1.5cm}
+	\noindent\textbf{Temat pracy: }\emph{\@title}\\
+	\textbf{Promotor: }\emph{\@promotor}\\
+
+	\ifnum\pdfstrcmp{\@konsultant}{}=0
+	\else
+	\vspace{-0.6cm}
+		\noindent\textbf{Konsultant: } \emph{\@konsultant} \\
+	\fi
+	
+	\vspace{2cm}
+
+	\noindent\rule{\linewidth}{0.4mm}
+	\begin{tabbing}
+	\hspace{0cm}\=\hspace{1.25cm}\=\hspace{1.5cm}\=\hspace{5cm}\= \kill	
+	\>\textbf{\@author}\>\\
+	\> \>
+			\begin{minipage}[t]{0.8\textwidth}
+			 \@wspolrealizacjaTrescJeden
+			\end{minipage}\\
+ 		\>\>\>\>\\
+		\>\>\>\>\\
+	\>\>\small podpis sk³adaj¹cego oœwiadczenie\>\> \small podpis przyjmuj¹cego oœwiadczenie\\
+	\end{tabbing}
+	\vspace{-1cm}
+	\rule{\linewidth}{0.4mm}
+\begin{tabbing}
+	\hspace{0cm}\=\hspace{1.25cm}\=\hspace{1.5cm}\=\hspace{5cm}\= \kill	
+	\>\textbf{\@autorDwa}\>\\
+	\> \>
+			\begin{minipage}[t]{0.8\textwidth}
+			 \@wspolrealizacjaTrescDwa 
+			\end{minipage}\\
+ 		\>\>\>\>\\
+		\>\>\>\>\\
+	\>\>\small podpis sk³adaj¹cego oœwiadczenie\>\> \small podpis przyjmuj¹cego oœwiadczenie\\
+	\end{tabbing}
+\vspace{-1cm}
+\rule{\linewidth}{0.4mm}
+\normalsize
+}
