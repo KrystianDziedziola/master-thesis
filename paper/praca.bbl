@@ -1,3 +1,8 @@
-\begin{thebibliography}{}
+\begin{thebibliography}{1}
+
+\bibitem{Chollet:2018}
+Francois Chollet.
+\newblock {\em Deep Learning with Python}.
+\newblock 2018.
 
 \end{thebibliography}
