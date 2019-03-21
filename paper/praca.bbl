@@ -5,4 +5,16 @@ Francois Chollet.
 \newblock {\em Deep Learning with Python}.
 \newblock 2018.
 
+\bibitem{futureoflife}
+futureoflife.org.
+\newblock {\em Benefits \& risks of artificial intelligence}.
+\newblock
+  \url{https://futureoflife.org/background/benefits-risks-of-artificial-intelligence}.
+
+\bibitem{techtarget}
+searchenterpriseai.techtarget.com.
+\newblock {\em Machine learning (ML)}.
+\newblock
+  \url{https://searchenterpriseai.techtarget.com/definition/machine-learning-ML}.
+
 \end{thebibliography}

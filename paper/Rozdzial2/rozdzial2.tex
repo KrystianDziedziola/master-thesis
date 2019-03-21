@@ -1,5 +1,47 @@
 \chapter{Wprowadzenie do g³êbokich sieci neuronowych}
 \label{chapter_2}
-\section{Czym s¹ g³êbokie sieci neuronowe?}
+\section{Sieci neuronowe a sztuczna inteligencja}
+W ci¹gu ostatnich kilku lat sztuczna inteligencja sta³a siê tematem du¿ego zainteresowania w nauce, technologii oraz ¿yciu codziennym. 
+Ma to miejsce za spraw¹ szerokiego spektrum jej zastosowañ oraz mo¿liwoœci wykorzystania do zadañ, które do tej pory by³y niemal nieosi¹galne przez maszyny. S¹ to m.in. autonomiczne pojazdy, inteligentni wirtualni asystenci, wspomaganie diagnostyki medycznej oraz wiele innych.
+
+Sztuczna inteligencja datuje swoje pocz¹tki na lata 50-te XX wieku kiedy to zaczêto prowadziæ badania nad tym czy komputer jest w stanie nauczyæ siê "myœleæ".
+Bardziej œcis³¹ definicj¹ celu prowadzonych badañ mog³aby byæ "próba automatyzacji zadañ intelektualnych, które normalnie wykonywane s¹ przez cz³owieka".
+Pocz¹tkowo próby te by³y poczynione poprzez zaprogramowanie szeregu regu³, którymi mia³a pos³ugiwaæ siê maszyna w podejmowaniu swoich w³asnych decyzji. Jest to tzw. symboliczna sztuczna inteligencja \textit{(ang. symbolic artificial intelligence)}, czyli klasyczne podejœcie polegaj¹ce na zaprogramowaniu okreœlonego algorytmu dzia³ania.  \cite{futureoflife}
+Zauwa¿ono jednak, ¿e zbiór okreœlonych przez programistów regu³ sprawdza siê do rozwi¹zywania dobrze zdefiniowanych problemów logicznych takich jak np. gra w szachy.
+Takie podejœcie nie jest jednak wystarczaj¹ce do osi¹gniêcia przez komputer umiejêtnoœci podejmowania decyzji, która mog³aby symulowaæ ludzk¹ inteligencjê oraz wykonwania przez ni¹ bardziej abstrakcyjnych zadañ takich jak np. rozpoznawanie mowy, obrazu lub t³umacznie jêzyków.
+
+Nasuwa siê pytanie czy komputer jest w stanie wyjœæ poza ramy œciœle zdefiniowanych regu³ i samemu nauczyæ siê w jaki sposób wykonywaæ okreœlone zadania? Odpowiedzi¹ na to pytanie oraz niedoskona³oœci klasycznego programowania by³o zastosowanie podejœcia zwanego dziœ uczeniem maszynowym \textit{(ang. machine learning)}).
+Polega ono na tym, ¿e maszynie nie jest dostarczany œciœle okreœlony algorytm dzia³ania, a jedynie przedstawiane s¹ dane oraz wyniki jakie powinny powstaæ po przetworzeniu tych¿e danych. Maszyna ma za zadanie stworzyæ swoje w³asne regu³y, które bêd¹ odzwierciedlaæ sposób w jaki prawid³owo nale¿y wykonaæ konkretne zadanie. Mo¿na wiêc powiedzieæ, ¿e w uczeniu maszynowym, maszyna jest uczona, a nie programowana.
+Pomimo tego, ¿e uczenie maszynowe zaczê³o siê rozwijaæ dopiero w latach 90-tych bardzo szybko sta³o siê popularne za spraw¹ tego, ¿e przynosi³o najlepsze wyniki spoœród wszystkich podejœæ w dziedzinie sztucznej inteligencji.
+Ró¿nicê pomiêdzy klasycznym programowaniem a uczeniem maszynowym zaprezentowano na rysunku \ref{fig:ai_vs_machine_learning}.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=9cm]{Rysunki/Rozdzial2/ai_vs_machine_learning.pdf}
+	\caption{Porównanie klasycznego programowania z metod¹ uczenia maszynowego}
+	\label{fig:ai_vs_machine_learning}
+\end{figure}
+
+Mnogoœci zastosowañ uczenia maszynowego dorównuje równie¿ iloœæ algorytmów, które s¹ wykorzystywane w tym podejœciu. Dostêpnych jest wiele modeli, poczynaj¹c od bardzo prostych, koñcz¹c na dosyæ skomplikowanych.
+Kilka najczêœciej u¿ywanych, to m.in.:
+\begin{itemize}
+	\item \textbf{drzewa decyzyjne} \textit{(ang. decision trees)},
+	\item \textbf{algorytm k-œrednich} \textit{(ang. k-means)},
+	\item \textbf{sztuczne sieci neuronowe} \textit{(ang. artificial neural networks)}. \cite{techtarget}
+\end{itemize}
+
+Przedmiotem tej pracy jest ostatnia z wymienionych metody, czyli sztuczne sieci neuronowe.
+Jest to zestaw algorytmów, który zosta³ zaprojektowany w sposób inspirowany dzia³aniem ludzkiego mózgu. W rzeczywistoœci jednak, ich dzia³anie nie jest zgodne z tym, w jaki sposób dzia³a umys³ cz³owieka. 
+Sieci neuronowe potrafi¹ przyjmowaæ dane w formie wektorów liczbowych, które mog¹ zawieraæ takie informacje jak np. obrazy, dŸwiêki, tekst lub szeregi czasowe. Na ich podstawie s¹ w stanie dokonywaæ klasyfikacji, klasteryzacji oraz predykcji. Jednym z typów sztucznych sieci neuronowych s¹ tzw. g³êbokie sieci neuronowe \textit{(ang. deep neural networks)}, które znacz¹co zwiêkszaj¹ mo¿liwoœci klasycznych sieci neuronowych. Zostan¹ one omówione w rozdziale \ref{deep_neural_networks}.
+
+Mo¿na zauwa¿yæ, ¿e sztuczna inteligencja jest pojêciem bardzo szerokim. W jej sk³ad wchodz¹ ró¿ne metody m.in. uczenie maszynowe. Z kolei specyficznym podejœciem w uczeniu maszynowym s¹ sieci neuronowe. Zale¿noœci pomiêdzy tymi pojêciami przedstawia rysunek \ref{fig:ai_comparison}.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=9cm]{Rysunki/Rozdzial2/ai_comparison.pdf}
+	\caption{Zale¿noœæ miêdzy sztuczn¹ inteligencj¹, uczeniem maszynowym i sieciami neuronowymi}
+	\label{fig:ai_comparison}
+\end{figure}
 \section{Porównanie sieci g³êbokich z klasycznymi sieciami neuronowymi}
+\label{deep_neural_networks}
 \section{Rodzaje g³êbokich sieci neuronowych}

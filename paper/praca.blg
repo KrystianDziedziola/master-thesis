@@ -4,45 +4,45 @@ The top-level auxiliary file: praca.aux
 The style file: unsrt.bst
 Database file #1: Bibliografia/bibliografia.bib
 Warning--empty publisher in Chollet:2018
-You've used 1 entry,
+You've used 3 entries,
             1791 wiz_defined-function locations,
-            450 strings with 3602 characters,
-and the built_in function-call counts, 167 in all, are:
-= -- 11
-> -- 4
+            459 strings with 3915 characters,
+and the built_in function-call counts, 403 in all, are:
+= -- 29
+> -- 12
 < -- 0
-+ -- 2
-- -- 1
-* -- 7
-:= -- 31
-add.period$ -- 3
-call.type$ -- 1
++ -- 6
+- -- 3
+* -- 11
+:= -- 69
+add.period$ -- 9
+call.type$ -- 3
 change.case$ -- 0
 chr.to.int$ -- 0
-cite$ -- 2
-duplicate$ -- 10
-empty$ -- 20
-format.name$ -- 1
-if$ -- 35
+cite$ -- 4
+duplicate$ -- 24
+empty$ -- 50
+format.name$ -- 3
+if$ -- 87
 int.to.chr$ -- 0
-int.to.str$ -- 1
+int.to.str$ -- 3
 missing$ -- 2
-newline$ -- 8
-num.names$ -- 1
-pop$ -- 8
+newline$ -- 18
+num.names$ -- 3
+pop$ -- 16
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 2
+skip$ -- 8
 stack$ -- 0
 substring$ -- 0
-swap$ -- 1
+swap$ -- 5
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 1
-while$ -- 1
-width$ -- 2
-write$ -- 11
+while$ -- 3
+width$ -- 4
+write$ -- 29
 (There was 1 warning)
