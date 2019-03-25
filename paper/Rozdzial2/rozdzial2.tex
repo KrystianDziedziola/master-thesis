@@ -31,7 +31,7 @@ Kilka najczêœciej u¿ywanych, to m.in.:
 \end{itemize}
 
 Przedmiotem tej pracy jest ostatnia z wymienionych metody, czyli sztuczne sieci neuronowe.
-Jest to zestaw algorytmów, który zosta³ zaprojektowany w sposób inspirowany dzia³aniem ludzkiego mózgu. W rzeczywistoœci jednak, ich dzia³anie nie jest zgodne z tym, w jaki sposób dzia³a umys³ cz³owieka. 
+Jest to zestaw algorytmów, który zosta³ zaprojektowany w sposób inspirowany dzia³aniem ludzkiego mózgu. W rzeczywistoœci jednak, ich dzia³anie nie jest do koñca zgodne z tym, w jaki sposób dzia³a umys³ cz³owieka. 
 Sieci neuronowe potrafi¹ przyjmowaæ dane w formie wektorów liczbowych, które mog¹ zawieraæ takie informacje jak np. obrazy, dŸwiêki, tekst lub szeregi czasowe. Na ich podstawie s¹ w stanie dokonywaæ klasyfikacji, klasteryzacji oraz predykcji. Jednym z typów sztucznych sieci neuronowych s¹ tzw. g³êbokie sieci neuronowe \textit{(ang. deep neural networks)}, które znacz¹co zwiêkszaj¹ mo¿liwoœci klasycznych sieci neuronowych. Zostan¹ one omówione w rozdziale \ref{deep_neural_networks}.
 
 Mo¿na zauwa¿yæ, ¿e sztuczna inteligencja jest pojêciem bardzo szerokim. W jej sk³ad wchodz¹ ró¿ne metody m.in. uczenie maszynowe. Z kolei specyficznym podejœciem w uczeniu maszynowym s¹ sieci neuronowe. Zale¿noœci pomiêdzy tymi pojêciami przedstawia rysunek \ref{fig:ai_comparison}.
@@ -42,6 +42,37 @@ Mo¿na zauwa¿yæ, ¿e sztuczna inteligencja jest pojêciem bardzo szerokim. W jej sk
 	\caption{Zale¿noœæ miêdzy sztuczn¹ inteligencj¹, uczeniem maszynowym i sieciami neuronowymi}
 	\label{fig:ai_comparison}
 \end{figure}
+
+
+\section{Klasyczne sieci neuronowe}
+Sieci neuronowe to dziedzina uczenia maszynowego, która jako model matematyczny podlegaj¹cy uczeniu wykorzystuje sturukturê sieci sk³adaj¹c¹ siê z wielu jednostek obliczeniowych zwanych neuronami. Neurony wykonuj¹ podstawowe obliczenia i ich wyniki przekazuj¹ do kolejnych neuronów. Operacje, które s¹ wykonywane przez neurony to przewa¿nie sumowanie otrzymanych informacji oraz zastowanie prostej, nieliniowej funkcji. W wiêkszoœci sieci neuronowych, neurony zgrupowane s¹ w tzw. warstwy. Obliczenia wykonane przez jedn¹ warstwê s¹ przekazywane do kolejnej, która z kolei wykonuje obliczenia na otrzymanych wynikach. Ostatnia warstwa zwraca koñcowy wynik, który jest interpretowany w ró¿ny sposów w zale¿noœci od wykonywanej operacji np. klasyfikacja lub regresja. Schemat prostej sieci neuronowej przedstawiony zosta³ na rysunku \ref{fig:simple_nn}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=9cm]{Rysunki/Rozdzial2/simple_nn.pdf}
+	\caption{Struktura prostej sieci neuronowej}
+	\label{fig:simple_nn}
+\end{figure}
+
+Pierwsz¹ koncepcjê neuronu datuje siê na rok 1943, w którym to powsta³ model neuronu McCulloch-Pitts. By³ on bardzo prosty w porównaniu do wspó³czesnych sieci neuronowych, gdy¿ pozwala³ jedynie na wykorzystanie wartoœci binarnych na wyjœciu z neuronów. Ka¿dy z nich sumowa³ wartoœci wejœciowe i przyrównywa³ je do zera. Dodatkowo nie istnia³a ¿adna regu³a aktualizacji wewnêtrznych wartoœci neuronów (tzw. wag), która jest niezbêdna do prawid³owego przebiegu procesu adaptacji neuronu do nowych informacji. Bez takiej regu³y wszystkie wagi neuronów musia³yby byæ ustawiane rêcznie.
+
+W latach 50-tych przedstawiony zosta³ perceptron, który jest najprostsz¹ sieci¹ neuronow¹ sk³adaj¹c¹ siê wielu neuronów McCullocha-Pittsa. Implementuje on algrotym uczenia nadzorowanego klasyfikatorów binarnych. Jest funkcj¹ przynale¿noœci potrafi¹ca przydzieliæ jedn¹ z dwóch klas do danych parametrów wejœciowych. W perceptronie zosta³a przedstawiona prosta regu³a s³u¿¹ca do aktualizacji wag dla kolejnych iteracji. Wzór na wagê w kroku \textit{t + 1} przedstawia siê nastêpuj¹co:
+
+\begin{equation}
+w_i(t+1)=w_i(t)+(d_j-y_j(t))x_{j,i}
+\end{equation}
+
+gdzie \textit{w\textsubscript{i}} to waga \textit{i}-tego neuronu, \textit{d\textsubscript{j}} to oczekiwana wartoœæ dla \textit{j}-tego wejœcia, \textit{y\textsubscript{i}(t)} oznacza wartoœæ obliczon¹ z \textit{j}-tego wejœcia, natomiast \textit{x\textsubscript{j,i}} jest \textit{i}-t¹ wartoœci¹ \textit{j}-tego wejœcia.
+Oznacza to, ¿e przysz³a wartoœæ wagi neuronu obliczona jest przez dodanie b³êdu (ró¿nicy miêdzy wartoœci¹ oczekiwan¹ a obliczon¹) pomno¿onego przez wartoœæ rzeczywist¹ do wartoœci aktualnej wagi. Regu³a ta mo¿e byæ stosowana jedynie do uczenia jednowarstwowych sieci neuronowych, co znacznie ogranicza zakres jej zastosowañ. Perceptron mo¿e wiêc byæ u¿ywany jedynie do problemów liniowo separowalnych.\cite{Williams}
+
+W latach 60-tych zosta³o matematycznie udowodnione, ¿e sieæ z pojedyncz¹ warstw¹ nie posiada mo¿liwoœci klasyfikowania problemów, które nie s¹ liniowo separowalne. Przyk³adem jest funkcja alternatywy wykluczaj¹cej - XOR. Kolejne, bardziej skomplikowane problemy, których siê podejmowano, takie jak m.in. rozpoznawanie mowy, koñczy³y siê wiêc niepowodzeniem. Mo¿liwoœæ uczenia sieci wielowarstwowych by³a wiêc konieczna w dalszym rozwoju sieci neuronowych. W tej samej publikacji \cite{MinskyPapert} zosta³o równie¿ udowodnione, ¿e 2-warstwowa sieæ jest w stanie zamodelowaæ niemal ka¿d¹ funkcj¹. W praktyce jest to jednak ciê¿kie do osi¹gniêcia.
+
+W póŸniejszym okresie przedstawiony zosta³ algorytm wstecznej propagacji b³êdów \textit{(ang. backpropagation)}, który umo¿liwia³ uczenie wielowarstwowych sieci neuronowych. Oparty jest on na minimalizacji wartoœci tzw. funkcji straty z wykorzystaniem optymalizacyjnej metody najwiêkszego spadku. B³êdy obliczane s¹ na warstwie wyjœciowej i przekazywane s¹ wstecz, do warstw poprzedzaj¹cych. Jest to mo¿liwe dziêki wykorzystaniu tzw. metody ³añcuchowej \textit{(ang. chain rule)}. Dziêki zastosowaniu tego typu podejœcia osi¹gniêty zosta³ cel, który zak³ada³ umo¿liwienie uczenia wielowarstwowych sieci neuronowych. Pozwoli³o to w znacz¹cym stopniu przyspieszyæ rozwój w tej dziedzinie. 
+
+Algorytm wstecznej propagacji b³êdów sta³ siê najpopularniejszym i najbardziej skutecznym algorytmem do nauki sieci neuronowych. Zostanie on bardziej szczegó³owo opisany w rozdziale \ref{deep_neural_networks}.
+
 \section{Porównanie sieci g³êbokich z klasycznymi sieciami neuronowymi}
 \label{deep_neural_networks}
+
+
 \section{Rodzaje g³êbokich sieci neuronowych}

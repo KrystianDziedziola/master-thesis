@@ -17,4 +17,15 @@ searchenterpriseai.techtarget.com.
 \newblock
   \url{https://searchenterpriseai.techtarget.com/definition/machine-learning-ML}.
 
+\bibitem{Williams}
+Jacob~M. Williams.
+\newblock {\em Deep Learning and Transfer Learning in the Classification of EEG
+  Signals}.
+\newblock 2017.
+
+\bibitem{MinskyPapert}
+Marvin Minsky and Seymour Paper.
+\newblock {\em Perceptrons}.
+\newblock 1969.
+
 \end{thebibliography}
