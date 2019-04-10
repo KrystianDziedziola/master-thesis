@@ -67,12 +67,34 @@ Oznacza to, ¿e przysz³a wartoœæ wagi neuronu obliczona jest przez dodanie b³êdu 
 
 W latach 60-tych zosta³o matematycznie udowodnione, ¿e sieæ z pojedyncz¹ warstw¹ nie posiada mo¿liwoœci klasyfikowania problemów, które nie s¹ liniowo separowalne. Przyk³adem jest funkcja alternatywy wykluczaj¹cej - XOR. Kolejne, bardziej skomplikowane problemy, których siê podejmowano, takie jak m.in. rozpoznawanie mowy, koñczy³y siê wiêc niepowodzeniem. Mo¿liwoœæ uczenia sieci wielowarstwowych by³a wiêc konieczna w dalszym rozwoju sieci neuronowych. W tej samej publikacji \cite{MinskyPapert} zosta³o równie¿ udowodnione, ¿e 2-warstwowa sieæ jest w stanie zamodelowaæ niemal ka¿d¹ funkcj¹. W praktyce jest to jednak ciê¿kie do osi¹gniêcia.
 
-W póŸniejszym okresie przedstawiony zosta³ algorytm wstecznej propagacji b³êdów \textit{(ang. backpropagation)}, który umo¿liwia³ uczenie wielowarstwowych sieci neuronowych. Oparty jest on na minimalizacji wartoœci tzw. funkcji straty z wykorzystaniem optymalizacyjnej metody najwiêkszego spadku. B³êdy obliczane s¹ na warstwie wyjœciowej i przekazywane s¹ wstecz, do warstw poprzedzaj¹cych. Jest to mo¿liwe dziêki wykorzystaniu tzw. metody ³añcuchowej \textit{(ang. chain rule)}. Dziêki zastosowaniu tego typu podejœcia osi¹gniêty zosta³ cel, który zak³ada³ umo¿liwienie uczenia wielowarstwowych sieci neuronowych. Pozwoli³o to w znacz¹cym stopniu przyspieszyæ rozwój w tej dziedzinie. 
+W póŸniejszym okresie przedstawiony zosta³ algorytm wstecznej propagacji b³êdów \textit{(ang. backpropagation)}, który umo¿liwia³ uczenie wielowarstwowych sieci neuronowych. Oparty jest on na minimalizacji wartoœci tzw. funkcji straty z wykorzystaniem optymalizacyjnej metody najwiêkszego spadku. B³êdy obliczane s¹ na warstwie wyjœciowej i przekazywane s¹ wstecz, do warstw poprzedzaj¹cych. Jest to mo¿liwe dziêki wykorzystaniu tzw. metody ³añcuchowej \textit{(ang. chain rule)}. Dziêki zastosowaniu tego typu podejœcia osi¹gniêty zosta³ cel, który zak³ada³ umo¿liwienie uczenia wielowarstwowych sieci neuronowych. Pozwoli³o to w znacz¹cym stopniu przyspieszyæ rozwój w tej dziedzinie.
 
-Algorytm wstecznej propagacji b³êdów sta³ siê najpopularniejszym i najbardziej skutecznym algorytmem do nauki sieci neuronowych. Zostanie on bardziej szczegó³owo opisany w rozdziale \ref{deep_neural_networks}.
+Algorytm wstecznej propagacji b³êdów sta³ siê najpopularniejszym i najbardziej skutecznym algorytmem do nauki sieci neuronowych. Ma on w³aœnie zastosowanie w g³êbokich sieciach neuronowych, które zosta³y opisane w rozdziale \ref{deep_neural_networks}.
 
-\section{Porównanie sieci g³êbokich z klasycznymi sieciami neuronowymi}
+
+\section{Deep learning, czyli g³êbokie sieci neuronowe}
 \label{deep_neural_networks}
+Deep learning to dziedzina uczenia maszynowego, która zak³ada nowe podejœcie do nauki wzorców w danych. K³adzie ona nacisk przede wszystkim na naukê kolejnych warstw reprezentacji, które z ka¿d¹ warstw¹ s¹ coraz bardziej konkretne. S³owo "g³êbokie" \textit{(ang. deep)}) odnosi siê g³ównie do iloœci warstw, które sk³adaj¹ siê na model sieci. Ta cecha jest zwykle nazywana g³êbokoœci¹ sieci \textit{(ang. depth)}.
+Nowoczesne modele g³êbokich sieci neuronowych czêsto ucz¹ siê dziesi¹tek, a czasem nawet setek kolejnych warst reprezentacji danych. Ka¿da z nich uczy siê samodzielnie na podstawie informacji, które s¹ im przedstawiane.
+
+Inne podejœcia, takie jak np. klasyczne uczenie maszynowe skupia siê na nauce jedynie jednej lub dwóch warstw reprezentacji danych, dlatego tego typu metody s¹ czêsto nazywane "p³ytkim uczeniem" \textit{(ang. shallow learning)}).
+W deep learning'u jako model matematyczny prawie zawsze u¿ywa siê sieci neuronowych, które sk³adaj¹ siê z na³o¿onych na siebie wielu warstw neuronów.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=11cm]{Rysunki/Rozdzial2/learning_flow.pdf}
+	\caption{Schemat procesu uczenia g³êbokiej sieci neuronowej}
+	\label{fig:learning_flow}
+\end{figure}
+
+Ka¿da z warstw posiada zestaw tzw. wag \textit{(ang. weights)}, które okreœlaj¹ sposób w jaki interpretowane s¹ dane wejœciowe. Z technicznego punktu widzenia wagi s¹ parametrami transformacji, które s¹ wykonywane przez warstwy na danych wejœciowych. W tym kontekœcie uczenie oznacza poszukiwanie odpowiedniego zestawu wag, który pozwoli na poprawne przekszta³canie danych wejœciowych w oczekiwane rezultaty. W g³êbokich sieciach neuronowych mog¹ istnieæ miliony tego typu parametrów, wiêc znalezenie odpowiedniej wartoœci dla ka¿dego z nich mo¿e byæ trudnym zadaniem, bior¹c pod uwagê, ¿e zmiana jednego parametru mo¿e mieæ wp³yw zachowanie innych.
+
+W celu poprawnej modyfikacji parametrów sieæ musi obserwowaæ wyniki wyjœciowe i porównywaæ je z wynikami docelowymi, które dostarczone zosta³y w procesie uczenia. Pomiarem tego, jak bardzo uzyskane wyniki ró¿ni¹ siê od tych prawdziwych zajmuje siê tzw. funkcja strat \textit{(ang. loss function)}. Zwraca ona konkretn¹ wartoœæ liczbow¹ pope³nionego b³êdu, który nastêpnie mo¿ne byæ minimalizowany w celu uzyskiwania coraz to lepszych wyników. Odbywa siê to poczynaj¹c od warstwy ostatniej, koñcz¹c na warstwie wejœciowej stosuj¹c algorytm wstecznej propagacji b³êdów, który implementowany jest przez tzw. optymalizator. \cite{Goodfellow-et-al-2016-Book}
+
+Pocz¹tkowo wagi posiadaj¹ losowe wartoœci, które dostosowywane s¹ w ramach wielu iteracji zwanych epokami ucz¹cymi \textit{(ang. epochs)}. Przewa¿nie proces powtarzany jest dziesi¹tki razy na tysi¹cach przyk³adowych danych. Wybierany jest zestaw wag sieci, który posiadaja najmniejsz¹ wartoœæ funkcji strat, czyli ten, który jest najlepiej dostosowany do poprawnego przetwarzania danych wejœciowych na wyjœciowe.
+Ca³y proces uczenia g³êgokiej sieci neuronowej zosta³ zaprezentowany na rysunku \ref{fig:learning_flow}.
+
+Mo¿liwoœæ rozwoju g³êbokich sieci neuronowych by³a wiêc uwarunkowana powstaniem sprzêtu o odpowiedniej mocy obliczeniowej, która umo¿liwi³aby wykonywanie tak du¿ej iloœci obliczeñ w skoñczonym czasie. Obecnie u¿ywane s¹ do tego procesory kart graficznych \textit{(GPU - ang. graphics processing unit)}, które swoimi mo¿liwoœciami znacznie przewy¿szaj¹ zwyk³e procesory \textit{(CPU - central processing unit)}.
 
 
 \section{Rodzaje g³êbokich sieci neuronowych}

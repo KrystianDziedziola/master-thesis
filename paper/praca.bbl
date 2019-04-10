@@ -5,6 +5,17 @@ Francois Chollet.
 \newblock {\em Deep Learning with Python}.
 \newblock 2018.
 
+\bibitem{Williams}
+Jacob~M. Williams.
+\newblock {\em Deep Learning and Transfer Learning in the Classification of EEG
+  Signals}.
+\newblock 2017.
+
+\bibitem{MinskyPapert}
+Marvin Minsky and Seymour Paper.
+\newblock {\em Perceptrons}.
+\newblock 1969.
+
 \bibitem{futureoflife}
 futureoflife.org.
 \newblock {\em Benefits \& risks of artificial intelligence}.
@@ -17,15 +28,9 @@ searchenterpriseai.techtarget.com.
 \newblock
   \url{https://searchenterpriseai.techtarget.com/definition/machine-learning-ML}.
 
-\bibitem{Williams}
-Jacob~M. Williams.
-\newblock {\em Deep Learning and Transfer Learning in the Classification of EEG
-  Signals}.
-\newblock 2017.
-
-\bibitem{MinskyPapert}
-Marvin Minsky and Seymour Paper.
-\newblock {\em Perceptrons}.
-\newblock 1969.
+\bibitem{Goodfellow-et-al-2016-Book}
+Yoshua~Bengio Ian~Goodfellow and Aaron Courville.
+\newblock Deep learning.
+\newblock Book in preparation for MIT Press, 2016.
 
 \end{thebibliography}

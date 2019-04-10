@@ -6,23 +6,23 @@
 \contentsline {chapter}{\numberline {2}Wprowadzenie do g\IeC {\l }\k ebokich sieci neuronowych}{3}{chapter.2}
 \contentsline {section}{\numberline {2.1}Sieci neuronowe a sztuczna inteligencja}{3}{section.2.1}
 \contentsline {section}{\numberline {2.2}Klasyczne sieci neuronowe}{5}{section.2.2}
-\contentsline {section}{\numberline {2.3}Por\'ownanie sieci g\IeC {\l }\k ebokich z klasycznymi sieciami neuronowymi}{6}{section.2.3}
-\contentsline {section}{\numberline {2.4}Rodzaje g\IeC {\l }\k ebokich sieci neuronowych}{6}{section.2.4}
-\contentsline {chapter}{\numberline {3}Om\'owienie wybranego problemu diagnostyki medycznej}{7}{chapter.3}
-\contentsline {section}{\numberline {3.1}Przedstawienie problemu}{7}{section.3.1}
-\contentsline {section}{\numberline {3.2}Dost\k epne dane}{7}{section.3.2}
-\contentsline {section}{\numberline {3.3}Oczekiwane rezultaty}{7}{section.3.3}
-\contentsline {chapter}{\numberline {4}Przegl\k ad dost\k epnych bibliotek oraz narz\k edzi programistycznych}{8}{chapter.4}
-\contentsline {section}{\numberline {4.1}Dost\k epne narz\k edzia}{8}{section.4.1}
-\contentsline {section}{\numberline {4.2}Wybrany stos technologiczny}{8}{section.4.2}
-\contentsline {chapter}{\numberline {5}Pr\'oba rozwi\k azania problemu}{9}{chapter.5}
-\contentsline {section}{\numberline {5.1}Przygotowanie danych}{9}{section.5.1}
-\contentsline {section}{\numberline {5.2}Implementacja procesu nauki}{9}{section.5.2}
-\contentsline {section}{\numberline {5.3}Metoda oceny wynik\'ow}{9}{section.5.3}
-\contentsline {section}{\numberline {5.4}Wyb\'or rodzaju sieci neuronowej}{9}{section.5.4}
-\contentsline {section}{\numberline {5.5}Budowa modelu}{9}{section.5.5}
-\contentsline {section}{\numberline {5.6}Monitorowanie}{9}{section.5.6}
-\contentsline {section}{\numberline {5.7}Optymalizacja}{9}{section.5.7}
-\contentsline {section}{\numberline {5.8}Ocena otrzymanych rezultat\'ow}{9}{section.5.8}
-\contentsline {chapter}{\numberline {6}Zako\'nczenie}{10}{chapter.6}
-\contentsline {chapter}{\numberline {A}P\IeC {\l }yta DVD}{11}{appendix.A}
+\contentsline {section}{\numberline {2.3}Deep learning, czyli g\IeC {\l }\k ebokie sieci neuronowe}{6}{section.2.3}
+\contentsline {section}{\numberline {2.4}Rodzaje g\IeC {\l }\k ebokich sieci neuronowych}{8}{section.2.4}
+\contentsline {chapter}{\numberline {3}Om\'owienie wybranego problemu diagnostyki medycznej}{9}{chapter.3}
+\contentsline {section}{\numberline {3.1}Przedstawienie problemu}{9}{section.3.1}
+\contentsline {section}{\numberline {3.2}Dost\k epne dane}{9}{section.3.2}
+\contentsline {section}{\numberline {3.3}Oczekiwane rezultaty}{9}{section.3.3}
+\contentsline {chapter}{\numberline {4}Przegl\k ad dost\k epnych bibliotek oraz narz\k edzi programistycznych}{10}{chapter.4}
+\contentsline {section}{\numberline {4.1}Dost\k epne narz\k edzia}{10}{section.4.1}
+\contentsline {section}{\numberline {4.2}Wybrany stos technologiczny}{10}{section.4.2}
+\contentsline {chapter}{\numberline {5}Pr\'oba rozwi\k azania problemu}{11}{chapter.5}
+\contentsline {section}{\numberline {5.1}Przygotowanie danych}{11}{section.5.1}
+\contentsline {section}{\numberline {5.2}Implementacja procesu uczenia}{11}{section.5.2}
+\contentsline {section}{\numberline {5.3}Metoda oceny wynik\'ow}{11}{section.5.3}
+\contentsline {section}{\numberline {5.4}Wyb\'or rodzaju sieci neuronowej}{11}{section.5.4}
+\contentsline {section}{\numberline {5.5}Budowa modelu}{11}{section.5.5}
+\contentsline {section}{\numberline {5.6}Monitorowanie}{11}{section.5.6}
+\contentsline {section}{\numberline {5.7}Optymalizacja}{11}{section.5.7}
+\contentsline {section}{\numberline {5.8}Ocena otrzymanych rezultat\'ow}{11}{section.5.8}
+\contentsline {chapter}{\numberline {6}Zako\'nczenie}{12}{chapter.6}
+\contentsline {chapter}{\numberline {A}P\IeC {\l }yta DVD}{13}{appendix.A}
