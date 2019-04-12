@@ -74,10 +74,10 @@ Algorytm wstecznej propagacji b³êdów sta³ siê najpopularniejszym i najbardziej s
 
 \section{Deep learning, czyli g³êbokie sieci neuronowe}
 \label{deep_neural_networks}
-Deep learning to dziedzina uczenia maszynowego, która zak³ada nowe podejœcie do nauki wzorców w danych. K³adzie ona nacisk przede wszystkim na naukê kolejnych warstw reprezentacji, które z ka¿d¹ warstw¹ s¹ coraz bardziej konkretne. S³owo "g³êbokie" \textit{(ang. deep)}) odnosi siê g³ównie do iloœci warstw, które sk³adaj¹ siê na model sieci. Ta cecha jest zwykle nazywana g³êbokoœci¹ sieci \textit{(ang. depth)}.
-Nowoczesne modele g³êbokich sieci neuronowych czêsto ucz¹ siê dziesi¹tek, a czasem nawet setek kolejnych warst reprezentacji danych. Ka¿da z nich uczy siê samodzielnie na podstawie informacji, które s¹ im przedstawiane.
+Deep learning to dziedzina uczenia maszynowego, która zak³ada nowe podejœcie do nauki wzorców w danych. K³adzie ona nacisk przede wszystkim na naukê kolejnych warstw reprezentacji, które z ka¿d¹ warstw¹ s¹ coraz bardziej konkretne. S³owo "g³êbokie" \textit{(ang. deep)} odnosi siê g³ównie do iloœci warstw, które sk³adaj¹ siê na model sieci. Ta cecha jest zwykle nazywana g³êbokoœci¹ sieci \textit{(ang. depth)}.
+Nowoczesne modele g³êbokich sieci neuronowych czêsto ucz¹ siê dziesi¹tek, a czasem nawet setek kolejnych warst reprezentacji danych. Ka¿da z nich uczy siê samodzielnie na podstawie przedstawionych im informacji.
 
-Inne podejœcia, takie jak np. klasyczne uczenie maszynowe skupia siê na nauce jedynie jednej lub dwóch warstw reprezentacji danych, dlatego tego typu metody s¹ czêsto nazywane "p³ytkim uczeniem" \textit{(ang. shallow learning)}).
+Inne podejœcia, takie jak np. klasyczne uczenie maszynowe skupia siê na nauce jedynie jednej lub dwóch warstw reprezentacji danych, dlatego tego typu metody s¹ czêsto nazywane "p³ytkim uczeniem" \textit{(ang. shallow learning)}.
 W deep learning'u jako model matematyczny prawie zawsze u¿ywa siê sieci neuronowych, które sk³adaj¹ siê z na³o¿onych na siebie wielu warstw neuronów.
 
 \begin{figure}[h!]
@@ -89,12 +89,63 @@ W deep learning'u jako model matematyczny prawie zawsze u¿ywa siê sieci neuronow
 
 Ka¿da z warstw posiada zestaw tzw. wag \textit{(ang. weights)}, które okreœlaj¹ sposób w jaki interpretowane s¹ dane wejœciowe. Z technicznego punktu widzenia wagi s¹ parametrami transformacji, które s¹ wykonywane przez warstwy na danych wejœciowych. W tym kontekœcie uczenie oznacza poszukiwanie odpowiedniego zestawu wag, który pozwoli na poprawne przekszta³canie danych wejœciowych w oczekiwane rezultaty. W g³êbokich sieciach neuronowych mog¹ istnieæ miliony tego typu parametrów, wiêc znalezenie odpowiedniej wartoœci dla ka¿dego z nich mo¿e byæ trudnym zadaniem, bior¹c pod uwagê, ¿e zmiana jednego parametru mo¿e mieæ wp³yw zachowanie innych.
 
-W celu poprawnej modyfikacji parametrów sieæ musi obserwowaæ wyniki wyjœciowe i porównywaæ je z wynikami docelowymi, które dostarczone zosta³y w procesie uczenia. Pomiarem tego, jak bardzo uzyskane wyniki ró¿ni¹ siê od tych prawdziwych zajmuje siê tzw. funkcja strat \textit{(ang. loss function)}. Zwraca ona konkretn¹ wartoœæ liczbow¹ pope³nionego b³êdu, który nastêpnie mo¿ne byæ minimalizowany w celu uzyskiwania coraz to lepszych wyników. Odbywa siê to poczynaj¹c od warstwy ostatniej, koñcz¹c na warstwie wejœciowej stosuj¹c algorytm wstecznej propagacji b³êdów, który implementowany jest przez tzw. optymalizator. \cite{Goodfellow-et-al-2016-Book}
+W celu poprawnej modyfikacji parametrów sieæ musi obserwowaæ wyniki wyjœciowe i porównywaæ je z wynikami docelowymi, które dostarczone zosta³y w procesie uczenia. Pomiarem tego, jak bardzo uzyskane wyniki ró¿ni¹ siê od tych prawdziwych zajmuje siê tzw. funkcja strat \textit{(ang. loss function)}. Zwraca ona konkretn¹ wartoœæ liczbow¹ pope³nionego b³êdu, który nastêpnie mo¿e byæ minimalizowany w celu uzyskiwania coraz to lepszych wyników. Odbywa siê to poczynaj¹c od warstwy ostatniej, koñcz¹c na warstwie wejœciowej stosuj¹c algorytm wstecznej propagacji b³êdów, który implementowany jest przez tzw. optymalizator \textit{(ang. optimizer)}. \cite{Goodfellow-et-al-2016-Book}
 
-Pocz¹tkowo wagi posiadaj¹ losowe wartoœci, które dostosowywane s¹ w ramach wielu iteracji zwanych epokami ucz¹cymi \textit{(ang. epochs)}. Przewa¿nie proces powtarzany jest dziesi¹tki razy na tysi¹cach przyk³adowych danych. Wybierany jest zestaw wag sieci, który posiadaja najmniejsz¹ wartoœæ funkcji strat, czyli ten, który jest najlepiej dostosowany do poprawnego przetwarzania danych wejœciowych na wyjœciowe.
+Pocz¹tkowo wagi posiadaj¹ losowe wartoœci, które dostosowywane s¹ w ramach wielu iteracji zwanych epokami ucz¹cymi \textit{(ang. epochs)}. Przewa¿nie proces powtarzany jest dziesi¹tki razy na tysi¹cach przyk³adowych danych. Wybierany jest zestaw wag sieci, który posiada najmniejsz¹ wartoœæ funkcji strat, czyli jest najlepiej dostosowany do poprawnego przetwarzania danych wejœciowych na wyjœciowe.
 Ca³y proces uczenia g³êgokiej sieci neuronowej zosta³ zaprezentowany na rysunku \ref{fig:learning_flow}.
 
 Mo¿liwoœæ rozwoju g³êbokich sieci neuronowych by³a wiêc uwarunkowana powstaniem sprzêtu o odpowiedniej mocy obliczeniowej, która umo¿liwi³aby wykonywanie tak du¿ej iloœci obliczeñ w skoñczonym czasie. Obecnie u¿ywane s¹ do tego procesory kart graficznych \textit{(GPU - ang. graphics processing unit)}, które swoimi mo¿liwoœciami znacznie przewy¿szaj¹ zwyk³e procesory \textit{(CPU - central processing unit)}.
 
 
-\section{Rodzaje g³êbokich sieci neuronowych}
+\section{Architektury g³êbokich sieci neuronowych}
+Wyró¿nia siê 5 najczêœciej stosowanych architektur g³êbokich sieci neuronowych. S¹ to:
+\begin{itemize}
+	\item \textbf{Sieci splotowe} \textit{(CNN - ang. Convolutional Neural Networks)}
+	\item \textbf{Rekurencyjne sieci neuronowe} \textit{(ang. Recurrent Neural Networks)}
+	\item \textbf{ResNets} \textit{(Residual Networks)}
+	\item \textbf{Autoenkodery} \textit{(ang. Autoencoders)}
+	\item \textbf{GAN} \textit{(ang. Generative Adversarial Networks)}
+\end{itemize}
+
+Zostan¹ omówione jedynie dwie pierwsze architektury, gdy¿ to one znalaz³y zastosowanie w niniejszej pracy.
+
+\subsection{Splotowe sieci neuronowe}
+Splotowe sieci neuronowe s¹ niew¹tpliwie najpopularniejsz¹ architektur¹ g³êbokich sieci neuronowych. S¹ one przewa¿nie u¿ywane do zadañ zwi¹zanych z rozpoznawaniem obrazów, jednak równie dobrze sprawdzaj¹ siê w wielu innych dziedzinach.
+
+Przewag¹ tego typu sieci nad klasycznymi sieciami neuronowymi jest mo¿liwoœæ rozpoznawania tymczasowych oraz przestrzennych zale¿noœci pomiêdzy danymi. Jest to mo¿liwe, dziêki temu, ¿e dane które trafiaj¹ do sieci mog¹ posiadaæ strukturê wielowymiarow¹. Przyk³adowo, obrazki zapisane w formacie RGB s¹ 3-wymiarow¹ macierz¹ przechowuj¹c¹ informacjê o wartoœciach koloru ka¿dego z pikseli \ref{fig:cnn_rgb}.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=6cm]{Rysunki/Rozdzial2/cnn_rgb.pdf}
+	\caption{Dane liczbowe obrazka w formacie RGB}
+	\label{fig:cnn_rgb}
+\end{figure}
+
+Na danych przestrzennych wykonywane s¹ operacje takie jak: konwolucja \textit{(ang. convolution)}, zmniejszanie rozmiaru danych \textit{(ang. subsampling)} oraz aktywacja \textit{(ang. activation)}. Znalezione cechy s¹ nastêpnie podawane na wejœcie klasycznej sieci, gdzie neurony po³¹czone s¹ ka¿dy z ka¿dym \textit{(ang. fully connected)}, która wykonuje ostateczne operacje i zwraca wynik koñcowy. Dzia³anie sieci splotowej polega na tworzeniu kolejnych tzw. map cech \textit{(ang. feature map)}, które s¹ abstrakcyjnymi reprezentacjami danych umo¿liwiaj¹cymi wychwycenie podobieñstw i zale¿noœci pomiêdzy danymi.
+Szczegó³owy opis sposobu dzia³ania tych operacji nie bêdzie tutaj omawiany. Zosta³ on przedstawiony m.in. w \cite{Chollet:2018} oraz \cite{Goodfellow-et-al-2016-Book}. 
+Przyk³adowy schemat dzia³ania splotowej sieci neuronowej przedstawiony jest na rysunku \ref{fig:cnn}.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=15cm]{Rysunki/Rozdzial2/cnn.png}
+	\caption{Schemat dzia³ania sieci splotowej}
+	\label{fig:cnn}
+\end{figure}
+
+Zalet¹ tego typu sieci jest bez w¹tpienia mo¿liwoœæ przetwarzania wielowymiarowych danych, dziêki czemu s¹ one w stanie odnajdywaæ przestrzenne zale¿noœci pomiêdzy nimi, co przek³ada siê na ich wysok¹ skutecznoœæ i wszechstronnoœæ.
+
+\subsection{Rekurencyjne sieci neuronowe}
+Rekurencyjne sieci neuronowe s¹ czêsto u¿ywane do rozwi¹zywania problemów, gdzie wykorzystywane s¹ dane sekwencyjne. W praktyce znajduj¹ one zastosowanie w takich problemach jak np. przetwarzanie jêzyka naturalnego, synteza mowy czy automatyczne t³umaczenie jêzyków.
+
+Idea dzia³ania rekurencyjnych sieci neuronowych polega na "zapamiêtywaniu" pewnego ci¹gu sekwencji i dokonywanie wyborów nie tylko na podstawie aktualnych danych, ale równie¿ tych, które by³y przetwarzane poprzednio. Jest to realizowane za pomoc¹ wewnêtrznej pêtli, która polega na przekazywaniu wyników z danej warstwy jako dodatkowych danych wejœciowych podczas kolejnej iteracji. Schemat pêtli zaprezentowany zosta³ na rysunku \ref{fig:rnn}. 
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=5cm]{Rysunki/Rozdzial2/rnn.pdf}
+	\caption{Pêtla w rekurencyjnej sieci neuronowej}
+	\label{fig:rnn}
+\end{figure}
+
+Zalet¹ rekurencyjnych sieci neuronowych jest to, ¿e wspó³dziel¹ one jeden zestaw parametrów we wszystkich krokach, dziêki temu pozwala to zredukowaæ ich iloœæ. Mog¹ byæ on równie¿ u¿ywane w po³¹czeniu z sieciami splotowymi.
+
+Do wad nale¿y m.in. to, ¿e nie s¹ one w stanie zapamiêtywaæ zbyt d³ugich sekwencji. Dodatkowo ich g³êbokoœæ nie mo¿e byæ zbyt du¿a, poniewa¿ u¿ywane funkcje aktywacji powoduj¹, ¿e gradient zmian zanika po przejœciu przez kilka warstw.
