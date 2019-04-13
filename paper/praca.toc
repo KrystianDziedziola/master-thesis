@@ -12,19 +12,19 @@
 \contentsline {subsection}{\numberline {2.4.2}Rekurencyjne sieci neuronowe}{9}{subsection.2.4.2}
 \contentsline {chapter}{\numberline {3}Om\'owienie wybranego problemu diagnostyki medycznej}{11}{chapter.3}
 \contentsline {section}{\numberline {3.1}Przedstawienie problemu}{11}{section.3.1}
-\contentsline {section}{\numberline {3.2}Dost\k epne dane}{11}{section.3.2}
-\contentsline {section}{\numberline {3.3}Oczekiwane rezultaty}{11}{section.3.3}
-\contentsline {chapter}{\numberline {4}Przegl\k ad dost\k epnych bibliotek oraz narz\k edzi programistycznych}{12}{chapter.4}
-\contentsline {section}{\numberline {4.1}Dost\k epne narz\k edzia}{12}{section.4.1}
-\contentsline {section}{\numberline {4.2}Wybrany stos technologiczny}{12}{section.4.2}
-\contentsline {chapter}{\numberline {5}Pr\'oba rozwi\k azania problemu}{13}{chapter.5}
-\contentsline {section}{\numberline {5.1}Przygotowanie danych}{13}{section.5.1}
-\contentsline {section}{\numberline {5.2}Implementacja procesu uczenia}{13}{section.5.2}
-\contentsline {section}{\numberline {5.3}Metoda oceny wynik\'ow}{13}{section.5.3}
-\contentsline {section}{\numberline {5.4}Wyb\'or rodzaju sieci neuronowej}{13}{section.5.4}
-\contentsline {section}{\numberline {5.5}Budowa modelu}{13}{section.5.5}
-\contentsline {section}{\numberline {5.6}Monitorowanie}{13}{section.5.6}
-\contentsline {section}{\numberline {5.7}Optymalizacja}{13}{section.5.7}
-\contentsline {section}{\numberline {5.8}Ocena otrzymanych rezultat\'ow}{13}{section.5.8}
-\contentsline {chapter}{\numberline {6}Zako\'nczenie}{14}{chapter.6}
-\contentsline {chapter}{\numberline {A}P\IeC {\l }yta DVD}{15}{appendix.A}
+\contentsline {section}{\numberline {3.2}Dost\k epne dane}{12}{section.3.2}
+\contentsline {section}{\numberline {3.3}Oczekiwane rezultaty}{12}{section.3.3}
+\contentsline {chapter}{\numberline {4}Przegl\k ad dost\k epnych bibliotek oraz narz\k edzi programistycznych}{13}{chapter.4}
+\contentsline {section}{\numberline {4.1}Dost\k epne narz\k edzia}{13}{section.4.1}
+\contentsline {section}{\numberline {4.2}Wybrany stos technologiczny}{13}{section.4.2}
+\contentsline {chapter}{\numberline {5}Pr\'oba rozwi\k azania problemu}{14}{chapter.5}
+\contentsline {section}{\numberline {5.1}Przygotowanie danych}{14}{section.5.1}
+\contentsline {section}{\numberline {5.2}Implementacja procesu uczenia}{14}{section.5.2}
+\contentsline {section}{\numberline {5.3}Metoda oceny wynik\'ow}{14}{section.5.3}
+\contentsline {section}{\numberline {5.4}Wyb\'or rodzaju sieci neuronowej}{14}{section.5.4}
+\contentsline {section}{\numberline {5.5}Budowa modelu}{14}{section.5.5}
+\contentsline {section}{\numberline {5.6}Monitorowanie}{14}{section.5.6}
+\contentsline {section}{\numberline {5.7}Optymalizacja}{14}{section.5.7}
+\contentsline {section}{\numberline {5.8}Ocena otrzymanych rezultat\'ow}{14}{section.5.8}
+\contentsline {chapter}{\numberline {6}Zako\'nczenie}{15}{chapter.6}
+\contentsline {chapter}{\numberline {A}P\IeC {\l }yta DVD}{16}{appendix.A}

@@ -1,4 +1,4 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 
 \bibitem{Chollet:2018}
 Francois Chollet.
@@ -32,5 +32,23 @@ searchenterpriseai.techtarget.com.
 Yoshua~Bengio Ian~Goodfellow and Aaron Courville.
 \newblock Deep learning.
 \newblock Book in preparation for MIT Press, 2016.
+
+\bibitem{epilepsy_foundation}
+
+
+\bibitem{learning_robust}
+Andrew~Lim Pierre~Thodoroff, Joelle~Pineau.
+\newblock {\em Learning Robust Features using Deep Learning for Automatic
+  Seizure Detection}.
+\newblock 2016.
+
+\bibitem{automated_system}
+Emad-ul-Haq~Qazi Ihsan~Ullah, Muhammad~Hussain and Hatim Aboalsamh.
+\newblock {\em An Automated System for Epilepsy Detection using EEG Brain
+  Signals based on Deep Learning Approach}.
+
+\bibitem{detecting_epileptic}
+Nick Hershey.
+\newblock {\em Detecting Epileptic Seizures in Electroencephalogram Data}.
 
 \end{thebibliography}

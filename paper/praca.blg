@@ -3,50 +3,60 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: praca.aux
 The style file: unsrt.bst
 Database file #1: Bibliografia/bibliografia.bib
+Illegal end of database file---line 90 of file Bibliografia/bibliografia.bib
+ : }
+ :  
+I'm skipping whatever remains of this entry
 Warning--empty publisher in Chollet:2018
 Warning--empty publisher in Williams
 Warning--empty publisher in MinskyPapert
 Name 1 in "Ian Goodfellow, Yoshua Bengio, and Aaron Courville" has a comma at the end for entry Goodfellow-et-al-2016-Book
 while executing---line 944 of file unsrt.bst
-You've used 6 entries,
+Warning--empty title in epilepsy_foundation
+Warning--empty publisher in learning_robust
+Warning--empty publisher in automated_system
+Warning--empty year in automated_system
+Warning--empty publisher in detecting_epileptic
+Warning--empty year in detecting_epileptic
+You've used 10 entries,
             1791 wiz_defined-function locations,
-            475 strings with 4246 characters,
-and the built_in function-call counts, 832 in all, are:
-= -- 63
-> -- 32
+            485 strings with 4668 characters,
+and the built_in function-call counts, 1358 in all, are:
+= -- 95
+> -- 49
 < -- 0
-+ -- 14
-- -- 8
-* -- 26
-:= -- 141
-add.period$ -- 18
-call.type$ -- 6
++ -- 22
+- -- 12
+* -- 52
+:= -- 212
+add.period$ -- 26
+call.type$ -- 10
 change.case$ -- 1
 chr.to.int$ -- 0
-cite$ -- 9
-duplicate$ -- 48
-empty$ -- 96
-format.name$ -- 8
-if$ -- 183
+cite$ -- 19
+duplicate$ -- 84
+empty$ -- 167
+format.name$ -- 12
+if$ -- 302
 int.to.chr$ -- 0
-int.to.str$ -- 6
-missing$ -- 6
-newline$ -- 33
-num.names$ -- 6
-pop$ -- 32
+int.to.str$ -- 10
+missing$ -- 12
+newline$ -- 49
+num.names$ -- 9
+pop$ -- 64
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 15
+skip$ -- 26
 stack$ -- 0
 substring$ -- 0
-swap$ -- 7
+swap$ -- 10
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
-warning$ -- 3
-while$ -- 6
-width$ -- 7
-write$ -- 57
-(There was 1 error message)
+warning$ -- 9
+while$ -- 9
+width$ -- 12
+write$ -- 84
+(There were 2 error messages)
