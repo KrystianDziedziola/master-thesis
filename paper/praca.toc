@@ -16,15 +16,15 @@
 \contentsline {section}{\numberline {3.3}Oczekiwane rezultaty}{12}{section.3.3}
 \contentsline {chapter}{\numberline {4}Przegl\k ad dost\k epnych bibliotek oraz narz\k edzi programistycznych}{13}{chapter.4}
 \contentsline {section}{\numberline {4.1}Dost\k epne narz\k edzia}{13}{section.4.1}
-\contentsline {section}{\numberline {4.2}Wybrany stos technologiczny}{13}{section.4.2}
-\contentsline {chapter}{\numberline {5}Pr\'oba rozwi\k azania problemu}{14}{chapter.5}
-\contentsline {section}{\numberline {5.1}Przygotowanie danych}{14}{section.5.1}
-\contentsline {section}{\numberline {5.2}Implementacja procesu uczenia}{14}{section.5.2}
-\contentsline {section}{\numberline {5.3}Metoda oceny wynik\'ow}{14}{section.5.3}
-\contentsline {section}{\numberline {5.4}Wyb\'or rodzaju sieci neuronowej}{14}{section.5.4}
-\contentsline {section}{\numberline {5.5}Budowa modelu}{14}{section.5.5}
-\contentsline {section}{\numberline {5.6}Monitorowanie}{14}{section.5.6}
-\contentsline {section}{\numberline {5.7}Optymalizacja}{14}{section.5.7}
-\contentsline {section}{\numberline {5.8}Ocena otrzymanych rezultat\'ow}{14}{section.5.8}
-\contentsline {chapter}{\numberline {6}Zako\'nczenie}{15}{chapter.6}
-\contentsline {chapter}{\numberline {A}P\IeC {\l }yta DVD}{16}{appendix.A}
+\contentsline {section}{\numberline {4.2}Wybrany stos technologiczny}{14}{section.4.2}
+\contentsline {chapter}{\numberline {5}Pr\'oba rozwi\k azania problemu}{15}{chapter.5}
+\contentsline {section}{\numberline {5.1}Przygotowanie danych}{15}{section.5.1}
+\contentsline {section}{\numberline {5.2}Implementacja procesu uczenia}{15}{section.5.2}
+\contentsline {section}{\numberline {5.3}Metoda oceny wynik\'ow}{15}{section.5.3}
+\contentsline {section}{\numberline {5.4}Wyb\'or rodzaju sieci neuronowej}{15}{section.5.4}
+\contentsline {section}{\numberline {5.5}Budowa modelu}{15}{section.5.5}
+\contentsline {section}{\numberline {5.6}Monitorowanie}{15}{section.5.6}
+\contentsline {section}{\numberline {5.7}Optymalizacja}{15}{section.5.7}
+\contentsline {section}{\numberline {5.8}Ocena otrzymanych rezultat\'ow}{15}{section.5.8}
+\contentsline {chapter}{\numberline {6}Zako\'nczenie}{16}{chapter.6}
+\contentsline {chapter}{\numberline {A}P\IeC {\l }yta DVD}{17}{appendix.A}

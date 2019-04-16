@@ -45,7 +45,7 @@ Mo¿na zauwa¿yæ, ¿e sztuczna inteligencja jest pojêciem bardzo szerokim. W jej sk
 
 
 \section{Klasyczne sieci neuronowe}
-Sieci neuronowe to dziedzina uczenia maszynowego, która jako model matematyczny podlegaj¹cy uczeniu wykorzystuje sturukturê sieci sk³adaj¹c¹ siê z wielu jednostek obliczeniowych zwanych neuronami. Neurony wykonuj¹ podstawowe obliczenia i ich wyniki przekazuj¹ do kolejnych neuronów. Operacje, które s¹ wykonywane przez neurony to przewa¿nie sumowanie otrzymanych informacji oraz zastowanie prostej, nieliniowej funkcji. W wiêkszoœci sieci neuronowych, neurony zgrupowane s¹ w tzw. warstwy. Obliczenia wykonane przez jedn¹ warstwê s¹ przekazywane do kolejnej, która z kolei wykonuje obliczenia na otrzymanych wynikach. Ostatnia warstwa zwraca koñcowy wynik, który jest interpretowany w ró¿ny sposów w zale¿noœci od wykonywanej operacji np. klasyfikacja lub regresja. Schemat prostej sieci neuronowej przedstawiony zosta³ na rysunku \ref{fig:simple_nn}
+Sieci neuronowe to dziedzina uczenia maszynowego, która jako model matematyczny podlegaj¹cy uczeniu wykorzystuje sturukturê sieci sk³adaj¹c¹ siê z wielu jednostek obliczeniowych zwanych neuronami. Neurony wykonuj¹ podstawowe obliczenia i ich wyniki przekazuj¹ do kolejnych neuronów. Operacje, które s¹ wykonywane przez neurony to przewa¿nie sumowanie otrzymanych informacji oraz zastowanie prostej, nieliniowej funkcji. W wiêkszoœci sieci neuronowych, neurony zgrupowane s¹ w tzw. warstwy. Obliczenia wykonane przez jedn¹ warstwê s¹ przekazywane do kolejnej, która z kolei wykonuje obliczenia na otrzymanych wynikach. Ostatnia warstwa zwraca koñcowy wynik, który jest interpretowany w ró¿ny sposób w zale¿noœci od wykonywanej operacji np. klasyfikacja lub regresja. Schemat prostej sieci neuronowej przedstawiony zosta³ na rysunku \ref{fig:simple_nn}
 
 \begin{figure}[h!]
 	\centering
@@ -67,7 +67,7 @@ Oznacza to, ¿e przysz³a wartoœæ wagi neuronu obliczona jest przez dodanie b³êdu 
 
 W latach 60-tych zosta³o matematycznie udowodnione, ¿e sieæ z pojedyncz¹ warstw¹ nie posiada mo¿liwoœci klasyfikowania problemów, które nie s¹ liniowo separowalne. Przyk³adem jest funkcja alternatywy wykluczaj¹cej - XOR. Kolejne, bardziej skomplikowane problemy, których siê podejmowano, takie jak m.in. rozpoznawanie mowy, koñczy³y siê wiêc niepowodzeniem. Mo¿liwoœæ uczenia sieci wielowarstwowych by³a wiêc konieczna w dalszym rozwoju sieci neuronowych. W tej samej publikacji \cite{MinskyPapert} zosta³o równie¿ udowodnione, ¿e 2-warstwowa sieæ jest w stanie zamodelowaæ niemal ka¿d¹ funkcj¹. W praktyce jest to jednak ciê¿kie do osi¹gniêcia.
 
-W póŸniejszym okresie przedstawiony zosta³ algorytm wstecznej propagacji b³êdów \textit{(ang. backpropagation)}, który umo¿liwia³ uczenie wielowarstwowych sieci neuronowych. Oparty jest on na minimalizacji wartoœci tzw. funkcji straty z wykorzystaniem optymalizacyjnej metody najwiêkszego spadku. B³êdy obliczane s¹ na warstwie wyjœciowej i przekazywane s¹ wstecz, do warstw poprzedzaj¹cych. Jest to mo¿liwe dziêki wykorzystaniu tzw. metody ³añcuchowej \textit{(ang. chain rule)}. Dziêki zastosowaniu tego typu podejœcia osi¹gniêty zosta³ cel, który zak³ada³ umo¿liwienie uczenia wielowarstwowych sieci neuronowych. Pozwoli³o to w znacz¹cym stopniu przyspieszyæ rozwój w tej dziedzinie.
+W póŸniejszym okresie przedstawiony zosta³ algorytm wstecznej propagacji b³êdów \textit{(ang. backpropagation)}, który umo¿liwia³ uczenie wielowarstwowych sieci neuronowych. Oparty jest on na minimalizacji wartoœci tzw. funkcji straty z wykorzystaniem optymalizacyjnej metody najwiêkszego spadku. B³êdy obliczane s¹ na warstwie wyjœciowej i przekazywane s¹ wstecz, do warstw poprzedzaj¹cych. Jest to mo¿liwe dziêki wykorzystaniu tzw. metody ³añcuchowej \textit{(ang. chain rule)}. Szczegó³y dotycz¹ce tego algorytmu zosta³y opisane w wielu publikacjach m.in. w \cite{Goodfellow-et-al-2016-Book}. Dziêki zastosowaniu tego typu podejœcia osi¹gniêty zosta³ cel, który zak³ada³ umo¿liwienie uczenia wielowarstwowych sieci neuronowych. Pozwoli³o to w znacz¹cym stopniu przyspieszyæ rozwój w tej dziedzinie.
 
 Algorytm wstecznej propagacji b³êdów sta³ siê najpopularniejszym i najbardziej skutecznym algorytmem do nauki sieci neuronowych. Ma on w³aœnie zastosowanie w g³êbokich sieciach neuronowych, które zosta³y opisane w rozdziale \ref{deep_neural_networks}.
 
@@ -87,9 +87,9 @@ W deep learning'u jako model matematyczny prawie zawsze u¿ywa siê sieci neuronow
 	\label{fig:learning_flow}
 \end{figure}
 
-Ka¿da z warstw posiada zestaw tzw. wag \textit{(ang. weights)}, które okreœlaj¹ sposób w jaki interpretowane s¹ dane wejœciowe. Z technicznego punktu widzenia wagi s¹ parametrami transformacji, które s¹ wykonywane przez warstwy na danych wejœciowych. W tym kontekœcie uczenie oznacza poszukiwanie odpowiedniego zestawu wag, który pozwoli na poprawne przekszta³canie danych wejœciowych w oczekiwane rezultaty. W g³êbokich sieciach neuronowych mog¹ istnieæ miliony tego typu parametrów, wiêc znalezenie odpowiedniej wartoœci dla ka¿dego z nich mo¿e byæ trudnym zadaniem, bior¹c pod uwagê, ¿e zmiana jednego parametru mo¿e mieæ wp³yw zachowanie innych.
+Ka¿da z warstw posiada zestaw tzw. wag \textit{(ang. weights)}, które okreœlaj¹ sposób w jaki interpretowane s¹ dane wejœciowe. Z technicznego punktu widzenia wagi s¹ parametrami transformacji, które s¹ wykonywane przez warstwy na danych wejœciowych. W tym kontekœcie uczenie oznacza poszukiwanie odpowiedniego zestawu wag, który pozwoli na poprawne przekszta³canie danych wejœciowych w oczekiwane rezultaty. W g³êbokich sieciach neuronowych mog¹ istnieæ miliony tego typu parametrów, wiêc znalezienie odpowiedniej wartoœci dla ka¿dego z nich mo¿e byæ trudnym zadaniem, bior¹c pod uwagê, ¿e zmiana jednego parametru mo¿e mieæ wp³yw na zachowanie innych.
 
-W celu poprawnej modyfikacji parametrów sieæ musi obserwowaæ wyniki wyjœciowe i porównywaæ je z wynikami docelowymi, które dostarczone zosta³y w procesie uczenia. Pomiarem tego, jak bardzo uzyskane wyniki ró¿ni¹ siê od tych prawdziwych zajmuje siê tzw. funkcja strat \textit{(ang. loss function)}. Zwraca ona konkretn¹ wartoœæ liczbow¹ pope³nionego b³êdu, który nastêpnie mo¿e byæ minimalizowany w celu uzyskiwania coraz to lepszych wyników. Odbywa siê to poczynaj¹c od warstwy ostatniej, koñcz¹c na warstwie wejœciowej stosuj¹c algorytm wstecznej propagacji b³êdów, który implementowany jest przez tzw. optymalizator \textit{(ang. optimizer)}. \cite{Goodfellow-et-al-2016-Book}
+W celu poprawnej modyfikacji parametrów sieæ musi obserwowaæ wyniki wyjœciowe i porównywaæ je z wynikami docelowymi, które dostarczone zosta³y w procesie uczenia. Pomiarem tego jak bardzo uzyskane wyniki ró¿ni¹ siê od tych prawdziwych zajmuje siê tzw. funkcja strat \textit{(ang. loss function)}. Zwraca ona konkretn¹ wartoœæ liczbow¹ pope³nionego b³êdu, który nastêpnie mo¿e byæ minimalizowany w celu uzyskiwania coraz to lepszych wyników. Odbywa siê to poczynaj¹c od warstwy ostatniej, koñcz¹c na warstwie wejœciowej stosuj¹c algorytm wstecznej propagacji b³êdów, który implementowany jest przez tzw. optymalizator \textit{(ang. optimizer)}. \cite{Goodfellow-et-al-2016-Book}
 
 Pocz¹tkowo wagi posiadaj¹ losowe wartoœci, które dostosowywane s¹ w ramach wielu iteracji zwanych epokami ucz¹cymi \textit{(ang. epochs)}. Przewa¿nie proces powtarzany jest dziesi¹tki razy na tysi¹cach przyk³adowych danych. Wybierany jest zestaw wag sieci, który posiada najmniejsz¹ wartoœæ funkcji strat, czyli jest najlepiej dostosowany do poprawnego przetwarzania danych wejœciowych na wyjœciowe.
 Ca³y proces uczenia g³êgokiej sieci neuronowej zosta³ zaprezentowany na rysunku \ref{fig:learning_flow}.
@@ -122,13 +122,13 @@ Przewag¹ tego typu sieci nad klasycznymi sieciami neuronowymi jest mo¿liwoœæ roz
 \end{figure}
 
 Na danych przestrzennych wykonywane s¹ operacje takie jak: konwolucja \textit{(ang. convolution)}, zmniejszanie rozmiaru danych \textit{(ang. subsampling)} oraz aktywacja \textit{(ang. activation)}. Znalezione cechy s¹ nastêpnie podawane na wejœcie klasycznej sieci, gdzie neurony po³¹czone s¹ ka¿dy z ka¿dym \textit{(ang. fully connected)}, która wykonuje ostateczne operacje i zwraca wynik koñcowy. Dzia³anie sieci splotowej polega na tworzeniu kolejnych tzw. map cech \textit{(ang. feature map)}, które s¹ abstrakcyjnymi reprezentacjami danych umo¿liwiaj¹cymi wychwycenie podobieñstw i zale¿noœci pomiêdzy danymi.
-Szczegó³owy opis sposobu dzia³ania tych operacji nie bêdzie tutaj omawiany. Zosta³ on przedstawiony m.in. w \cite{Chollet:2018} oraz \cite{Goodfellow-et-al-2016-Book}. 
+Szczegó³owy opis sposobu dzia³ania tych operacji zosta³ przedstawiony m.in. w \cite{Chollet:2018} oraz \cite{Goodfellow-et-al-2016-Book}. 
 Przyk³adowy schemat splotowej sieci neuronowej sk³adaj¹cy siê z kliku warstw konwolucyjnych po³¹czonych z warstwami zmniejszaj¹cymi rozmiar danych (tzw. \textit{pooling}'iem), która zosta³a zakoñczona dwoma warstwami sieci \textit{FC - fully connected} przedstawiony jest na rysunku \ref{fig:cnn}.
 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=15cm]{Rysunki/Rozdzial2/cnn.png}
-	\caption{Schemat dzia³ania sieci splotowej}
+	\caption{Schemat dzia³ania sieci splotowej \cite{engmrk}}
 	\label{fig:cnn}
 \end{figure}
 
@@ -137,7 +137,7 @@ Zalet¹ tego typu sieci jest bez w¹tpienia mo¿liwoœæ przetwarzania wielowymiarowy
 \subsection{Rekurencyjne sieci neuronowe}
 Rekurencyjne sieci neuronowe s¹ czêsto u¿ywane do rozwi¹zywania problemów, gdzie wykorzystywane s¹ dane sekwencyjne. W praktyce znajduj¹ one zastosowanie w takich problemach jak np. przetwarzanie jêzyka naturalnego, synteza mowy czy automatyczne t³umaczenie jêzyków.
 
-Idea dzia³ania rekurencyjnych sieci neuronowych polega na "zapamiêtywaniu" pewnego ci¹gu sekwencji i dokonywanie wyborów nie tylko na podstawie aktualnych danych, ale równie¿ tych, które by³y przetwarzane poprzednio. Jest to realizowane za pomoc¹ wewnêtrznej pêtli, która polega na przekazywaniu wyników z danej warstwy jako dodatkowych danych wejœciowych podczas kolejnej iteracji. Schemat pêtli zaprezentowany zosta³ na rysunku \ref{fig:rnn}. 
+Idea dzia³ania rekurencyjnych sieci neuronowych polega na zapamiêtywaniu pewnego ci¹gu sekwencji i dokonywanie wyborów nie tylko na podstawie aktualnych danych, ale równie¿ tych, które by³y przetwarzane poprzednio. Jest to realizowane za pomoc¹ wewnêtrznej pêtli, która polega na przekazywaniu wyników z danej warstwy jako dodatkowych danych wejœciowych podczas kolejnej iteracji. Schemat pêtli zaprezentowany zosta³ na rysunku \ref{fig:rnn}. 
 
 \begin{figure}[h!]
 	\centering

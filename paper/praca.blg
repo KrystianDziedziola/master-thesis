@@ -3,9 +3,10 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: praca.aux
 The style file: unsrt.bst
 Database file #1: Bibliografia/bibliografia.bib
-Illegal end of database file---line 90 of file Bibliografia/bibliografia.bib
- : }
- :  
+Illegal end of database file---line 99 of file Bibliografia/bibliografia.bib
+ : 
+ : 
+(Error may have been on previous line)
 I'm skipping whatever remains of this entry
 Warning--empty publisher in Chollet:2018
 Warning--empty publisher in Williams
@@ -18,45 +19,45 @@ Warning--empty publisher in automated_system
 Warning--empty year in automated_system
 Warning--empty publisher in detecting_epileptic
 Warning--empty year in detecting_epileptic
-You've used 10 entries,
+You've used 11 entries,
             1791 wiz_defined-function locations,
-            485 strings with 4668 characters,
-and the built_in function-call counts, 1358 in all, are:
-= -- 95
-> -- 49
+            489 strings with 4798 characters,
+and the built_in function-call counts, 1476 in all, are:
+= -- 104
+> -- 53
 < -- 0
-+ -- 22
-- -- 12
-* -- 52
-:= -- 212
-add.period$ -- 26
-call.type$ -- 10
++ -- 24
+- -- 13
+* -- 54
+:= -- 231
+add.period$ -- 29
+call.type$ -- 11
 change.case$ -- 1
 chr.to.int$ -- 0
-cite$ -- 19
-duplicate$ -- 84
-empty$ -- 167
-format.name$ -- 12
-if$ -- 302
+cite$ -- 20
+duplicate$ -- 91
+empty$ -- 182
+format.name$ -- 13
+if$ -- 328
 int.to.chr$ -- 0
-int.to.str$ -- 10
+int.to.str$ -- 11
 missing$ -- 12
-newline$ -- 49
-num.names$ -- 9
-pop$ -- 64
+newline$ -- 54
+num.names$ -- 10
+pop$ -- 68
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 26
+skip$ -- 29
 stack$ -- 0
 substring$ -- 0
-swap$ -- 10
+swap$ -- 12
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 9
-while$ -- 9
-width$ -- 12
-write$ -- 84
+while$ -- 10
+width$ -- 13
+write$ -- 93
 (There were 2 error messages)

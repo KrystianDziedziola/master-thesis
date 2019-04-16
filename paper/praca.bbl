@@ -1,5 +1,11 @@
 \begin{thebibliography}{10}
 
+\bibitem{engmrk}
+engmrk.com.
+\newblock {\em Module 22 – Implementation of CNN Using Keras}.
+\newblock
+  \url{https://engmrk.com/module-22-implementation-of-cnn-using-keras/}.
+
 \bibitem{Chollet:2018}
 Francois Chollet.
 \newblock {\em Deep Learning with Python}.

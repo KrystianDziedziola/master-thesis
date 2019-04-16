@@ -1,4 +1,26 @@
 \chapter{Przegl¹d dostêpnych bibliotek oraz narzêdzi programistycznych}
 \label{chapter_4}
 \section{Dostêpne narzêdzia}
+Istnieje niezliczona iloœæ narzêdzi umo¿liwiaj¹cych tworzenie oraz naukê g³êbokich sieci neuronowych. Do tych najbardziej popularnych zalicza siê m.in.:
+\begin{itemize}
+	\item \textbf{TensorFlow} - najczêœciej u¿ywana biblioteka do deep learning'u stworzona przez Google. Jest ona u¿ywana m.in. przez takie firmy jak Airbus, Twitter oraz IBM. Google wykorzystuje j¹ równie¿ w swoich produktach np. t³umacz Google zbudowany jest na bazie TensorFlow.
+	Rekomendowanym jêzykiem jest Python, jednak istnieje mo¿liwoœæ u¿ywania jêzyków Java, C oraz Go.
+	\item \textbf{Keras} - biblioteka dostarczaj¹ca wysokopoziomowe API umo¿liwiaj¹ce tworzenie sieci neuronowych w prosty sposób. Keras sam w sobie nie posiada silnika umo¿liwiaj¹cego tworzenia sieci neuronowych, jednak u¿ywa jednej z wybranych biblitek (TensorFlow, CNTK lub Theano). Biblioteka jest napisana w Pythonie i ten jêzyk jest zalecany do u¿ytku, jednak istnieje mo¿liwoœæ u¿ycia równie¿ jêzyka R.
+	\item \textbf{Theano} - biblioteka dedykowana dla Pythona umo¿liwiaj¹ca tworzenie sieci neuronowych mo¿e byæ u¿ywana w po³¹czeniu z bibliotek¹ Keras.
+	\item \textbf{Caffe} - biblioteka stworzona przez zespó³ Berkeley AI Research (BAIR). Zosta³a napisana w C++, jednak umo¿liwa równie¿ korzystanie z Matlab'a oraz Python'a.
+	\item \textbf{Deeplearning4j} - biblioteka napisana w Javie, kompatybilna ze wszystkimi jêzykami uruchamianymi na wirtualnej maszynie Javy (JVM) m.in. Java, Groovy, Scala czy Kotlin. Jest bardziej ukierunkowana na u¿ycie w aplikacjach biznesowych, ni¿ naukowo-badawczych.
+\end{itemize}
+
+Wszystkie wymienione biblioteki s¹ dostêpne za darmo.
+
+
 \section{Wybrany stos technologiczny}
+Stos technologiczny wybrany do wykonania badañ w tej pracy to:
+\begin{itemize}
+	\item \textbf{Python} - najbardziej popularny jêzyk programowania do deep learning'u, bardzo dobrze przystosowany do zastosowañ naukowych.
+	\item \textbf{Keras/TensorFlow} - najczêœciej wykorzystywany zestaw bibliotek posiadaj¹cy bardzo dobr¹ dokumentacjê, opisywany w wielu poradnikach. Wspiera równie¿ mo¿liwoœæ wykonywania obliczeñ na karcie graficznej. Dostarcza dodatkowy zestaw narzêdzi umo¿liwiaj¹cych monitorowania sieci m.in. TensorBoard.
+	\item \textbf{Nvidia cuDNN} - bilbioteka umo¿liwiaj¹ca wykonywanie obliczeñ na karcie graficznej podczas nauki sieci neuronowych. Jej u¿ywanie jest bardzo zalecane, gdy¿ umo¿liwia o wiele szybsze przetwarzanie 
+	danych. Wymagane jest posiadania odpowiedniej karty graficznej wspieraj¹cej tê technologiê.
+	\item \textbf{Jupyter Notebook} - œrodowisko programistyczne umo¿liwiaj¹ce pracê w jêzykach Julia, Python oraz R.
+	\item \textbf{Docker} - narzêdzie s³u¿¹ce do konteneryzacji. Umo¿liwia uruchamianie ca³ego œrodowiska w odizolowanych kontenerach za pomoc¹ dostêpnych publicznie obrazów bez koniecznoœci instalacji w systemie ¿adnych dodatkowych narzêdzi.
+\end{itemize}
