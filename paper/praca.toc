@@ -19,12 +19,12 @@
 \contentsline {section}{\numberline {4.2}Wybrany stos technologiczny}{14}{section.4.2}
 \contentsline {chapter}{\numberline {5}Pr\'oba rozwi\k azania problemu}{15}{chapter.5}
 \contentsline {section}{\numberline {5.1}Przygotowanie danych}{15}{section.5.1}
-\contentsline {section}{\numberline {5.2}Implementacja procesu uczenia}{15}{section.5.2}
-\contentsline {section}{\numberline {5.3}Metoda oceny wynik\'ow}{15}{section.5.3}
-\contentsline {section}{\numberline {5.4}Wyb\'or rodzaju sieci neuronowej}{15}{section.5.4}
-\contentsline {section}{\numberline {5.5}Budowa modelu}{15}{section.5.5}
-\contentsline {section}{\numberline {5.6}Monitorowanie}{15}{section.5.6}
-\contentsline {section}{\numberline {5.7}Optymalizacja}{15}{section.5.7}
-\contentsline {section}{\numberline {5.8}Ocena otrzymanych rezultat\'ow}{15}{section.5.8}
-\contentsline {chapter}{\numberline {6}Zako\'nczenie}{16}{chapter.6}
-\contentsline {chapter}{\numberline {A}P\IeC {\l }yta DVD}{17}{appendix.A}
+\contentsline {section}{\numberline {5.2}Implementacja procesu uczenia}{21}{section.5.2}
+\contentsline {section}{\numberline {5.3}Metoda oceny wynik\'ow}{21}{section.5.3}
+\contentsline {section}{\numberline {5.4}Wyb\'or rodzaju sieci neuronowej}{21}{section.5.4}
+\contentsline {section}{\numberline {5.5}Budowa modelu}{21}{section.5.5}
+\contentsline {section}{\numberline {5.6}Monitorowanie}{21}{section.5.6}
+\contentsline {section}{\numberline {5.7}Optymalizacja}{21}{section.5.7}
+\contentsline {section}{\numberline {5.8}Ocena otrzymanych rezultat\'ow}{21}{section.5.8}
+\contentsline {chapter}{\numberline {6}Zako\'nczenie}{22}{chapter.6}
+\contentsline {chapter}{\numberline {A}P\IeC {\l }yta DVD}{23}{appendix.A}

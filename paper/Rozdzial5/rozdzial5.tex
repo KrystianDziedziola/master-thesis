@@ -1,6 +1,317 @@
 \chapter{Próba rozwi¹zania problemu}
 \label{chapter_5}
 \section{Przygotowanie danych}
+W celu wykorzystania dostêpnych danych w procesie uczenia sieci neuronowej nale¿y je najpierw odpowiednio przygotowaæ.
+Dostarczone zosta³y dane w postaci plików tekstowych z liczbami reprezentuj¹cymi wartoœci zmierzone przy pomocy elektroencofalogramu. W poszczególnych kolumnach znajduj¹ siê wartoœci odpowiadaj¹ce konkretnym kana³om (\textit{EEG\_FP1\_F3}, \textit{EEG\_FP2\_F4} itd.). Ostatnia kolumna (o nag³ówku \textit{t}) przedstawia czas w sekundach, w którym mia³ miejsce pomiar. 
+
+Dostêpne s¹ dane 104 pacjentów, u których wyst¹pi³y ataki. Ka¿dy z nich posiada odczyty wykonane z czêstotliwoœci¹ 500Hz przez blisko 15 minut. Jest to oko³o 450 000 linii w ka¿dym pliku. Dane zajmuj¹ 6,5 GB.
+
+Fragment jednego z plików z danymi wygl¹da nastêpuj¹co:
+
+\begin{lstlisting}[caption=Dane liczbowe z odczytu EEG]
+"EEG_FP1_F3"	"EEG_FP2_F4"	"EEG_F3_C3"	"EEG_F4_C4"	"EEG_C3_P3"	"EEG_C4_P4"	"EEG_P3_O1"	"EEG_P4_O2"	"EEG_FP1_F7"	"EEG_FP2_F8"	"EEG_F7_T3"	"EEG_F8_T4"	"EEG_T3_T5"	"EEG_T4_T6"	"EEG_T5_O1"	"EEG_T6_O2"	"t"
+-1.7032	-3.3727	5.9014	2.512	2.6404	4.0193	16.9162	35.4401	5.3506	1.1355	-1.0843	-3.9932	9.4594	14.8409	10.0322	26.6143	0
+-3.1702	-4.5883	5.8762	2.9638	3.5952	3.9019	17.1137	36.3634	4.3875	0.543	-1.356	-4.5697	10.309	14.1082	10.0724	28.5593	0.002
+-4.2669	-5.2157	5.6852	3.1698	4.0053	3.6091	16.4135	36.7024	2.9881	0.4522	-1.7584	-5.4206	11.1134	13.3778	9.4926	29.8509	0.004
+-4.8106	-5.2287	5.2889	2.6745	3.714	3.0257	14.9097	36.4086	1.6189	0.2802	-2.1206	-6.4522	11.2876	12.7727	8.3198	30.2831	0.006
+-5.0684	-5.1176	4.7665	1.7354	2.9116	2.354	12.7327	35.6144	0.5718	-0.618	-2.57	-7.3378	10.6144	12.2487	6.7256	30.2934	0.008
+-5.3637	-5.1568	4.399	1.03	1.764	1.9509	10.2011	34.6652	-0.2974	-2.1804	-3.1603	-7.7025	9.3368	11.727	5.1179	30.6433	0.01
+\end{lstlisting}
+
+Dodatkowo dostarczony zosta³ plik przechowuj¹cy wyznaczone przez lekarza momenty wyst¹pienia ataków dla ka¿dego z pacjentów. Plik w kolejnych wierszach zawiera punkty w czasie rozdzielone przecinkami (w sekundach).
+Ka¿dy wiersz odpowiada jednemu pacjentowi, dlatego plik zawiera 104 wiersze. Fragment pliku z czasami wyst¹pienia ataków:
+\begin{lstlisting}[caption=Punkty w czasie wyst¹pienia ataków]
+835,853,865,873,889,908
+18,48,110,309,466,618,757
+216,239
+44,329,501,559,622
+36,190,406,576,714,754
+158,510,917
+622,653,676,737
+\end{lstlisting}
+
+W celu wykorzystania przedstawionych danych w procesie uczenia sieci neuronowej musz¹ zostaæ one odpowiednio przygotowane.
+Wybrane podejœcie zak³ada podzielenie danych na okna czasowe o okreœlonej d³ugoœci. Znane s¹ jedynie pocz¹tki ataków, jednak nie wiadomo jak d³ugo trwa³y. D³ugoœæ okna czasowego, wed³ug którego podzielone zostan¹ dane bêdzie wiêc jednym z parametrów, który nale¿y dobraæ w celu uzyskania najlepszych rezultatów.
+
+Do przygotowania danych stworzony zosta³ skrypt, który wykonuje nastêpuj¹ce czynnoœci:
+\begin{itemize}
+	\item wczytanie danych pacjentów oraz informacji o atakach
+	\item przetworzenie danych do czêstotliwoœci 100Hz
+	\item podzia³ danych na okna czasowe o d³ugoœci przekazanej jako parametr (w sekundach)
+	\item normalizacja danych - œrednia 0, odchylenie standardowe 1
+	\item konwersja danych dotycz¹cych ataków na postaæ tzw. "jeden z n" \textit{(ang. one-hot encoding)}
+	\item wyœwietlanie informacji o postêpie przetwarzanych plików
+	\item zapis pobranych danych do plików tymczasowych umo¿liwiaj¹cych szybszy odczyt
+\end{itemize}
+
+Technicznie skrypty zosta³y podzielone na 2 pliki:
+\begin{itemize}
+\item data\_reader.py
+\item chunks\_creator.py
+\end{itemize}
+Pierwszy z nich zajmuje siê wczytywaniem i korzysta z drugiego w celu stworzenia okien czasowych.
+G³ówn¹ funkcj¹ dostarczan¹ przez skrypt, która umo¿liwia wykonanie wszystkich wymienionych wy¿ej czynnoœci jest \textit{get\_data()}. Jako parametr przyjmuje ona czas w sekundach, który oznacza d³ugoœæ okna czasowego. Znajduje siê ona na koñcu pliku, gdy¿ z uwagi na specyfikê jêzyka wszystkie wykorzystywane przez ni¹ funkcje musz¹ byæ wczeœniej zadeklarowane. 
+Kod skryptu pobieraj¹cego dane rozszerzony o komentarze opisuj¹ce poszczególne kroki zaprezentowany zosta³ na listingu \ref{lst:data-reader.py}.
+
+\begin{lstlisting}[caption=data\_reader.py, language=Python, label={lst:data-reader.py}]
+import os
+import numpy as np
+import pickle
+
+from chunks_creator import prepare_chunks
+from chunks_creator import flatten_chunks
+
+from sklearn.preprocessing import StandardScaler
+
+INPUT_DATA_FILE_PATH='tmp/input-{}sec.pckl'
+
+DATA_FREQUENCY = 500
+SAMPLING_RATE = 5
+FREQUENCY_TO_SAMPLING_RATIO = DATA_FREQUENCY // SAMPLING_RATE
+
+
+# Konwertuje plik z danymi pacjenta z postaci tekstowej do tablicowej oraz zmienia czêstotliwoœæ próbkowania do 100Hz
+def parse_file(file, sampling_rate):
+    lines = file.split('\n')
+    headers = lines[0].split('\t')
+    # to one before last because the last one is empty
+    data = lines[1:-1]
+
+    number_of_lines = len(data)
+
+    float_data = np.zeros((number_of_lines, len(headers)))
+    for line_number, line in enumerate(data):
+        values = [float(value) for value in line.split('\t')]
+        float_data[line_number, :] = values
+
+    return float_data[::sampling_rate], headers
+
+
+# Wczytuje dane pacjentów z dysku
+def read_input_files(end, data_path, sampling_rate):
+    input_path = os.path.join(data_path, 'input_500Hz/sick')
+    input_file_names = os.listdir(input_path)
+    input_file_names.sort(key=int)
+
+    start = None
+
+    files_content = []
+    for file_name in input_file_names[start:end]:
+        file_path = os.path.join(input_path, file_name)
+        file = open(file_path, 'r')
+        (columns, headers) = parse_file(file.read(), sampling_rate)
+        print('Loaded input file:', file_name)
+        file.close()
+        files_content.append(columns)
+    print('--Input files loaded--')
+    return files_content, headers
+
+
+def create_target_index(value, frequency_to_sampling_ratio):
+    value = int(value)
+    return int(value * frequency_to_sampling_ratio)
+
+
+# Odczytuje informacje dotycz¹ce czasów ataków i konwertuje do postaci one-hot
+def read_target_files(end, data_path, sampling_rate, data_frequency):
+    frequency_to_sampling_ratio = data_frequency // sampling_rate
+    targets_path = os.path.join(data_path, 'targets')
+    targets_file_name = os.listdir(targets_path)[0]
+    targets_file_path = os.path.join(targets_path, targets_file_name)
+
+    file = open(targets_file_path, 'r')
+    targets_content = file.read()
+    file.close()
+
+    lines = targets_content.split('\n')[:-1]
+    targets = []
+    for number, line in enumerate(lines, 1):
+        targets.append([(int(value), create_target_index(value, frequency_to_sampling_ratio)) for value in line.split(',')])
+    print('--Target files loaded--')
+    return targets[:end]
+
+
+# Pobiera dane pacjentów oraz czasy ataków
+def read_data(data_path, sampling_rate, data_frequency, end=104):
+    (input_data, headers) = read_input_files(end, data_path, sampling_rate)
+    targets_data = read_target_files(end, data_path, sampling_rate, data_frequency)
+
+    return input_data, targets_data, headers
+
+
+# Odczytuje dane i zapisuje zmienne do pliku tymczasowego
+def load_data_to_file(chunk_size_in_seconds):
+    (input_data, target, headers) = read_data(data_path='data', 
+                                              sampling_rate=SAMPLING_RATE, 
+                                              data_frequency=DATA_FREQUENCY)
+
+    with open(INPUT_DATA_FILE_PATH.format(chunk_size_in_seconds), 'wb') as input_variable_file:
+        pickle.dump([input_data, target, headers], input_variable_file)
+
+    del input_data, target, headers
+    
+
+# Normalizuje dane u¿ywaj¹c obiektu StandardScaler(). Zwrócone dane posiadaj¹ œredni¹ 0 oraz odchylenie standardowe 1.    
+def normalize(x, y):
+    scalers = {}
+    for channel_number in range(x.shape[1]):
+        scalers[channel_number] = StandardScaler()
+        x[:, channel_number, :] = scalers[channel_number].fit_transform(x[:, channel_number, :]) 
+    return x, y.astype(int)
+
+
+# Pobiera zmienne z danymi z utworzonego pliku tymczasowego
+def load_input_data(chunk_size_in_seconds):
+    with open(INPUT_DATA_FILE_PATH.format(chunk_size_in_seconds), 'rb') as input_data_file:
+        input_data, target, headers = pickle.load(input_data_file)
+    
+    return input_data, target, headers
+
+
+# Pobiera dane wykorzystuj¹c funkcjê load_input_data() i wywo³uje funkcjê prepare_chunks() z pliku chunks_creator.py w celu utworzenia okien czasowych z danymi. Utworzone porcje danych s¹ nastêpnie poddawane normalizacji.
+def prepare_data(chunk_size_in_seconds):
+    input_data, target, headers = load_input_data(chunk_size_in_seconds)
+    
+    chunks_input, chunks_target = prepare_chunks(input_data, 
+                                                target, 
+                                                chunk_size_in_seconds=chunk_size_in_seconds, 
+                                                ratio=FREQUENCY_TO_SAMPLING_RATIO)
+    x, y = flatten_chunks(chunks_input, chunks_target)
+    x, y = normalize(x, y)
+    
+    return x, y
+
+
+# G³ówna funkcja skryptu, która zwraca odpowiednio przygotowane dane. Przy pierwszym uruchomieniu wczytuje dane z dysku do zmiennych i zapisuje je do pliku tymczasowego. Odczyt zmiennych z danymi z pliku binarnego umo¿liwia szybszy dostêp przy kolejnych uruchomieniach, gdy¿ otwieranie du¿ych plików tekstowych jest czasoch³onne.
+def get_data(chunk_size_in_seconds):
+    file_exists = os.path.isfile(INPUT_DATA_FILE_PATH.format(chunk_size_in_seconds))
+    
+    if not file_exists:
+        load_data_to_file(chunk_size_in_seconds)
+        
+    return prepare_data(chunk_size_in_seconds)
+\end{lstlisting}
+
+Funkcja \textit{prepare\_data()} w powy¿szym skrypcie korzysta z osobnego pliku o nazwie \textit{chunks\_creator.py}, w którym zosta³y zdefiniowane funkcje tworz¹ce okna czasowe z danymi.
+Dla danych ka¿dego z pacjentów tworzonych jest \textit{2 * n} okien czasowych, gdzie \textit{n} oznacza iloœæ zdiagnozowanych ataków. 
+
+Porcje danych zawieracj¹ce ataki tworzone s¹ na pocz¹tku ka¿dego z nich i trwaj¹ przez okreœlony czas podany w parametrze. Nastêpnie tworzone jest \textit{n} kolejnych porcji danych zawieraj¹cych dane liczbowe z okresu, w którym nie wyst¹pi³ atak.
+Utworzone okna czasowe zawieraj¹ wiêc proporcjonaln¹ iloœæ danych z atakami oraz bez.
+Dodatkowo tworzona jest tablica zawieraj¹ca informacje o tym czy dla danego okna czasowego wyst¹pi³  \textit{(wartoœæ 1)} lub nie wyst¹pi³ \textit{(wartoœæ 0)} atak.
+
+Implementacja skryptu odopowiadaj¹cego za przetwarzanie danych do postaci okien czasowych przedstawiona zosta³a na listlingu \ref{lst:chunks-creator.py}.
+
+\begin{lstlisting}[caption=chunks\_creator.py, language=Python, label={lst:chunks-creator.py}]
+import random
+import numpy as np
+
+
+# Tworzy porcje danych, w których wyst¹pi³y ataki.
+def create_chunks_with_seizures(patient_data, seizure_seconds, chunk_size):
+    number_of_chunks = len(seizure_seconds)
+
+    chunks_input = np.zeros((number_of_chunks, chunk_size, 17))
+    chunks_target = np.zeros(number_of_chunks)
+
+    for seizure_number in range(0, number_of_chunks):
+        (seizure_time, seizure_index) = seizure_seconds[seizure_number]
+        chunk_start_index = seizure_index
+        chunk_end_index = chunk_start_index + chunk_size
+        chunks_input[seizure_number] = patient_data[chunk_start_index:chunk_end_index, :]
+        # atak oznaczony wartoœci¹ '1'
+        chunks_target[seizure_number] = 1
+
+    return (chunks_input, chunks_target)
+
+
+# Sprawdza czy podany fragment znajduje siê w zasiêgu ataku.
+def is_in_seizure_range(index, seizure_seconds, chunk_size):
+    for (seizure_time, seizure_index) in seizure_seconds:
+        seizure_start_index = seizure_index
+        seizure_end_index = seizure_start_index + chunk_size
+        if index in range(seizure_start_index, seizure_end_index):
+            return True
+
+    return False
+
+
+# Tworzy pocz¹tek pojedynczej porcji danych, który wybierany jest losowo, jednak sprawdzane jest, aby nie zawiera³a ona momentów, w których wyst¹pi³ atak.
+def create_non_seizure_data_start_index(data_size, chunk_size, seizure_seconds):
+    start_index = random.randint(0, data_size - chunk_size)
+
+    while (is_in_seizure_range(start_index, seizure_seconds, chunk_size)):
+        start_index = random.randint(0, data_size - chunk_size)
+
+    return start_index
+
+
+# Tworzy porcje danych, w których nie wyst¹pi³y ataki.
+def create_chunks_without_seizures(patient_data, seizure_seconds, chunk_size):
+    number_of_chunks = len(seizure_seconds)
+
+    chunks_input = np.zeros((number_of_chunks, chunk_size, 17))
+    chunks_target = np.zeros(number_of_chunks)
+    (data_size, channels) = patient_data.shape
+
+    for chunk_number in range(0, number_of_chunks):
+        chunk_start_index = create_non_seizure_data_start_index(data_size, chunk_size, seizure_seconds)
+
+        chunk_end_index = chunk_start_index + chunk_size
+        chunks_input[chunk_number] = patient_data[chunk_start_index:chunk_end_index, :]
+        # brak ataku oznaczone wartoœci¹ '0'
+        chunks_target[chunk_number] = 0
+
+    return (chunks_input, chunks_target)
+
+
+# Przystosowuje iloœæ wymiarów danych do procesu uczenia sieci neuronowej.
+def flatten_chunks(chunks_input, chunks_target):
+    train_input = []
+    train_target = []
+
+    for patient_number in range(0, len(chunks_input)):
+        patient_data = chunks_input[patient_number]
+        patient_targets = chunks_target[patient_number]
+        for chunk_number in range(0, len(patient_data)):
+            train_input.append(patient_data[chunk_number])
+            train_target.append(patient_targets[chunk_number])
+
+    train_input = np.array(train_input)
+    train_target = np.array(train_target)
+
+    train_input = train_input[:, :, :-1]
+    
+    return train_input, train_target 
+
+
+# G³ówna funkcja skryptu zwracaj¹ca okna czasowe stworzone z danych pacjentów w postaci wielowymiarowej tablicy oraz tablicê zawieraj¹c¹ informacje o wyst¹pieniu ataków.
+def prepare_chunks(input, target, chunk_size_in_seconds, ratio):
+    chunk_size = chunk_size_in_seconds * ratio
+    chunks_input = []
+    chunks_target = []
+
+    for patient_number in range(0, len(input)):
+        patient_chunks_input = []
+        patient_chunks_target = []
+        seizure_seconds = target[patient_number]
+        patient_data = input[patient_number]
+        (seizure_chunks_input, seizure_chunks_target) = create_chunks_with_seizures(patient_data,seizure_seconds, chunk_size)
+        patient_chunks_input.extend(seizure_chunks_input)
+        patient_chunks_target.extend(seizure_chunks_target)
+
+        (non_seizure_chunks_input, non_seizure_chunks_target) = create_chunks_without_seizures(patient_data, seizure_seconds, chunk_size)
+        patient_chunks_input.extend(non_seizure_chunks_input)
+        patient_chunks_target.extend(non_seizure_chunks_target)
+
+        chunks_input.append(np.array(patient_chunks_input))
+        chunks_target.append(np.array(patient_chunks_target))
+
+    return np.array(chunks_input), np.array(chunks_target)
+
+\end{lstlisting}
+
+Przedstawione skrypty umo¿liwiaj¹ pobranie odpowiednio przygotowanych danych, które nastêpnie mog¹ byæ u¿yte w procesie uczenia sieci neuronowej.
+
 \section{Implementacja procesu uczenia}
 \section{Metoda oceny wyników}
 \section{Wybór rodzaju sieci neuronowej}
