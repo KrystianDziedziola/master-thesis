@@ -1,6 +1,26 @@
 \chapter{Próba rozwi¹zania problemu}
 \label{chapter_5}
-\section{Przygotowanie danych}
+
+\section{Proces uczenia}
+Proces uczenia sieci neuronowej stworzony zosta³ w œrodowisku Jupyter Notebook, które umo¿liwia tworzenie dokumentów zawieraj¹cych opisy, wykresy oraz wykonywalne kody Ÿród³owe. Nazwa Jupyter wziê³a siê z tego, ¿e œrodowisko umo¿liwia pracê w trzech jêzykach: Julia, Python oraz R.
+
+Dokument sk³ada siê z wielu komórek, które mog¹ byæ wywo³ywane niezale¿nie.
+Przewag¹ kodu pisanego w tym œrodowisku nad tradycyjnymi skryptami jest oferowana przez nie mo¿liwoœæ zapamiêtywania stanu zmiennych. Dziêki temu nie ma potrzeby ka¿dorazowego wywo³ywania ca³ego kodu, a jedynie fragmentów, które w danej chwili s¹ potrzebne np. jednorazowe przygotowanie danych, a nastêpnie wykonywanie jedynie procesu uczenia.
+
+Proces uczenia sk³ada siê z kilku kroków:
+\begin{itemize}
+	\item pobranie i przygotowanie danych za pomoc¹ przygotowanych skryptów \ref{data_preparation}
+	\item podzia³ danych na zbiory s³u¿¹ce do nauki oraz testowania przy pomocy k-krotnej 
+walidacji krzy¿owej \textit{(ang. k-fold cross-validation)} \ref{validation_method}
+	\item utworzenie modelu sieci neuronowej \ref{build_model}
+	\item rozpoczêcie uczenia modelu \ref{run_learning}
+	\item sprawdzenie skutecznoœci i przedstawienie wyników \ref{verify_accuracy}
+\end{itemize}
+
+Wszystkie wymienione kroki przedstawiaj¹ pe³en proces uczenia, który pokazuje z jak¹ dok³adnoœci¹ model jest w stanie wykrywaæ stany padaczkowe.
+
+\subsection{Przygotowanie danych}
+\label{data_preparation}
 W celu wykorzystania dostêpnych danych w procesie uczenia sieci neuronowej nale¿y je najpierw odpowiednio przygotowaæ.
 Dostarczone zosta³y dane w postaci plików tekstowych z liczbami reprezentuj¹cymi wartoœci zmierzone przy pomocy elektroencofalogramu. W poszczególnych kolumnach znajduj¹ siê wartoœci odpowiadaj¹ce konkretnym kana³om (\textit{EEG\_FP1\_F3}, \textit{EEG\_FP2\_F4} itd.). Ostatnia kolumna (o nag³ówku \textit{t}) przedstawia czas w sekundach, w którym mia³ miejsce pomiar. 
 
@@ -312,11 +332,107 @@ def prepare_chunks(input, target, chunk_size_in_seconds, ratio):
 
 Przedstawione skrypty umo¿liwiaj¹ pobranie odpowiednio przygotowanych danych, które nastêpnie mog¹ byæ u¿yte w procesie uczenia sieci neuronowej.
 
-\section{Implementacja procesu uczenia}
-\section{Metoda oceny wyników}
-\section{Wybór rodzaju sieci neuronowej}
-\section{Budowa modelu}
-\section{Monitorowanie}
-\section{Optymalizacja}
+\subsection{Metoda oceny wyników}
+\label{validation_method}
+Do zweryfikowania skutecznoœci modelu wymagane jest podzielenie danych na odpowiednie zbiory. Korzystanie z jednego, identycznego zbioru danych do nauki oraz testowania jest b³êdem, gdy¿ mo¿e wprowadziæ z³udne wra¿enie, ¿e model posiada bardzo dobr¹ skutecznoœæ. Sieæ neuronowa, której dzia³anie weryfikowane jest na danych, które pos³u¿y³y do nauki bêdzie posiadaæ skutecznoœæ blisk¹ 100\%. Dzieje siê tak dlatego, ¿e umie one rozpoznawaæ te konkretne dane, gdy¿ zna dla nich wartoœci wyjœciowe, które podane zosta³y podczas nauki. W ten sposób nauczony model bêdzie natomiast posiada³ bardzo nisk¹ skutecznoœæ, gdy na jego wejœcie podane zostan¹ dane, które nigdy wczeœniej nie zosta³y mu przedstawione.
+W ka¿dym rodzaju uczenia maszynowego d¹¿y siê do uzyskania jak najwiêkszej zdolnoœci generalizacji, czyli skutecznoœci klasyfikacji danych, które nie zosta³y nigdy wczeœniej przekazane do modelu. Przeciwieñstwem tego jest tzw. "nadmierne dopasowanie" \textit{(ang. overfitting)}, czyli sytuacja, w której model zbytnio dopasowuje siê do danych ucz¹cych, co powoduje bardzo s³ab¹ zdolnoœæ generalizacji. Zjawisko to jest g³ównym problemem podczas uczenia modelu.
 
+\subsubsection{Hold-out}
+Podstawowym sposobem oceny wyników jest podzielenie danych na dwa zbiory: treningowy oraz testowy \textit{(ang. hold-out)}. Mo¿na dzieliæ je w ró¿nych proporcjach np. 80/20, 90/10, 95/5 itp. w zale¿noœci od iloœci posiadanych danych. Przy niewielkich zbiorach wydzielenie zbyt du¿ej liczby danych do zbioru testowego mo¿e powodowaæ niedobory w procesie nauki. Wydzielenie jedynie dwóch zbiorów danych nie rozwi¹zuje jednak do koñca problemu \textit{overfitting}'u, gdy¿ zbyt czêsta zmiana modelu i sprawdzanie jego skutecznoœci na danych testowych mo¿e spowodowaæ zbyt du¿e dopasowanie do zbioru testowego. Z tego wzglêdu czêsto stosowany jest dodatkowy zbiór walidacyjny \textit{(ang. validation set)}. W tym podejœciu model uczony jest na danych treningowych, sprawdzany na danych walidacyjnych i na podstawie tych wyników wprowadza siê modyfikacje w modelu. Zbiór testowy s³u¿y jedynie do ostatecznego sprawdzenia skutecznoœci modelu, gdy¿ s¹ to dane, które nigdy wczeœniej nie zosta³y u¿yte w procesie nauki. Dane dzielone s¹ w proporcjach np. 80/10/10, 90/5/5. Schemat tego podejœcia przedstawiony jest na rysunku \ref{fig:hold-out-validation}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=9cm]{Rysunki/Rozdzial5/hold-out-validation.pdf}
+	\caption{Podzia³ danych na zbiory: treningowy, walidacyjny i testowy}
+	\label{fig:hold-out-validation}
+\end{figure}
+
+Metoda ta rozwi¹zuje problem zbytniego dopasowywania siê do zbioru testowego, jednak równie¿ posiada drug¹ wadê poprzedniego rozwi¹zania. Przy niewielkiej iloœci danych wydzielanie osobnych zbiorów mo¿e spowodowaæ, ¿e zbiór ucz¹cy bêdzie zbyt ma³y. W celu unikniêcia tego problemu mo¿na zastosowaæ tzw. walidacjê krzy¿ow¹ i jej iteracyjne rozszerzenie.
+
+
+\subsubsection{Walidacja krzy¿owa}
+Kolejn¹ metod¹ walidacji jest tzw. \textit{k}-krotna walidacja krzy¿owa \textit{(ang. k-fold cross-validation)}. Tak samo jak w przypadku metody \textit{holdout} nale¿y najpierw wydzieliæ zbiór testowy, który nie bêdzie bra³ udzia³u w procesie uczenia i walidacji. Pozosta³e dane dzielone s¹ na \textit{k} zbiorów, przewa¿nie jest to \textit{k = 5} lub \textit{k = 10}. Nastêpnie \textit{k}-krotnie powtarzany jest proces wyboru jednego \textit{i}-tego zbioru, gdzie \textit{i} oznacza kolejne liczby z przedzia³u \textit{<1; k>}. Zbiór o numerze \textit{i} wybierany jest jako zbiór walidacyjny, natomiast reszta \textit{k - 1} zbiorów s³u¿¹ jako dane ucz¹ce. Nale¿y pamiêtaæ, ¿eby w ka¿dym przebiegu uczyæ now¹ instancjê modelu. W rezultacie model uczony jest \textit{k}-krotnie na ró¿nych kombinacjach danych. Jako wynik koñcowy brana jest pod uwagê œrednia skutecznoœæ wszystkich modeli. Sposób podzia³u danych w tej metodzie ilustruje rysunek \ref{fig:cross-validation}.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=14cm]{Rysunki/Rozdzial5/cross-validation.pdf}
+	\caption{Podzia³ danych wed³ug metody k-krotnej walidacji krzy¿owe}
+	\label{fig:cross-validation}
+\end{figure}
+
+Przedstawion¹ metodê mo¿na rozszerzyæ do jej iteracyjnej wersji polegaj¹cej na tym, ¿e ca³y proces \textit{k}-krotnej walidacji krzy¿owej wykonywany jest \textit{n} razy. Dodatkowo po ka¿dej iteracji mo¿na zastosowaæ mieszanie danych. Walidacja t¹ metod¹ co prawda trwa o wiele d³u¿ej, gdy¿ model walidowany jest \textit{k * n} razy, jednak pozwala uzyskaæ bardziej wiarygodne wyniki, gdy nie jest dostêpna zbyt du¿a liczba danych.
+
+\subsubsection{Implementacja walidacji}
+Zaimplementowane zosta³y obie metody podzia³u danych, jednak ze wzglêdu na swoje zalety metody iteracyjnej \textit{k}-krotnej walidacji krzy¿owej to w³asnie ona zosta³a u¿yta do walidacji w procesie uczenie. Podzia³ danych wed³ug obu metod zosta³ wykonany za pomoc¹ biblioteki \textit{sklearn}, która dostarcza przygotowane do tego celu funkcje \ref{lst:split}.
+\begin{lstlisting}[caption=Podzia³ danych na zbiory, language=Python, label={lst:split}]
+from sklearn.model_selection import train_test_split, StratifiedKFold
+from data_reader import get_data
+
+def load_data_kfold(folds_number, test_size=0.05)):
+    x, y = get_data(CHUNK_SIZE_IN_SECONDS)
+    
+    x_train, x_test, y_train, y_test = train_test_split(x, 
+                                                        y, 
+                                                        test_size=test_size)
+    
+    folds = list(StratifiedKFold(n_splits=folds_number, 
+                                 shuffle=True, 
+                                 random_state=1).split(x_train, y_train))
+    
+    return folds, x_train, y_train, x_test, y_test
+
+def load_data_train_test(test_size=0.05):
+    x, y = get_data(CHUNK_SIZE_IN_SECONDS)
+    
+    x_train, x_test, y_train, y_test = train_test_split(x, 
+                                                        y, 
+                                                        test_size=test_size)
+    
+    return x_train, y_train, x_test, y_test
+\end{lstlisting}
+
+Tak przygotowane dane podawane s¹ do modelu w \textit{n} iteracjach za pomoc¹ prostej pêtli. Wyniki z ka¿dej iteracji zapisywane s¹ do tablicy, a na koniec obliczana jest ich œrednia. Proces iteracyjnego uruchamiania uczenia wraz z obliczaniem wyników zaprezentowany zosta³ na listingu \ref{lst:iteration_learning}
+
+\begin{lstlisting}[caption=Iterecyjne wywo³anie procesu uczenia, language=Python, label={lst:iteration_learning}]
+number_of_iterations = 5
+
+avg_accuracies = []
+std_accuracies = []
+
+for iteration in range(0, number_of_iterations):
+    iteration_number = iteration + 1 
+    print("Iteration", iteration_number)
+    
+    score, best_model_score = run_pipeline(create_model=model,
+                                           folds=folds,
+                                           x=x_train,
+                                           y=y_train,
+                                           epochs=100)
+
+    accuracy = [row[1] for row in best_model_score]
+
+    avg_accuracy = np.mean(accuracy)
+    print("Best models average validation accuracy: {}".format(round(avg_accuracy, 6)))
+    
+    avg_accuracies.append(avg_accuracy)
+   
+grand_mean_avg = np.mean(avg_accuracies)
+print("~~~Grand mean of average accuracy: {}".format(round(grand_mean_avg, 6)))
+\end{lstlisting}
+
+Do uruchamiania procesu uczenia u¿ywana jest funkcja \textit{run\_pipeline}, która szczegó³owo opisana zostanie w rozdziale \ref{run_learning}.
+
+\subsection{Uruchomienie uczenia w³aœciwego}
+\label{run_learning}
+
+\subsection{Budowa modelu}
+\label{build_model}
+
+\subsection{Sprawdzenie skutecznoœci}
+\label{verify_accuracy}
+
+
+\section{Monitorowanie}
+\section{Wybór rodzaju sieci neuronowej}
+\section{Optymalizacja}
 \section{Ocena otrzymanych rezultatów}

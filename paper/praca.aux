@@ -87,25 +87,43 @@
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \newlabel{chapter_5}{{5}{15}{Próba rozwi¹zania problemu}{chapter.5}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.1}Przygotowanie danych}{15}{section.5.1}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {5.1}Dane liczbowe z odczytu EEG}{15}{lstlisting.5.1}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {5.2}Punkty w czasie wyst\k apienia atak\'ow}{15}{lstlisting.5.2}}
-\newlabel{lst:data-reader.py}{{5.3}{16}{data\_reader.py}{lstlisting.5.3}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {5.3}data\_reader.py}{16}{lstlisting.5.3}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.1}Proces uczenia}{15}{section.5.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1.1}Przygotowanie danych}{15}{subsection.5.1.1}}
+\newlabel{data_preparation}{{5.1.1}{15}{Przygotowanie danych}{subsection.5.1.1}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {5.1}Dane liczbowe z odczytu EEG}{16}{lstlisting.5.1}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {5.2}Punkty w czasie wyst\k apienia atak\'ow}{16}{lstlisting.5.2}}
+\newlabel{lst:data-reader.py}{{5.3}{17}{data\_reader.py}{lstlisting.5.3}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {5.3}data\_reader.py}{17}{lstlisting.5.3}}
 \newlabel{lst:chunks-creator.py}{{5.4}{19}{chunks\_creator.py}{lstlisting.5.4}{}}
 \@writefile{lol}{\contentsline {lstlisting}{\numberline {5.4}chunks\_creator.py}{19}{lstlisting.5.4}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.2}Implementacja procesu uczenia}{21}{section.5.2}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.3}Metoda oceny wynik\'ow}{21}{section.5.3}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.4}Wyb\'or rodzaju sieci neuronowej}{21}{section.5.4}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.5}Budowa modelu}{21}{section.5.5}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.6}Monitorowanie}{21}{section.5.6}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.7}Optymalizacja}{21}{section.5.7}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.8}Ocena otrzymanych rezultat\'ow}{21}{section.5.8}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {6}Zako\'nczenie}{22}{chapter.6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1.2}Metoda oceny wynik\'ow}{21}{subsection.5.1.2}}
+\newlabel{validation_method}{{5.1.2}{21}{Metoda oceny wyników}{subsection.5.1.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.2.1}Hold-out}{21}{subsubsection.5.1.2.1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.1}{\ignorespaces Podzia\IeC {\l } danych na zbiory: treningowy, walidacyjny i testowy\relax }}{22}{figure.caption.9}}
+\newlabel{fig:hold-out-validation}{{5.1}{22}{Podzia³ danych na zbiory: treningowy, walidacyjny i testowy\relax }{figure.caption.9}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.2.2}Walidacja krzy\.zowa}{22}{subsubsection.5.1.2.2}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.2.3}Implementacja walidacji}{22}{subsubsection.5.1.2.3}}
+\newlabel{lst:split}{{5.5}{22}{Podzia³ danych na zbiory}{lstlisting.5.5}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {5.5}Podzia\IeC {\l } danych na zbiory}{22}{lstlisting.5.5}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.2}{\ignorespaces Podzia\IeC {\l } danych wed\IeC {\l }ug metody k-krotnej walidacji krzy\.zowe\relax }}{23}{figure.caption.10}}
+\newlabel{fig:cross-validation}{{5.2}{23}{Podzia³ danych wed³ug metody k-krotnej walidacji krzy¿owe\relax }{figure.caption.10}{}}
+\newlabel{lst:iteration_learning}{{5.6}{23}{Iterecyjne wywo³anie procesu uczenia}{lstlisting.5.6}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {5.6}Iterecyjne wywo\IeC {\l }anie procesu uczenia}{23}{lstlisting.5.6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1.3}Uruchomienie uczenia w\IeC {\l }a\'sciwego}{24}{subsection.5.1.3}}
+\newlabel{run_learning}{{5.1.3}{24}{Uruchomienie uczenia w³aœciwego}{subsection.5.1.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1.4}Budowa modelu}{24}{subsection.5.1.4}}
+\newlabel{build_model}{{5.1.4}{24}{Budowa modelu}{subsection.5.1.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1.5}Sprawdzenie skuteczno\'sci}{24}{subsection.5.1.5}}
+\newlabel{verify_accuracy}{{5.1.5}{24}{Sprawdzenie skutecznoœci}{subsection.5.1.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.2}Monitorowanie}{24}{section.5.2}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.3}Wyb\'or rodzaju sieci neuronowej}{24}{section.5.3}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.4}Optymalizacja}{24}{section.5.4}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.5}Ocena otrzymanych rezultat\'ow}{24}{section.5.5}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {6}Zako\'nczenie}{25}{chapter.6}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \bibdata{Bibliografia/bibliografia}
-\@writefile{toc}{\contentsline {chapter}{\numberline {A}P\IeC {\l }yta DVD}{23}{appendix.A}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {A}P\IeC {\l }yta DVD}{26}{appendix.A}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \bibcite{engmrk}{1}
