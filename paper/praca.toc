@@ -25,11 +25,13 @@
 \contentsline {subsubsection}{\numberline {5.1.2.2}Walidacja krzy\.zowa}{22}{subsubsection.5.1.2.2}
 \contentsline {subsubsection}{\numberline {5.1.2.3}Implementacja walidacji}{22}{subsubsection.5.1.2.3}
 \contentsline {subsection}{\numberline {5.1.3}Uruchomienie uczenia w\IeC {\l }a\'sciwego}{24}{subsection.5.1.3}
-\contentsline {subsection}{\numberline {5.1.4}Budowa modelu}{24}{subsection.5.1.4}
-\contentsline {subsection}{\numberline {5.1.5}Sprawdzenie skuteczno\'sci}{24}{subsection.5.1.5}
-\contentsline {section}{\numberline {5.2}Monitorowanie}{24}{section.5.2}
-\contentsline {section}{\numberline {5.3}Wyb\'or rodzaju sieci neuronowej}{24}{section.5.3}
-\contentsline {section}{\numberline {5.4}Optymalizacja}{24}{section.5.4}
-\contentsline {section}{\numberline {5.5}Ocena otrzymanych rezultat\'ow}{24}{section.5.5}
-\contentsline {chapter}{\numberline {6}Zako\'nczenie}{25}{chapter.6}
-\contentsline {chapter}{\numberline {A}P\IeC {\l }yta DVD}{26}{appendix.A}
+\contentsline {subsubsection}{\numberline {5.1.3.1}Budowa modelu}{25}{subsubsection.5.1.3.1}
+\contentsline {subsubsection}{\numberline {5.1.3.2}Lista callback'\'ow}{25}{subsubsection.5.1.3.2}
+\contentsline {subsubsection}{\numberline {5.1.3.3}Funkcja dopasowania}{26}{subsubsection.5.1.3.3}
+\contentsline {subsubsection}{\numberline {5.1.3.4}Sprawdzenie skuteczno\'sci}{27}{subsubsection.5.1.3.4}
+\contentsline {section}{\numberline {5.2}Monitorowanie}{27}{section.5.2}
+\contentsline {section}{\numberline {5.3}Wyb\'or rodzaju sieci neuronowej}{27}{section.5.3}
+\contentsline {section}{\numberline {5.4}Optymalizacja}{27}{section.5.4}
+\contentsline {section}{\numberline {5.5}Ocena otrzymanych rezultat\'ow}{27}{section.5.5}
+\contentsline {chapter}{\numberline {6}Zako\'nczenie}{28}{chapter.6}
+\contentsline {chapter}{\numberline {A}P\IeC {\l }yta DVD}{29}{appendix.A}

@@ -334,11 +334,11 @@ Przedstawione skrypty umo¿liwiaj¹ pobranie odpowiednio przygotowanych danych, kt
 
 \subsection{Metoda oceny wyników}
 \label{validation_method}
-Do zweryfikowania skutecznoœci modelu wymagane jest podzielenie danych na odpowiednie zbiory. Korzystanie z jednego, identycznego zbioru danych do nauki oraz testowania jest b³êdem, gdy¿ mo¿e wprowadziæ z³udne wra¿enie, ¿e model posiada bardzo dobr¹ skutecznoœæ. Sieæ neuronowa, której dzia³anie weryfikowane jest na danych, które pos³u¿y³y do nauki bêdzie posiadaæ skutecznoœæ blisk¹ 100\%. Dzieje siê tak dlatego, ¿e umie one rozpoznawaæ te konkretne dane, gdy¿ zna dla nich wartoœci wyjœciowe, które podane zosta³y podczas nauki. W ten sposób nauczony model bêdzie natomiast posiada³ bardzo nisk¹ skutecznoœæ, gdy na jego wejœcie podane zostan¹ dane, które nigdy wczeœniej nie zosta³y mu przedstawione.
+Do zweryfikowania skutecznoœci modelu wymagane jest podzielenie danych na odpowiednie zbiory. Korzystanie z jednego, identycznego zbioru danych do nauki oraz testowania jest b³êdem, gdy¿ mo¿e wprowadziæ z³udne wra¿enie, ¿e model posiada bardzo dobr¹ skutecznoœæ. Sieæ neuronowa, której dzia³anie weryfikowane jest na danych, które pos³u¿y³y do nauki bêdzie posiadaæ skutecznoœæ blisk¹ 100\%. Dzieje siê tak dlatego, ¿e umie ona rozpoznawaæ te konkretne dane, gdy¿ zna dla nich wartoœci wyjœciowe, które podane zosta³y podczas nauki. W ten sposób nauczony model bêdzie natomiast posiada³ bardzo nisk¹ skutecznoœæ, gdy na jego wejœcie podane zostan¹ dane, które nigdy wczeœniej nie zosta³y mu przedstawione.
 W ka¿dym rodzaju uczenia maszynowego d¹¿y siê do uzyskania jak najwiêkszej zdolnoœci generalizacji, czyli skutecznoœci klasyfikacji danych, które nie zosta³y nigdy wczeœniej przekazane do modelu. Przeciwieñstwem tego jest tzw. "nadmierne dopasowanie" \textit{(ang. overfitting)}, czyli sytuacja, w której model zbytnio dopasowuje siê do danych ucz¹cych, co powoduje bardzo s³ab¹ zdolnoœæ generalizacji. Zjawisko to jest g³ównym problemem podczas uczenia modelu.
 
 \subsubsection{Hold-out}
-Podstawowym sposobem oceny wyników jest podzielenie danych na dwa zbiory: treningowy oraz testowy \textit{(ang. hold-out)}. Mo¿na dzieliæ je w ró¿nych proporcjach np. 80/20, 90/10, 95/5 itp. w zale¿noœci od iloœci posiadanych danych. Przy niewielkich zbiorach wydzielenie zbyt du¿ej liczby danych do zbioru testowego mo¿e powodowaæ niedobory w procesie nauki. Wydzielenie jedynie dwóch zbiorów danych nie rozwi¹zuje jednak do koñca problemu \textit{overfitting}'u, gdy¿ zbyt czêsta zmiana modelu i sprawdzanie jego skutecznoœci na danych testowych mo¿e spowodowaæ zbyt du¿e dopasowanie do zbioru testowego. Z tego wzglêdu czêsto stosowany jest dodatkowy zbiór walidacyjny \textit{(ang. validation set)}. W tym podejœciu model uczony jest na danych treningowych, sprawdzany na danych walidacyjnych i na podstawie tych wyników wprowadza siê modyfikacje w modelu. Zbiór testowy s³u¿y jedynie do ostatecznego sprawdzenia skutecznoœci modelu, gdy¿ s¹ to dane, które nigdy wczeœniej nie zosta³y u¿yte w procesie nauki. Dane dzielone s¹ w proporcjach np. 80/10/10, 90/5/5. Schemat tego podejœcia przedstawiony jest na rysunku \ref{fig:hold-out-validation}
+Podstawowym sposobem oceny wyników jest podzielenie danych na dwa zbiory: treningowy oraz testowy \textit{(ang. hold-out)}. Mo¿na dzieliæ je w ró¿nych proporcjach np. 80/20, 90/10, 95/5 itp. w zale¿noœci od iloœci posiadanych danych. Przy niewielkich zbiorach wydzielenie zbyt du¿ej liczby danych do zbioru testowego mo¿e powodowaæ niedobory w procesie nauki. Wydzielenie jedynie dwóch zbiorów danych nie rozwi¹zuje jednak do koñca problemu \textit{overfitting}'u, gdy¿ zbyt czêsta zmiana modelu i sprawdzanie jego skutecznoœci na danych testowych mo¿e spowodowaæ zbyt du¿e dopasowanie do zbioru testowego \cite{Chollet:2018}. Z tego wzglêdu czêsto stosowany jest dodatkowy zbiór walidacyjny \textit{(ang. validation set)}. W tym podejœciu model uczony jest na danych treningowych, sprawdzany na danych walidacyjnych i na podstawie tych wyników wprowadza siê modyfikacje w modelu. Zbiór testowy s³u¿y jedynie do ostatecznego sprawdzenia skutecznoœci modelu, gdy¿ s¹ to dane, które nigdy wczeœniej nie zosta³y u¿yte w procesie nauki. Dane dzielone s¹ w proporcjach np. 80/10/10, 90/5/5. Schemat tego podejœcia przedstawiony jest na rysunku \ref{fig:hold-out-validation}
 
 \begin{figure}[h!]
 	\centering
@@ -363,6 +363,7 @@ Kolejn¹ metod¹ walidacji jest tzw. \textit{k}-krotna walidacja krzy¿owa \textit{
 Przedstawion¹ metodê mo¿na rozszerzyæ do jej iteracyjnej wersji polegaj¹cej na tym, ¿e ca³y proces \textit{k}-krotnej walidacji krzy¿owej wykonywany jest \textit{n} razy. Dodatkowo po ka¿dej iteracji mo¿na zastosowaæ mieszanie danych. Walidacja t¹ metod¹ co prawda trwa o wiele d³u¿ej, gdy¿ model walidowany jest \textit{k * n} razy, jednak pozwala uzyskaæ bardziej wiarygodne wyniki, gdy nie jest dostêpna zbyt du¿a liczba danych.
 
 \subsubsection{Implementacja walidacji}
+\label{crossvalidation_implementation}
 Zaimplementowane zosta³y obie metody podzia³u danych, jednak ze wzglêdu na swoje zalety metody iteracyjnej \textit{k}-krotnej walidacji krzy¿owej to w³asnie ona zosta³a u¿yta do walidacji w procesie uczenie. Podzia³ danych wed³ug obu metod zosta³ wykonany za pomoc¹ biblioteki \textit{sklearn}, która dostarcza przygotowane do tego celu funkcje \ref{lst:split}.
 \begin{lstlisting}[caption=Podzia³ danych na zbiory, language=Python, label={lst:split}]
 from sklearn.model_selection import train_test_split, StratifiedKFold
@@ -424,15 +425,167 @@ Do uruchamiania procesu uczenia u¿ywana jest funkcja \textit{run\_pipeline}, któ
 
 \subsection{Uruchomienie uczenia w³aœciwego}
 \label{run_learning}
+Do uruchomienia procesu uczenia w³aœciwego s³u¿y funkcja \textit{run\_pipeline()}, która wykonuje nastêpuj¹ce czynnoœci:
+\begin{itemize}
+\item tworzy model na podstawie dostarczonych specyfikacji (\ref{build_model})
+\item pobiera odpowiednie porcje danych dla ka¿dego kroku z przytogowanych wczeœniej zbiorów (\ref{crossvalidation_implementation})
+\item tworzy listê tzw. \textit{callback}'ów (\ref{callbacks})
+\item uruchamia na modelu metodê s³u¿¹c¹ do dopasowania, która rozpoczyna uczenie (\ref{fit})
+\item wczytuje wagi najlepszego modelu i sprawdza jego skutecznoœæ (\ref{verify_accuracy})
+\end{itemize}
 
-\subsection{Budowa modelu}
+Ca³e cia³o metody \textit{run\_pipeline} zaprezentowane zosta³o na listingu \ref{lst:run-pipeline}. Poszczególne kroki zostan¹ opisane w kolejnych rozdzia³ach.
+
+\begin{lstlisting}[caption=Implementacja metody uruchamiaj¹cej uczenie w³aœciwe, language=Python, label={lst:run-pipeline}]
+def run_pipeline(create_model, folds, x, y, epochs):
+    best_model_score = []
+    
+    for fold_number, (train_idx, val_idx) in enumerate(folds):
+        print('\nFold: ', fold_number)
+        # wybór odpowiednich podzbiorów
+        x_train_cv = x[train_idx]
+        y_train_cv = y[train_idx]
+        x_valid_cv = x[val_idx]
+        y_valid_cv = y[val_idx]
+                
+        input_shape = x.shape[1:]
+
+        # stworzenie modelu
+        model, model_description = create_model(input_shape)
+
+        # utworzenie callback'ów
+        callbacks = callbacks_list("{}. Fold: {}.".format(model_description, 
+                                                          fold_number))
+        # rozpoczêcie uczenia
+        history = model.fit(x_train_cv,
+                            y_train_cv,
+                            epochs=epochs,
+                            batch_size=16,
+                            callbacks=callbacks,
+                            validation_data=(x_valid_cv, y_valid_cv),
+                            verbose=0)
+
+        # wczytanie wag najlepszego modelu i sprawdzenie jego skutecznoœci
+        model.load_weights("tmp/best_model.h5")
+        best_model_score.append(model.evaluate(x_valid_cv, y_valid_cv, batch_size=16, verbose=0))
+        print("--Best model validation accuracy: %.2f%%" % (best_model_score[fold_number][1]*100))
+        
+    return best_model_score
+\end{lstlisting}
+
+\subsubsection{Budowa modelu}
 \label{build_model}
+Model tworzony jest na podstawie dostarczonych specyfikacji w postaci funkcji. Funkcja zawiera kroki buduj¹ce model z kolejnych warstw, które dostêpne s¹ jako gotowe komponenty z biblioteki Keras. Ka¿da z warstw jest parametryzowana wybranymi wartoœciami. 
+Po utworzeniu modelu jest on kompilowany. Na tym etapie podawane s¹ równie¿ informacje odnoœnie tego jaki optymalizator, funkcja strat oraz metryka skutecznoœci ma zostaæ u¿yta. Dodatkowo tworzony jest równie¿ opis modelu wykorzystywany póŸniej w procesie monitorowania.
 
-\subsection{Sprawdzenie skutecznoœci}
+Na listingu \ref{lst:model-example} zosta³a zaprezentowana funkcja tworz¹ca przyk³adowy model splotowej sieci neuronowej z 1-wymiarowym filtrem.
+
+\begin{lstlisting}[caption=Tworzenie przyk³adowego modelu, language=Python, label={lst:model-example}]
+def conv_1D_with_adam(input_shape):
+    # opis modelu tworzony na podstawie nazwy funkcji
+    description = get_function_name()
+    
+    # specyfikacja modelu tworzonego sekwencyjnie
+    model = Sequential()
+
+    # dodanie warstwy splotowej z 32 1-wymiarowymi filtrami o rozmiarze 6 z funkcj¹ aktywacji 'relu'
+    model.add(Conv1D(filters=32, kernel_size=6, padding='same', activation='relu', input_shape=input_shape))
+    # warstwa max pooling'u o rozmiarze 2
+    model.add(MaxPooling1D(pool_size=2))
+
+    # warstwa zmniejszaj¹ca liczbê wymiarów danych
+    model.add(Flatten())
+    # warstwa typu 'fully-connected' o rozmiarze 64 neuronów
+    model.add(Dense(64, activation='relu'))
+    # warstwa typu 'fully-connected' z jednym neuronem i sigmoidaln¹ funkcj¹ aktywacji, która na wyjœciu zwróci wartoœæ '0' lub '1'
+    model.add(Dense(1, activation='sigmoid'))
+
+    # kompilacja modelu z u¿yciem optymalizatora Adam, funkcji strat binarnej entropii krzy¿owej oraz dok³adnoœci (accuracy) jako metryki
+    model.compile(optimizer=Adam(),                  
+                  loss='binary_crossentropy',
+                  metrics=['acc'])
+ 
+    return model, description
+\end{lstlisting}
+
+\subsubsection{Lista callback'ów}
+\label{callbacks}
+Dodatkowym parametrem przekazywanym do procesu uczenia jest lista tzw. \textit{callback}'ów, czyli wywo³añ zwrotnych, które umo¿liwiaj¹ otrzymywanie informacji z wnêtrza modelu podczas jego nauki.
+
+Zosta³y utworzone 4 nastêpuj¹ce callbacki:
+\begin{itemize}
+\item \textbf{EarlyStopping} - pozwala na wczeœniejsze zatrzymanie procesu uczenia w przypadku, gdy monitorowana metryka nie zosta³a poprawiona przez okreœlon¹ iloœæ epok
+\item \textbf{LearningRateScheduler} - implementuje adaptacyjn¹ metodê zmiany wspó³czynnika uczenia wed³ug podanych regu³
+\item \textbf{ModelCheckpoint} - umo¿liwia zapisanie modelu, który posiada najlepsze dopasowanie wed³ug okreœlonej metryki
+\item \textbf{TensorBoard} - tworzy logi z procesu uczenia w podanym folderze, które mog¹ byæ u¿yte do monitorowania przez narzêdzie TensorBoard \ref{monitoring}
+\end{itemize}
+
+
+Listing \ref{lst:callback} przedstawia implementacjê metod tworz¹cych \textit{callback}'i.
+
+\begin{lstlisting}[caption=Tworzenie listy \textit{callback}'ów, language=Python, label={lst:callback}]
+def step_decay(epoch):    
+    initial_lrate=0.1
+    drop=0.6
+    epochs_drop = 10.0
+    lrate = initial_lrate * math.pow(drop, math.floor((1+epoch)/epochs_drop))
+    
+    return lrate
+
+
+def callbacks_list(description): 
+    return [
+    callbacks.EarlyStopping(
+        monitor='val_acc', 
+        patience=30
+    ),
+    callbacks.LearningRateScheduler(step_decay),
+        
+    callbacks.ModelCheckpoint(
+        filepath='tmp/best_model.h5', 
+        monitor='val_acc',
+        save_best_only=True
+    ),
+    callbacks.TensorBoard(
+        log_dir='tmp/logs/{}. {}'.format(description, create_current_time()),
+        histogram_freq=0,
+        write_graph=True,
+        write_images=True
+    )
+]
+\end{lstlisting}
+
+\subsubsection{Funkcja dopasowania}
+\label{fit}
+Wykonywana na modelu funkcja \textit{fit()} rozpoczyna procedurê uczenia, czyli dopasowania do danych.
+Jako argumenty przykazywane s¹ do niej dane treningowe i walidacyjne, liczba epok ucz¹cych, \textit{callback}'i oraz inne parametry. Podczas nauki wyœwietlane s¹ informacje o postêpie uczenia oraz zwracany jest raport zawieraj¹cy historiê wartoœci metryk w kolejnych epokach, na podstawie których mo¿na np. narysowaæ wykres przedstawiaj¹cy postêpy.
+Te wartoœci nie bêd¹ jednak u¿ywane, gdy¿ ca³a historia i postêpy uczenia s¹ ³adowane do programu monitoruj¹cego TensorBoard z logów tworzonych przez callback TensorBoard \ref{monitoring}.
+Dodatkowo dla ka¿dej iteracji zapisywany jest najlepszy model, który na sam koniec zostanie za³adowany i sprawdzony pod k¹tem skutecznoœci \ref{verify_accuracy}.
+
+\begin{lstlisting}[caption=Wywo³anie metody \textit{fit()} na modelu, language=Python, label={lst:fit}]
+history = model.fit(x_train_cv,
+                    y_train_cv,
+                    epochs=epochs,
+                    batch_size=16,
+                    callbacks=callbacks,
+                    validation_data=(x_valid_cv, y_valid_cv),
+                    verbose=0)
+\end{lstlisting}
+
+\subsubsection{Sprawdzenie skutecznoœci}
 \label{verify_accuracy}
+W celu sprawdzenia skutecznoœci wczytywany jest najlepiej dopasowany model z danej iteracji i jest on sprawdzany metod¹ \textit{evaluate()} na danych walidacyjnych. Wynik jest nastêpnie wyœwietlany i zapisywany do tablicy, która pos³u¿y do policzenia œredniej skutecznoœci modelu. Przedstawione dzia³ania wykonuje kod zaprezentowany na listingu \ref{lst:validation}
+
+\begin{lstlisting}[caption=Sprawdzenie skutecznoœci najlepszego modelu, language=Python, label={lst:validation}]
+model.load_weights("tmp/best_model.h5")
+best_model_score.append(model.evaluate(x_valid_cv, y_valid_cv, batch_size=16, verbose=0))
+        
+print("--Best model validation accuracy: %.2f%%" % (best_model_score[fold_number][1]*100))
+\end{lstlisting}
 
 
 \section{Monitorowanie}
+\label{monitoring}
 \section{Wybór rodzaju sieci neuronowej}
 \section{Optymalizacja}
 \section{Ocena otrzymanych rezultatów}
