@@ -586,6 +586,36 @@ print("--Best model validation accuracy: %.2f%%" % (best_model_score[fold_number
 
 \section{Monitorowanie}
 \label{monitoring}
+Model sieci neuronowej po zakoñczeniu procesu nauki zwraca obiekt zawieraj¹cy raport z wynikami. W sytuacji gdy proces uczenia przeprowadzany jest kilkukrotnie nale¿a³oby rêcznie zarz¹dzaæ obiektami raportów. Dodatkowo, przedstawienie wyników w sposób czytelny i ³atwy do zinterpretowania wymaga zaimplementowania metod wizualizacyjnych np. rysowanie wykresu. Nie ma jednak potrzeby rêcznej implementacji wy¿ej wymienionych funkcjonalnoœci, gdy¿ istniej¹ dedykowane narzêdzia umo¿liwiaj¹ce prezentacjê wyników w czasie rzeczywistym w przyjaznej dla u¿ytkownika formie.
+
+Do monitorowania procesu uczenia zosta³o u¿yte narzêdzie \textit{TensorBoard}, które dostarczone jest razem z bibliotek¹ \textit{TensorFlow}. Pozwala ono m.in. na graficzn¹ wizualizacjê postêpów w procesie uczenia oraz automatyczne generowanie schematu modelu sieci neuronowej. Jest to narzêdzie uruchamiane w przegl¹darce, które wykorzystuje logi wygenerowane przez \textit{callback.TensorBoard} omawiany w rozdziale \ref{callbacks}. 
+
+Na najprostszym widoku widoczne s¹ 4 wykresy ilustruj¹ce nastêpuj¹ce wartoœci:
+\begin{itemize}
+\item \textbf{acc} - dok³adnoœæ w procesie uczenia
+\item \textbf{loss} - wartoœæ funkcji strat w procesie uczenia
+\item \textbf{val\_acc} - dok³adnoœæ w procesie walidacji
+\item \textbf{val\_loss} - wartoœæ funkcji strat w procesie walidacji
+\end{itemize}
+Wykresy zosta³y zaprezentowane na rysunku \ref{fig:tensor-board}. S¹ one interaktywe, wiêc mo¿na sprawdziæ dok³adn¹ wartoœæ w ka¿dym punkcie wykresu.
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=12cm]{Rysunki/Rozdzial5/tensor-board.png}
+	\caption{Dynamicznie tworzone wykresy w programie TensorBoard}
+	\label{fig:tensor-board}
+\end{figure}
+
+Wizualna reprezentacja utworzonego modelu równie¿ mo¿e byæ pomocna przy ocenie architektury tworzonej sieci neuronowej. Fragment przyk³adowego schematu wygenerowany przez TensorBoard na podstawie modelu utworzonego w kodzie pokazany zosta³ na rysunku \ref{fig:tensor-board-model}.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=8cm]{Rysunki/Rozdzial5/tensor-board-model.png}
+	\caption{Fragment schematu modelu wygenerowany przez TensorBoard}
+	\label{fig:tensor-board-model}
+\end{figure}
+
+TensorBoard udostêpnia równie¿ wiele innych funkcjonalnoœci, które nie zosta³y u¿yte jak np. rysowanie wykresów w³asnorêcznie zdefiniowanych metryk, monitorowanie i wizualizacjê wag poszczególnych neuronów itp. Wiêcej informacji na temat mo¿liwoœci TensorBoard mo¿na znaleŸæ w dokumentacji \cite{tensor_board}. 
+
 \section{Wybór rodzaju sieci neuronowej}
 \section{Optymalizacja}
 \section{Ocena otrzymanych rezultatów}

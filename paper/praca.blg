@@ -3,7 +3,12 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: praca.aux
 The style file: unsrt.bst
 Database file #1: Bibliografia/bibliografia.bib
-Illegal end of database file---line 99 of file Bibliografia/bibliografia.bib
+I was expecting a `,' or a `}'---line 91 of file Bibliografia/bibliografia.bib
+ : 
+ : @manual{engmrk,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Illegal end of database file---line 108 of file Bibliografia/bibliografia.bib
  : 
  : 
 (Error may have been on previous line)
@@ -19,45 +24,52 @@ Warning--empty publisher in automated_system
 Warning--empty year in automated_system
 Warning--empty publisher in detecting_epileptic
 Warning--empty year in detecting_epileptic
-You've used 11 entries,
+Too many commas in name 1 of "Tensorflow, title = {Tensorboard docs}, year = {}, month = {}, howpublished= {github.com}, note = {\url{https://github.com/tensorflow/tensorboard}}" for entry tensor_board
+while executing---line 944 of file unsrt.bst
+Too many commas in name 1 of "Tensorflow, title = {Tensorboard docs}, year = {}, month = {}, howpublished= {github.com}, note = {\url{https://github.com/tensorflow/tensorboard}}" for entry tensor_board
+while executing---line 944 of file unsrt.bst
+Too many commas in name 1 of "Tensorflow, title = {Tensorboard docs}, year = {}, month = {}, howpublished= {github.com}, note = {\url{https://github.com/tensorflow/tensorboard}}" for entry tensor_board
+while executing---line 944 of file unsrt.bst
+Warning--empty title in tensor_board
+You've used 12 entries,
             1791 wiz_defined-function locations,
-            489 strings with 4798 characters,
-and the built_in function-call counts, 1476 in all, are:
-= -- 104
-> -- 53
+            491 strings with 4957 characters,
+and the built_in function-call counts, 1579 in all, are:
+= -- 109
+> -- 57
 < -- 0
-+ -- 24
-- -- 13
-* -- 54
-:= -- 231
-add.period$ -- 29
-call.type$ -- 11
++ -- 26
+- -- 14
+* -- 57
+:= -- 246
+add.period$ -- 30
+call.type$ -- 12
 change.case$ -- 1
 chr.to.int$ -- 0
-cite$ -- 20
-duplicate$ -- 91
-empty$ -- 182
-format.name$ -- 13
-if$ -- 328
+cite$ -- 22
+duplicate$ -- 98
+empty$ -- 197
+format.name$ -- 14
+if$ -- 350
 int.to.chr$ -- 0
-int.to.str$ -- 11
+int.to.str$ -- 12
 missing$ -- 12
-newline$ -- 54
-num.names$ -- 10
-pop$ -- 68
+newline$ -- 57
+num.names$ -- 11
+pop$ -- 75
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 29
+skip$ -- 32
 stack$ -- 0
 substring$ -- 0
-swap$ -- 12
+swap$ -- 13
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
-warning$ -- 9
-while$ -- 10
-width$ -- 13
-write$ -- 93
-(There were 2 error messages)
+warning$ -- 10
+while$ -- 11
+width$ -- 14
+write$ -- 98
+(There were 6 error messages)

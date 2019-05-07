@@ -57,4 +57,9 @@ Emad-ul-Haq~Qazi Ihsan~Ullah, Muhammad~Hussain and Hatim Aboalsamh.
 Nick Hershey.
 \newblock {\em Detecting Epileptic Seizures in Electroencephalogram Data}.
 
+\bibitem{tensor_board}
+year = {} month = {} howpublished= {github.com} note
+  =~{\url{https://github.com/tensorflow/tensorboard}} Tensorflow, title
+  =~{Tensorboard docs}.
+
 \end{thebibliography}
