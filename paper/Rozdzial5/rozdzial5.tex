@@ -614,8 +614,199 @@ Wizualna reprezentacja utworzonego modelu równie¿ mo¿e byæ pomocna przy ocenie a
 	\label{fig:tensor-board-model}
 \end{figure}
 
-TensorBoard udostêpnia równie¿ wiele innych funkcjonalnoœci, które nie zosta³y u¿yte jak np. rysowanie wykresów w³asnorêcznie zdefiniowanych metryk, monitorowanie i wizualizacjê wag poszczególnych neuronów itp. Wiêcej informacji na temat mo¿liwoœci TensorBoard mo¿na znaleŸæ w dokumentacji \cite{tensor_board}. 
+TensorBoard udostêpnia równie¿ wiele innych funkcjonalnoœci, które nie zosta³y u¿yte jak np. rysowanie wykresów w³asnorêcznie zdefiniowanych metryk, monitorowanie i wizualizacjê rozk³adu danych w grafie itp. Wiêcej informacji na temat mo¿liwoœci TensorBoard mo¿na znaleŸæ w dokumentacji \cite{tensor_board}. 
 
 \section{Wybór rodzaju sieci neuronowej}
+Wybór rodzaju oraz wstêpnej architektury sieci neuronowej ma kluczowe znaczenie. To w³aœnie te czynnik bêd¹ w g³ównej mierze decydowaæ o skutecznoœci modelu. Po dobraniu rodzaju sieci neuronowej, który umo¿liwia uzyskanie jak najlepszych wyników nastêpuje faza optymalizacji, czyli dostosowywania parametrów, która zostanie opisana w rozdziale \ref{optimization}.
+
+Przy wyborze modelu warto zacz¹æ od rozwi¹zañ najprostszych. Proste modele bêd¹ potrzebowa³y zdecydowanie mniej czasu na naukê, ni¿ te z³o¿one, dlatego dziêki u¿yciu tego podejœcia bêdzie mo¿na w krótkim czasie uzyskaæ pierwsze rezultaty. Mo¿e siê równie¿ okazaæ, ¿e bardzo prosty model jest skuteczny w aktualnie rozpatrywanym problemie.
+
+Podczas próby znalezienia odpowiedniego rodzaju sieci neuronowej rozpatrzone zosta³y nastêpuj¹ce opcje:
+\begin{itemize}
+\item klasyczna sieæ typu \textit{fully-connected}
+\item sieæ splotowa z filtrem 1-wymiarowym
+\item sieæ splotowa z filtrem 2-wymiarowym
+\item sieæ rekurencyjna
+\item po³¹czenie sieci splotowej z rekurencyjn¹
+\end{itemize}
+
+\subsection{Klasyczna sieæ neuronowa typu fully connected}
+Pierwszym, najprostszym rozwi¹zaniem, które zosta³o przetestowane jest klasyczna sieæ neuronowa typu \textit{fully connected}. W bibliotece Keras warstwy tworz¹ce tak¹ sieæ nosz¹ nazwê \textit{Dense}.
+Model pocz¹tkowy, który zosta³ stworzony zaprezentowano na listingu \ref{lst:fully-connected}. 
+
+\begin{lstlisting}[caption=Model sieci neuronowej typu \textit{fully connected}, language=Python, label={lst:fully-connected}]
+model = Sequential()
+model.add(Flatten(input_shape=input_shape))
+model.add(Dense(1000, kernel_initializer='normal', activation='relu'))
+model.add(Dense(30, kernel_initializer='normal', activation='relu'))
+model.add(Dense(1, kernel_initializer='normal', activation='sigmoid'))
+    
+sgd = SGD(lr=0.1, momentum=0.9, decay=0.0, nesterov=False)
+model.compile(loss='binary_crossentropy', optimizer=sgd, metrics=['accuracy'])
+\end{lstlisting}
+
+Sieæ sk³ada siê z warstwy wejœciowej \textit{Flatten}, która odpowiada za zmniejszenie stopnia wymiarowoœci danych tak, aby mog³y byæ u¿yte w sieci tego typu. Przez tê operacjê tracone s¹ pewne informacje o s¹siedztwie danych, gdy¿ teraz s¹ one jedynie wektorem zamiast wielowymiarow¹ tablic¹, jednak jest ona wymagana.
+Kolejne warstwy stanowi¹ warstwy \textit{Dense} zawieraj¹ce ró¿n¹ iloœæ neuronów. Pocz¹tkowo zosta³y u¿yte wartoœci 1000 i 30.
+Sieæ zakoñczona jest warstw¹ z jednym neuronem i sigmoidaln¹ funkcj¹ aktywacji, która zwraca na wyjœciu wartoœæ 1 lub 0.
+Jako optymalizator u¿yty zosta³ \textit{SGD} (\textit{ang. stochastic gradient descent}) z funkcj¹ strat binarnej entropii krzy¿owej \textit{(ang. binary crossentropy)}.
+
+
+Proces nauki zaproponowanej sieci neuronowej przebiega³ szybko ze wzglêdu na jej prostotê. Jedna pe³na iteracja trwa³a jedynie oko³o 90 sekund. Wyniki by³y jednak bardzo s³abe. Skutecznoœæ podczas uczenia modelu oscylowa³a wokó³ wartoœci 50\% (48\% - 52\%). Skutecznoœæ walidacyjna równie¿ by³a praktycznie sta³a i zawsze bliska \textbf{50\%} \ref{fig:fully-connected-results}. 
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=14cm]{Rysunki/Rozdzial5/fully-connected-results.png}
+	\caption{Wyniki skutecznoœci sieci typu \textit{fully-connected}}
+	\label{fig:fully-connected-results}
+\end{figure}
+
+Mo¿na wiêc zauwa¿yæ, ¿e sieæ dzia³a³a praktycznie w sposób losowy, gdy¿ tyle wynosi w³aœnie prawdopodobieñstwo przewidzenia wyniku z poœród dwóch wartoœci. Pomimo próby modyfikacji sieci poprzez zwiêkszenie/zmniejsznie liczby warstw, zwiêkszenie/zmniejszenie liczby neuronów, zmiany optymalizatora i funkcji strat wci¹¿ przynosi³a podobne wyniki. Nie uda³o siê osi¹gn¹æ lepszych rezultatów dla tego typu sieci neuronowej, dlatego nie by³a ona wiêcej wykorzystywana. Okaza³a siê niewystarczaj¹ca do rozwi¹zania rozpatrywanego problemu.
+
+
+\subsection{Sieæ splotowa z filtrem 1-wymiarowym}
+\label{conv-1d}
+Kolejnym testowanym typem by³a sieæ splotowa z 1-wymiarowym filtrem, której zastosowanie polecane jest do danych w formie szeregów czasowych np. dane z ¿yroskopu czy akcelerometru. W bibliotece Keras warstwy tego typu nazwane s¹ \textit{Conv1D (ang. Convolutional 1-dimension)}. Filtr jednowymiarowy jest w stanie odnajdywaæ podobieñstwa miêdzy danymi jedynie w jednym wymiarze. W przypadku dostêpnych danych z EEG mog¹ byæ to wartoœci tylko z jednego kana³u jednoczeœnie. Oznacza to, ¿e byæ mo¿e sieæ tego typu nie bêdzie w stanie zauwa¿yæ zale¿noœci pomiêdzy danymi znajduj¹cymi siê na ró¿nych kana³ach.
+
+Wstêpny model sieci, który zosta³ wybrany przedstawiony zosta³ na listingu \ref{lst:conv-1d}. Sk³ada siê on z dwóch warstw konwolucyjnych o odpowiednio 32 i 16 filtrach z warstwami \textit{max pooling}'u. Sieci splotowe zwykle zakoñczone s¹ kilkoma warstwami typu \textit{fully-connected}. W tym wypadku zosta³a zastosowana jedna warstwa z 64 neuronami oraz warstwa wyjœciowa z jednym neuronem i sigmoidaln¹ funkcj¹ aktywacji. Tego typu warstwa koñcowa bêdzie wykorzystywana w ka¿dym modelu, gdy¿ daje ona mo¿liwoœæ zwrócenia na wyjœciu z sieci wartoœci 0 lub 1, które oznaczaj¹ brak lub pojawienie siê ataku.
+
+\begin{lstlisting}[caption=Model splotowej sieci neuronowej z 1-wymiarowym filtrem, language=Python, label={lst:conv-1d}]
+model = Sequential()
+
+model.add(Conv1D(filters=32, kernel_size=6, padding='same', activation='relu', input_shape=input_shape))
+model.add(MaxPooling1D(pool_size=2))
+    
+model.add(Conv1D(filters=16, kernel_size=6, padding='same', activation='relu'))
+model.add(MaxPooling1D(pool_size=2))
+    
+model.add(Flatten())
+model.add(Dense(64, activation='relu'))
+model.add(Dense(1, activation='sigmoid'))
+
+model.compile(optimizer=Adam(), loss='binary_crossentropy', metrics=['acc'])
+\end{lstlisting}
+
+Skonstruowana w ten sposób sieæ neuronowa uczy³a siê co prawda d³u¿ej, ni¿ sieæ typu \textit{fully-connected}, gdy¿ czas nauki wynosi³ oko³o 240 sekund, jednak wyniki by³y o wiele lepsze i oscylowa³y w okolicach \textbf{70\%}. Jest to bardzo dobry wynik w porównaniu do poprzedniego bior¹c pod uwagê prost¹ architekturê sieci. Sieæ jednak bardzo szybko siê przeucza³a \textit{(ang. overfitting)}. Mo¿na to zauwa¿yæ po osi¹gniêciu 100\% skutecznoœci podczas procesu nauki \textit{(acc)} oraz wzroœcie wartoœci funkcji strat podczas walidacji \textit{(val\_loss)} \ref{fig:conv-1d-results}.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=14cm]{Rysunki/Rozdzial5/conv-1d-results.png}
+	\caption{Wyniki prostej sieci splotowej z 1-wymiarowym filtrem}
+	\label{fig:conv-1d-results}
+\end{figure}
+
+Wyniki by³y obiecuj¹ce, wiêc sieæ tego typu zosta³a wziêta pod uwagê w dalszych pracach polegaj¹cych na optymalizacji sieci w celu uzyskania jak najlepszych wyników \ref{optimization}.
+
+\subsection{Sieæ splotowa z filtrem 2-wymiarowym}
+Nastêpnym typem sieci, która zosta³a przetestowana by³a sieæ splotowa z filtrem 2-wymiarowym \textit{(Conv2D)}. Sieæ ta jest bardzo podobna do konwolucyjnej sieci jednowymiarowej opisywanej w poprzednim podrozdziale \ref{conv-1d}. Ró¿nic¹ jest typ zastosowanego filtra, który w tym przypadku jest 2-wymiarowy. Pozwala wiêc analizowaæ dane w dwuwymiarowej przestrzeni. Sieci tego typu u¿ywane s¹ przewa¿nie do rozpoznawania obrazów, jednak równie dobrze mog¹ siê sprawdziæ te¿ na danych innego typu. W przypadku EEG sieæ z 2-wymiarowym filtrem bêdzie w stanie analizowaæ szereg czasowy obejmuj¹c kilka kana³ów jednoczeœnie, dziêki temu mo¿liwe bêdzie zauwa¿enie powi¹zania pomiêdzy danymi z innych kana³ów.
+
+Analogicznie do modelu sieci z filtrem jednowymiarowym zosta³ stworzony podobny z 2-wymiarowym filtrem \ref{lst:conv-2d}
+
+\begin{lstlisting}[caption=Model splotowej sieci neuronowej z 2-wymiarowym filtrem, language=Python, label={lst:conv-2d}]
+model = Sequential()
+
+model.add(Conv2D(32,(3,3),strides = (1,1),padding='same', activation = 'relu', input_shape=input_shape))
+model.add(MaxPooling2D((2,2)))
+    
+model.add(Conv2D(16,(3,3),strides = (1,1),name='conv3', activation = 'relu'))
+model.add(MaxPooling2D((2,2)))
+    
+model.add(Flatten())
+model.add(Dense(64,activation = 'relu'))
+model.add(Dense(1, activation='sigmoid'))
+
+model.compile(optimizer=Adam(), loss='binary_crossentropy', metrics=['acc'])
+\end{lstlisting}
+
+Nauka tego modelu sieci trwa³a trochê d³u¿ej, ni¿ poprzedniego, gdy¿ czas wynosi³ oko³o 300 sekund. Okaza³o siê jednak, ¿e sieæ która ró¿ni siê od poprzedniej jedynie wymiarem filtra osi¹gnê³a skutecznoœæ na poziomie \textbf{75\%}. 
+Po wynikach zaprezentowanych na rysunku \ref{fig:conv-2d-results} mo¿na jednak zauwa¿yæ, ¿e pomimo lepszej skutecznoœci sieæ tego typu równie¿ bardzo szybko ulega przeuczeniu. Problem ten bêdzie rozwi¹zywany podczas próby jej optymalizacji w rozdziale \ref{optimization}.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=14cm]{Rysunki/Rozdzial5/conv-2d-results.png}
+	\caption{Wyniki prostej sieci splotowej z 2-wymiarowym filtrem}
+	\label{fig:conv-2d-results}
+\end{figure}
+
+\subsection{Sieæ rekurencyjna}
+W nastêpnym kroku przetestowana zosta³a rekurencyjna sieæ neuronowa. Pocz¹tkowy model sieci, który zosta³ utworzony zaprezentowany zosta³ na listingu \ref{lst:recursive}. 
+
+\begin{lstlisting}[caption=Model rekurencyjnej sieci neuronowej, language=Python, label={lst:recursive}]
+model = Sequential()
+
+model.add(LSTM(100, input_shape=input_shape))
+model.add(Dense(1, activation='sigmoid'))
+    
+model.compile(optimizer='rmsprop', loss='binary_crossentropy', metrics=['acc'])
+\end{lstlisting}
+
+Sk³ada siê ona z jednej warstwy typu \textit{LSTM (ang. Long Short-Term Memory)}. Sieæ mimo prostej budowy uczy siê bardzo d³ugo. Czas pe³nej iteracji nauki wynosi a¿ 5700 sekund. Wynika to ze z³o¿onoœci sposobu funkcjonowania tego typu sieci. Pomimo d³u¿szego czasu nauki zaproponowana sieæ osi¹ga skutecznoœæ na poziomie jedynie ok. \textbf{60\%} \ref{fig:recursive-results}. 
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=14cm]{Rysunki/Rozdzial5/recursive-results.png}
+	\caption{Wyniki prostej sieci rekurencyjnej}
+	\label{fig:recursive-results}
+\end{figure}
+
+Jest to wynik o wiele gorszy w porównaniu do sieci konwolucyjnych testowanych w poprzednich rozdzia³ach. Próby rozbudowy i prostej optymalizacji sieci nie przynosi³y skutków, dlatego zosta³a ona pominiêta w dalszych badaniach.
+ 
+Poczyniono jednak próby po³¹czenia tego typu sieci z sieciami konwolucyjnymi. Wyniki przeprowadzonych prób opisane zosta³y w rozdziale \ref{cnn_lstm}
+
+\subsection{Po³¹czenie sieci splotowej z rekurencyjn¹}
+\label{cnn_lstm}
+Ostatnim typem sieci, którego skutecznoœæ zosta³a sprawdzona jest po³¹czenie sieci splotowej z rekurencyjn¹ tzw. \textit{CNN LSTM}. Jest to bardziej rozbudowana stuktura sieci polegaj¹ca na u¿yciu kilku warstw konwolucyjnych zakoñczonych warstwami rekurencyjnymi. Prosty model sieci zbudowany wed³ug tej koncepcji zaprezentowany zosta³ na listingu \ref{lst:cnn_lstm} 
+
+\begin{lstlisting}[caption=Model sieci typu CNN LSTM, language=Python, label={lst:cnn_lstm}]
+model = Sequential()
+
+model.add(Conv1D(filters=64, kernel_size=6, padding='same', activation='relu', input_shape=input_shape))
+model.add(MaxPooling1D(pool_size=2))
+model.add(Conv1D(filters=32, kernel_size=6, padding='same', activation='relu'))
+model.add(MaxPooling1D(pool_size=2))
+    
+model.add(LSTM(100))
+    
+model.add(Dense(128, activation='relu'))
+model.add(Dense(1, activation='sigmoid'))
+    
+model.compile(optimizer=Adam(), loss='binary_crossentropy', metrics=['acc'])
+\end{lstlisting}
+
+Pomimo bardziej z³o¿onej struktury proces nauki utworzonej sieci przebiega³ krócej, ni¿ w przypadku tej sk³adaj¹cej siê jedynie z warstwy rekurencyjnej i wynosi³ oko³o 1800 sekund. Spowodowane jest to tym, ¿e dane wejœciowe ulegaj¹ zmniejszeniu za pomoc¹ warstw konwolucyjnych i wstêpnie przetworzone trafiaj¹ na warstwê rekurencyjn¹. Dziêki temu warstwa rekurencyjna potrzebuje mniej czasu do nauki, ni¿ w przypadku, gdy podawane jej s¹ nieprzygotowane dane.
+
+Pomimo osi¹gniêcia wyników lepszych od sieci rekurencyjnej, nie by³y one lepsze od modeli zbudowanych z u¿yciem warstw konwolucyjnych. Osi¹gniête wyniki waha³y siê w granicach \textbf{65\%} \ref{fig:cnn_lstm}.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=14cm]{Rysunki/Rozdzial5/cnn-lstm-results.png}
+	\caption{Wyniki sieci konwoluncyjnej po³¹czonej z rekurencyjn¹}
+	\label{fig:cnn_lstm}
+\end{figure}
+
+Zosta³y podjête próby roszerzenia modelu sieci oraz zmiany parametrów, jednak wyniki nie zosta³y w znacz¹cym stopniu poprawione. Ze wzglêdu na to sieæ tego typu nie zosta³a u¿yta w dalszych badaniach.
+
+
+\subsection{Podsumowanie}
+Podsumowanie wyników testowania skutecznoœci poszczególnych typów sieci zosta³y zaprezentowane w tabeli \ref{tbl:comparison}. 
+
+\begin{table}[h!]
+	\caption{Porównanie czasów nauki oraz skutecznoœci poszczególnych typów sieci}
+	\label{tbl:comparison}
+	\begin{tabular}{|l|l|l|}
+		\hline
+		\textbf{Nazwa}  & \textbf{Œredni czas jednej iteracji {[}s{]}} & \textbf{Œrednia skutecznoœæ {[}\%{]}} \\ \hline
+		Fully connected & 90                                           & 50                                    \\ \hline
+		CNN 1D          & 240                                          & 70                                    \\ \hline
+		CNN 2D          & 300                                          & 75                                    \\ \hline
+		LSTM            & 5700                                         & 60                                  \\ \hline
+		CNN LSTM        & 1800                                         & 65                                  \\ \hline
+	\end{tabular}
+\end{table}
+
+Mo¿na zauwa¿yæ, ¿e najlepsze wyniki i stosunkowo niedu¿e czasy nauki osi¹gnê³a sieæ splotowa z filtrem 2-wymiarowym. Model tej sieci zosta³ wiêc wybrany jako ten najlepiej przystosowany do rozwi¹zywania badanego problemu. Próba i sposoby optymalizacji wyników tego modelu zosta³y opisane w kolejnym rozdziale \ref{optimization}.
+
+
 \section{Optymalizacja}
+\label{optimization}
+
 \section{Ocena otrzymanych rezultatów}

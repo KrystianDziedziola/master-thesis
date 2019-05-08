@@ -14,5 +14,10 @@
 \contentsline {figure}{\numberline {5.2}{\ignorespaces Podzia\IeC {\l } danych wed\IeC {\l }ug metody k-krotnej walidacji krzy\.zowe\relax }}{23}{figure.caption.10}
 \contentsline {figure}{\numberline {5.3}{\ignorespaces Dynamicznie tworzone wykresy w programie TensorBoard\relax }}{28}{figure.caption.11}
 \contentsline {figure}{\numberline {5.4}{\ignorespaces Fragment schematu modelu wygenerowany przez TensorBoard\relax }}{29}{figure.caption.12}
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Wyniki skuteczno\'sci sieci typu \textit {fully-connected}\relax }}{31}{figure.caption.13}
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Wyniki prostej sieci splotowej z 1-wymiarowym filtrem\relax }}{32}{figure.caption.14}
+\contentsline {figure}{\numberline {5.7}{\ignorespaces Wyniki prostej sieci splotowej z 2-wymiarowym filtrem\relax }}{33}{figure.caption.15}
+\contentsline {figure}{\numberline {5.8}{\ignorespaces Wyniki prostej sieci rekurencyjnej\relax }}{34}{figure.caption.16}
+\contentsline {figure}{\numberline {5.9}{\ignorespaces Wyniki sieci konwoluncyjnej po\IeC {\l }\k aczonej z rekurencyjn\k a\relax }}{36}{figure.caption.17}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
