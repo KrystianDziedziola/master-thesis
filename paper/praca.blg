@@ -3,73 +3,66 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: praca.aux
 The style file: unsrt.bst
 Database file #1: Bibliografia/bibliografia.bib
-I was expecting a `,' or a `}'---line 91 of file Bibliografia/bibliografia.bib
- : 
- : @manual{engmrk,
-(Error may have been on previous line)
-I'm skipping whatever remains of this entry
-Illegal end of database file---line 108 of file Bibliografia/bibliografia.bib
- : 
- : 
-(Error may have been on previous line)
-I'm skipping whatever remains of this entry
 Warning--empty publisher in Chollet:2018
 Warning--empty publisher in Williams
 Warning--empty publisher in MinskyPapert
 Name 1 in "Ian Goodfellow, Yoshua Bengio, and Aaron Courville" has a comma at the end for entry Goodfellow-et-al-2016-Book
 while executing---line 944 of file unsrt.bst
-Warning--empty title in epilepsy_foundation
 Warning--empty publisher in learning_robust
 Warning--empty publisher in automated_system
 Warning--empty year in automated_system
 Warning--empty publisher in detecting_epileptic
 Warning--empty year in detecting_epileptic
-Too many commas in name 1 of "Tensorflow, title = {Tensorboard docs}, year = {}, month = {}, howpublished= {github.com}, note = {\url{https://github.com/tensorflow/tensorboard}}" for entry tensor_board
+Warning--empty publisher in batch_normalization
+Warning--empty year in batch_normalization
+Warning--empty publisher in brain_visualization
+Warning--empty year in brain_visualization
+Too many commas in name 1 of "Leszek Rutkowski, Marcin Korytkowski, Rafa³ Scherer, Ryszard Tadeusiewicz, Lotfi A. Zadeh, Jacek M. Zurada (Eds.)" for entry matching_pursuit
 while executing---line 944 of file unsrt.bst
-Too many commas in name 1 of "Tensorflow, title = {Tensorboard docs}, year = {}, month = {}, howpublished= {github.com}, note = {\url{https://github.com/tensorflow/tensorboard}}" for entry tensor_board
+Too many commas in name 1 of "Leszek Rutkowski, Marcin Korytkowski, Rafa³ Scherer, Ryszard Tadeusiewicz, Lotfi A. Zadeh, Jacek M. Zurada (Eds.)" for entry matching_pursuit
 while executing---line 944 of file unsrt.bst
-Too many commas in name 1 of "Tensorflow, title = {Tensorboard docs}, year = {}, month = {}, howpublished= {github.com}, note = {\url{https://github.com/tensorflow/tensorboard}}" for entry tensor_board
+Too many commas in name 1 of "Leszek Rutkowski, Marcin Korytkowski, Rafa³ Scherer, Ryszard Tadeusiewicz, Lotfi A. Zadeh, Jacek M. Zurada (Eds.)" for entry matching_pursuit
 while executing---line 944 of file unsrt.bst
-Warning--empty title in tensor_board
-You've used 12 entries,
+Warning--empty publisher in matching_pursuit
+You've used 16 entries,
             1791 wiz_defined-function locations,
-            491 strings with 4957 characters,
-and the built_in function-call counts, 1579 in all, are:
-= -- 109
-> -- 57
+            512 strings with 5518 characters,
+and the built_in function-call counts, 2208 in all, are:
+= -- 162
+> -- 76
 < -- 0
-+ -- 26
-- -- 14
-* -- 57
-:= -- 246
-add.period$ -- 30
-call.type$ -- 12
++ -- 35
+- -- 19
+* -- 78
+:= -- 350
+add.period$ -- 46
+call.type$ -- 16
 change.case$ -- 1
 chr.to.int$ -- 0
-cite$ -- 22
-duplicate$ -- 98
-empty$ -- 197
-format.name$ -- 14
-if$ -- 350
+cite$ -- 29
+duplicate$ -- 136
+empty$ -- 270
+format.name$ -- 19
+if$ -- 491
 int.to.chr$ -- 0
-int.to.str$ -- 12
-missing$ -- 12
-newline$ -- 57
-num.names$ -- 11
-pop$ -- 75
+int.to.str$ -- 16
+missing$ -- 18
+newline$ -- 81
+num.names$ -- 16
+pop$ -- 98
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 32
+skip$ -- 39
 stack$ -- 0
 substring$ -- 0
-swap$ -- 13
+swap$ -- 21
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
-warning$ -- 10
-while$ -- 11
-width$ -- 14
-write$ -- 98
-(There were 6 error messages)
+warning$ -- 13
+while$ -- 16
+width$ -- 18
+write$ -- 143
+(There were 4 error messages)

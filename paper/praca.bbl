@@ -40,7 +40,9 @@ Yoshua~Bengio Ian~Goodfellow and Aaron Courville.
 \newblock Book in preparation for MIT Press, 2016.
 
 \bibitem{epilepsy_foundation}
-
+Epilepsy foundation.
+\newblock {\em About Epilepsy: The Basics}.
+\newblock \url{https://www.epilepsy.com/learn/about-epilepsy-basics}.
 
 \bibitem{learning_robust}
 Andrew~Lim Pierre~Thodoroff, Joelle~Pineau.
@@ -58,8 +60,31 @@ Nick Hershey.
 \newblock {\em Detecting Epileptic Seizures in Electroencephalogram Data}.
 
 \bibitem{tensor_board}
-year = {} month = {} howpublished= {github.com} note
-  =~{\url{https://github.com/tensorflow/tensorboard}} Tensorflow, title
-  =~{Tensorboard docs}.
+Tensorflow.
+\newblock {\em Tensorboard docs}.
+\newblock \url{https://github.com/tensorflow/tensorboard}.
+
+\bibitem{batch_normalization}
+Christian~Szegedy Sergey~Ioffe.
+\newblock {\em Batch Normalization: Accelerating Deep Network Training by
+  Reducing Internal Covariate Shift}.
+\newblock arXiv:1502.03167v3 [cs.LG] 2 Mar 2015.
+
+\bibitem{brain_visualization}
+Andrew~Lim Pierre~Thodorof, Joelle~Pineau.
+\newblock {\em Learning Robust Features using Deep Learning for Automatic
+  Seizure Detection}.
+\newblock arXiv:1608.00220v1 [cs.LG] 31 Jul 2016.
+
+\bibitem{matching_pursuit}
+Rafa³ Scherer-Ryszard Tadeusiewicz Lotfi A. Zadeh Jacek M. Zurada~(Eds.)
+  Leszek~Rutkowski, Marcin~Korytkowski.
+\newblock {\em Artificial Intelligence and Soft Computing}.
+\newblock 2013.
+
+\bibitem{keras_applications}
+Keras.
+\newblock {\em Keras docs}.
+\newblock \url{https://keras.io/applications/}.
 
 \end{thebibliography}

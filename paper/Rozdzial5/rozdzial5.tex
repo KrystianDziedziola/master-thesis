@@ -774,7 +774,7 @@ model.compile(optimizer=Adam(), loss='binary_crossentropy', metrics=['acc'])
 
 Pomimo bardziej z³o¿onej struktury proces nauki utworzonej sieci przebiega³ krócej, ni¿ w przypadku tej sk³adaj¹cej siê jedynie z warstwy rekurencyjnej i wynosi³ oko³o 1800 sekund. Spowodowane jest to tym, ¿e dane wejœciowe ulegaj¹ zmniejszeniu za pomoc¹ warstw konwolucyjnych i wstêpnie przetworzone trafiaj¹ na warstwê rekurencyjn¹. Dziêki temu warstwa rekurencyjna potrzebuje mniej czasu do nauki, ni¿ w przypadku, gdy podawane jej s¹ nieprzygotowane dane.
 
-Pomimo osi¹gniêcia wyników lepszych od sieci rekurencyjnej, nie by³y one lepsze od modeli zbudowanych z u¿yciem warstw konwolucyjnych. Osi¹gniête wyniki waha³y siê w granicach \textbf{65\%} \ref{fig:cnn_lstm}.
+Osi¹gniête wyniki by³y co prawda lepsze od sieci rekurencyjnej, jednak nie przewy¿sza³y wyników modeli zbudowanych z u¿yciem warstw konwolucyjnych. Osi¹gniête wyniki waha³y siê w granicach \textbf{65\%} \ref{fig:cnn_lstm}.
 
 \begin{figure}[h!]
 	\centering
@@ -782,7 +782,6 @@ Pomimo osi¹gniêcia wyników lepszych od sieci rekurencyjnej, nie by³y one lepsze 
 	\caption{Wyniki sieci konwoluncyjnej po³¹czonej z rekurencyjn¹}
 	\label{fig:cnn_lstm}
 \end{figure}
-
 Zosta³y podjête próby roszerzenia modelu sieci oraz zmiany parametrów, jednak wyniki nie zosta³y w znacz¹cym stopniu poprawione. Ze wzglêdu na to sieæ tego typu nie zosta³a u¿yta w dalszych badaniach.
 
 
@@ -808,5 +807,462 @@ Mo¿na zauwa¿yæ, ¿e najlepsze wyniki i stosunkowo niedu¿e czasy nauki osi¹gnê³a s
 
 \section{Optymalizacja}
 \label{optimization}
+Sieæ typu konwolucyjnego z filtrem 2-wymiarowym osi¹ga³a najlepsze wyniki testuj¹c prototypy ró¿nych typów sieci neuronowych. To w³aœnie tej architekturze zosta³o wiêc poœwiêcone najwiêcej pracy maj¹cej na celu optymalizacjê i polepszenie otrzymywanych wyników. 
+Wyniki ju¿ nawet przy zaprezentowanym prostym modelu by³y obiecuj¹ce, gdy¿ sieæ osi¹ga³a œrednio 75\% skutecznoœci.
 
-\section{Ocena otrzymanych rezultatów}
+Najwiêkszym i najczêœciej wystêpuj¹cym problemem podczas nauki sieci neuronowych jest przeuczenie \textit{(ang. overfitting)}, które polega na zbytnim dopasowaniu siê modelu do danych ucz¹cych. Przeuczony model bêdzie posiada³ zbyt ma³¹ umiejêtnoœæ generalizacji, w wyniku czego bêdzie bardzo dobrze potrafi³ klasyfikowaæ dane, które do tej pory widzia³, jednak nie poradzi sobie zbyt dobrze z zupe³nie nowymi.
+Overfitting zwykle objawia siê osi¹gniêciem skutecznoœci bliskiej 100\% i wartoœci funkcji strat wynosz¹cej oko³o 0 podczas procesu uczenia. Skutkiem tego s¹ oczywiœcie o wiele gorsze wyniki podczas procesu walidacji. Tak jest równie¿ w przypadku tego prostego modelu, co mo¿na zaobserwowaæ na wykresach prezentuj¹cych przebieg uczenia przedstawiony na rysunku \ref{fig:cnn_start}.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=14cm]{Rysunki/Rozdzial5/cnn-start.png}
+	\caption{Wyniki modelu pocz¹tkowego konwolucyjnej sieci neuronowej}
+	\label{fig:cnn_start}
+\end{figure}
+
+Istnieje kilka sposobów przeciwdzia³ania nadmiernego dopasowania. Zostan¹ one opisane w kolejnych rozdzia³ach.
+
+\subsection{Batch normalization}
+Pierwszym sposobem jest wykorzystanie \textit{batch normalization}. Technika ta polega na normalizacji wartoœci wyjœciowych z danej warstwy tak, aby mia³y one œredni¹ 0 i odchylenie standardowe 1. Jest to zabieg podobny do tego przeprowadzonego podczas przygotowywania danych do procesu nauki z t¹ ró¿nic¹, ¿e mo¿na go stosowaæ dla wartoœci wyjœciowych z warstw. Dodatkowo zmniejsza zale¿noœæ wyników osi¹ganych przez sieæ od wartoœci, którymi zainicjalizowane by³y wagi oraz poprawia przep³yw gradientu. Wiêcej informacji dotycz¹cej \textit{batch normalization} mo¿na znaleŸæ w publikacji poœwiêconej temu zagadnieniu \cite{batch_normalization}.
+
+W bibliotece \textit{Keras} dostêpne s¹ gotowe warstwy o nazwie \textit{BatchNormalization} dostarczaj¹ce opisan¹ funkcjonalnoœæ. Wystarczy dodaæ warstwê poprzedzaj¹c¹ funkcjê aktywacji \ref{lst:cnn_batch_normalization}.
+
+\begin{lstlisting}[caption=Model sieci konwolucyjnej z warstwami BatchNormalization, language=Python, label={lst:cnn_batch_normalization}]
+model = Sequential()
+
+model.add(Conv2D(32, (3,3), strides = (1,1), padding='same', input_shape=input_shape))
+model.add(BatchNormalization())
+model.add(Activation('relu'))
+model.add(MaxPooling2D((2, 2)))
+
+model.add(Conv2D(16, (3,3), strides = (1,1), padding='same'))
+model.add(BatchNormalization())
+model.add(Activation('relu'))
+model.add(MaxPooling2D((2,2)))
+
+model.add(Flatten())
+model.add(Dense(64, activation = 'relu'))
+model.add(Dense(1, activation='sigmoid'))
+
+model.compile(optimizer=Adam(), loss='binary_crossentropy', metrics=['acc'])
+\end{lstlisting}
+
+Wykonanie tak prostej operacji pozwoli³o na zwiêkszenie œredniej skutecznoœci sieci do \textbf{77\%}. Problem \textit{overfitting}'u co prawda nie zosta³ ca³kowicie rozwi¹zany, jednak mo¿na zauwa¿yæ drobne postêpy wzglêdem poprzedniej wersji modelu \ref{fig:cnn_batch_normalization}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=14cm]{Rysunki/Rozdzial5/cnn-batch-normalization.png}
+	\caption{Wyniki modelu konwolucyjnej sieci neuronowej z warstwami \textit{BatchNormalization}}
+	\label{fig:cnn_batch_normalization}
+\end{figure}
+
+\subsection{Dropout}
+Kolejn¹ technik¹ jest wykorzystanie tzw. \textit{dropout}'u. Polega ona na tym, ¿e wartoœci na warstwie wyjœciowej s¹ zerowane ze wskazanym prawdopodobieñstwem. Dziêki temu podczas ka¿dej epoki ucz¹cej dane wygl¹daj¹ trochê inaczej, ni¿ poprzednio, dlatego sieæ nie uczy siê zawsze na podstawie tych samych danych, tylko ich drobnych modyfikacjach. W bibliotece \textit{Keras} zosta³a zaimplementowana gotowa warstwa \textit{Dropout}, która umo¿liwia wykorzystanie tej techniki \ref{lst:cnn_dropout}. Zosta³a ona na³o¿ona na wyniki warstwy typu \textit{Dense}.
+
+\begin{lstlisting}[caption=Model sieci konwolucyjnej z warstwami Dropout, language=Python, label={lst:cnn_dropout}]
+model = Sequential()
+
+model.add(Conv2D(32, (3,3), strides = (1,1), padding='same', input_shape=input_shape))
+model.add(BatchNormalization())
+model.add(Activation('relu'))
+model.add(MaxPooling2D((2, 2)))
+
+model.add(Conv2D(16, (3,3), strides = (1,1), padding='same'))
+model.add(BatchNormalization())
+model.add(Activation('relu'))
+model.add(MaxPooling2D((2,2)))
+
+model.add(Flatten())
+model.add(Dense(64, activation = 'relu'))
+model.add(Dropout(0.25))
+model.add(Dense(1, activation='sigmoid'))
+
+model.compile(optimizer=Adam(), loss='binary_crossentropy', metrics=['acc'])
+\end{lstlisting}
+
+Po dodaniu \textit{dropout}'u wyniki nieznacznie siê poprawi³y do wartoœci œrednio \textbf{78\%} oraz zmniejszony zosta³ problem przeuczenia. Podczas uczenia nie jest osi¹gana ju¿ skutecznoœæ 100\% oraz wartoœci funkcji strat równej 0. Podczas walidacji wartoœæ funkcji strat dalej roœnie, jednak w mniejszym stopniu, ni¿ poprzednio \ref{fig:cnn_dropout}.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=14cm]{Rysunki/Rozdzial5/cnn-dropout.png}
+	\caption{Wyniki modelu konwolucyjnej sieci neuronowej z warstwami \textit{Dropout}}
+	\label{fig:cnn_dropout}
+\end{figure}
+
+\subsection{Wybór optymalizatora}
+Kolejnym czynnikiem wp³ywaj¹cym na skutecznoœæ sieci jest wybrany optymalizator. Jego zadaniem jest modyfikacja wag na podstawie wartoœci funkcji strat.
+W bibliotece \textit{Keras} istnieje wiele gotowych optymalizatorów, które mog¹ zostaæ wybrane podczas kompilacji modelu. Najbardziej popularnymi s¹: 
+\textit{Adam}, \textit{RMSProp} oraz \textit{SGD (ang. Stochastic gradient descent)}.
+Wyniki osi¹gniête przy u¿yciu poszczególnych optymalizatorów zamieszczone zosta³y w tabeli \ref{tbl:optimizers}.
+
+\begin{table}[h!]
+	\caption{Porównanie skutecznoœci sieci przy u¿yciu poszczególnych optymalizatorów}
+	\label{tbl:optimizers}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Optymalizator} & \textbf{Œrednia skutecznoœæ {[}\%{]}} \\ \hline
+Adam                   & 78                                    \\ \hline
+SGD                    & 79                                    \\ \hline
+RMSProp                & 76,5                                      \\ \hline
+\end{tabular}
+\end{table}
+
+Optymalizatorem, który osi¹ga³ najlepsze wyniki by³ SGD. Dodatkowo optymalizator tego typu bardzo dobrze sprawdza³ siê równie¿ w parze z adaptacyjnie dobieranym wspó³czynnikiem uczenia \ref{adaptive_learning_rate}.
+
+\subsection{Adaptacyjny wspó³czynnik uczenia}
+\label{adaptive_learning_rate}
+Nastêpnym krokiem jest dodanie mechanizmu, który pozwoli na adaptacyjny dobór wspó³czynnika uczenia. Sieæ przeucza siê, gdy¿ w póŸniejszych epokach uczy siê zbyt intensywnie istniej¹cych ju¿ reprezentacji danych. Wspó³czynnik uczenia kontroluje stopieñ nauki sieci i mo¿e byæ on ustawiany dynamicznie. Za pomoc¹ wczeœniej opisywanych \textit{callback}'ów dodany zosta³ \textit{LearningRateScheduler}, który bêdzie obni¿a³ wspó³czynnik uczenia wraz z postêpem epok ucz¹cych.
+Listing \ref{lst:learning_rate_scheduler} przedstawia regu³ê, wed³ug której bêdzie on modyfikowany.
+
+\begin{lstlisting}[caption=Regu³a modyfikacji wspó³czynnika uczenia, language=Python, label={lst:learning_rate_scheduler}]
+def step_decay(epoch):    
+    initial_lrate=0.1
+    drop=0.6
+    epochs_drop = 10.0
+    lrate = initial_lrate * math.pow(drop, math.floor((1+epoch)/epochs_drop))
+    
+    return lrate
+\end{lstlisting}
+
+Dynamiczna zmiana wspó³czynnika uczenia pozwoli³a na czêœciowe zredukowanie nadmiernego dopasowania sieci, jednak sieæ wci¹¿ zaobserwowaæ mo¿na jej przeuczanie. Mimo to skutecznoœæ zosta³a poprawiona do blisko \textbf{80,5\%} \ref{fig:adaptive_learning_rate}.
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=14cm]{Rysunki/Rozdzial5/conv-adaptive-rate.png}
+	\caption{Wyniki modelu po dodaniu zmiennego wspó³czynnika uczenia}
+	\label{fig:adaptive_learning_rate}
+\end{figure}
+
+\subsection{Modyfikacja rozmiaru sieci}
+Ostatnim wykonanym krokiem by³a modyfikacja rozmiaru sieci oraz poszczególnych warstw. Wprowadzanych by³o wiele zmian, na podstawie których mo¿na by³o zaobserwowaæ, ¿e zbyt ma³y rozmiar sieci zmniejsza³ skutecznoœæ modelu, gdy¿ nie mia³ on wtedy wystarczaj¹cej przestrzeni do zapamiêtania wszystkich wa¿nych informacji. Rozbudowywanie modelu pocz¹tkowo zwiêksza³o skutecznoœæ, jednak po osi¹gniêciu pewnego progu dodawanie kolejnych neuronów oraz warstw przynosi³o jedynie negatywne skutki.
+
+Listing \ref{lst:conv_final} zawiera model, który podczas testów osi¹gn¹³ najlepsze rezultaty. Zawiera on 3 warstwy konwolucyjne z kolejno 64, 64 i 32 filtrami o rozmiarze 3x3. Po ka¿dej z warstw zastosowano warstwê \textit{BatchNormalization}, funkcjê aktywacji \textit{relu} oraz warstwê \textit{max pooling}'u z filtrem o rozmiarze 2x2. W nastêpstwie warstw konwolucyjnych sieæ posiada 3 warstwy typu \textit{fully connected} rozdzielonych warstwami \textit{Dropout}. Warstwy posiadaj¹ rozmiar 64 oraz 32 neurony z warstw¹ wyjœciow¹ sk³adaj¹c¹ siê z jednego neuronu i sigmoidaln¹ funkcj¹ aktywacji \textit{(ang. sigmoid)}, która zwraca na wyjœciu wartoœæ 0 lub 1. Model skompilowany zosta³ przy u¿yciu optymalizatora \textit{SGD} i jako funkcja strat u¿yta zosta³a \textit{binary crossentropy}. 
+
+\begin{lstlisting}[caption=Ostateczny model sieci konwolucyjnej, language=Python, label={lst:conv_final}]
+model = Sequential()
+    
+model.add(Conv2D(64,(3,3),strides = (1,1),name='layer_conv1',padding='same', input_shape=input_shape))
+model.add(BatchNormalization())
+model.add(Activation('relu'))
+model.add(MaxPooling2D((2,2),name='maxPool1'))
+
+model.add(Conv2D(64,(3,3),strides = (1,1),name='layer_conv2',padding='same'))
+model.add(BatchNormalization())
+model.add(Activation('relu'))
+model.add(MaxPooling2D((2,2),name='maxPool2'))
+
+model.add(Conv2D(32,(3,3),strides = (1,1),name='conv3',padding='same'))
+model.add(BatchNormalization())
+model.add(Activation('relu'))
+model.add(MaxPooling2D((2,2),name='maxPool3'))
+
+model.add(Flatten())
+model.add(Dense(64,activation = 'relu',name='fc0'))
+model.add(Dropout(0.25))
+model.add(Dense(32,activation = 'relu',name='fc1'))
+model.add(Dropout(0.25))
+model.add(Dense(1, activation='sigmoid'))
+
+model.compile(optimizer=SGD(lr=0.01, momentum=0.5, decay=0.0, nesterov=False), 
+              loss='binary_crossentropy',
+              metrics=['acc'])
+\end{lstlisting}
+
+Podsumowanie modelu wygenerowane za pomoc¹ funkcji \textit{model.summary()} pokazuj¹ce u¿yte warstwy, rozmiary wyjœciowe oraz iloœæ parametrów przedstawia siê nastêpuj¹co \ref{lst:conv_summary}.
+
+\begin{lstlisting}[caption=Podsumowanie modelu, language=Python, label={lst:conv_summary}]
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+layer_conv1 (Conv2D)         (None, 200, 16, 64)       640       
+_________________________________________________________________
+batch_normalization_88 (Batc (None, 200, 16, 64)       256       
+_________________________________________________________________
+activation_88 (Activation)   (None, 200, 16, 64)       0         
+_________________________________________________________________
+maxPool1 (MaxPooling2D)      (None, 100, 8, 64)        0         
+_________________________________________________________________
+layer_conv2 (Conv2D)         (None, 100, 8, 64)        36928     
+_________________________________________________________________
+batch_normalization_89 (Batc (None, 100, 8, 64)        256       
+_________________________________________________________________
+activation_89 (Activation)   (None, 100, 8, 64)        0         
+_________________________________________________________________
+maxPool2 (MaxPooling2D)      (None, 50, 4, 64)         0         
+_________________________________________________________________
+conv3 (Conv2D)               (None, 50, 4, 32)         18464     
+_________________________________________________________________
+batch_normalization_90 (Batc (None, 50, 4, 32)         128       
+_________________________________________________________________
+activation_90 (Activation)   (None, 50, 4, 32)         0         
+_________________________________________________________________
+maxPool3 (MaxPooling2D)      (None, 25, 2, 32)         0         
+_________________________________________________________________
+flatten_30 (Flatten)         (None, 1600)              0         
+_________________________________________________________________
+fc0 (Dense)                  (None, 64)                102464    
+_________________________________________________________________
+dropout_59 (Dropout)         (None, 64)                0         
+_________________________________________________________________
+fc1 (Dense)                  (None, 32)                2080      
+_________________________________________________________________
+dropout_60 (Dropout)         (None, 32)                0         
+_________________________________________________________________
+dense_30 (Dense)             (None, 1)                 33        
+=================================================================
+Total params: 161,249
+Trainable params: 160,929
+Non-trainable params: 320
+\end{lstlisting}
+
+Na listingu \ref{lst:results} zamieszczone zosta³y logi zawieraj¹ce wyniki skutecznoœci sieci najlepszych modeli z poszczególnych \textit{fold}'ów zebrane podczas trzech iteracji. Œrednia skutecznoœæ modelu to oko³o \textbf{82\%} (\textit{grand mean of average accuracy}). 
+
+\begin{lstlisting}[caption=Wyniki skutecznoœci, language=Python, label={lst:results}]
+Iteration 1
+
+Fold:  0
+--Best model validation accuracy: 79.65%
+
+Fold:  1
+--Best model validation accuracy: 83.93%
+
+Fold:  2
+--Best model validation accuracy: 83.04%
+
+Fold:  3
+--Best model validation accuracy: 84.82%
+
+Fold:  4
+--Best model validation accuracy: 86.61%
+
+Fold:  5
+--Best model validation accuracy: 77.68%
+
+Fold:  6
+--Best model validation accuracy: 81.08%
+
+Fold:  7
+--Best model validation accuracy: 78.38%
+
+Fold:  8
+--Best model validation accuracy: 81.98%
+
+Fold:  9
+--Best model validation accuracy: 83.78%
+
+
+Best models average validation accuracy: 0.820943
+Best models standard deviation of accuracy: 0.027431
+Iteration 1 time: 511.17 seconds
+
+
+Iteration 2
+
+Fold:  0
+--Best model validation accuracy: 78.76%
+
+Fold:  1
+--Best model validation accuracy: 83.04%
+
+Fold:  2
+--Best model validation accuracy: 83.93%
+
+Fold:  3
+--Best model validation accuracy: 84.82%
+
+Fold:  4
+--Best model validation accuracy: 87.50%
+
+Fold:  5
+--Best model validation accuracy: 75.89%
+
+Fold:  6
+--Best model validation accuracy: 77.48%
+
+Fold:  7
+--Best model validation accuracy: 83.78%
+
+Fold:  8
+--Best model validation accuracy: 78.38%
+
+Fold:  9
+--Best model validation accuracy: 84.68%
+
+
+Best models average validation accuracy: 0.818264
+Best models standard deviation of accuracy: 0.036667
+Iteration 2 time: 527.52 seconds
+
+
+Iteration 3
+
+Fold:  0
+--Best model validation accuracy: 81.42%
+
+Fold:  1
+--Best model validation accuracy: 85.71%
+
+Fold:  2
+--Best model validation accuracy: 83.93%
+
+Fold:  3
+--Best model validation accuracy: 84.82%
+
+Fold:  4
+--Best model validation accuracy: 86.61%
+
+Fold:  5
+--Best model validation accuracy: 76.79%
+
+Fold:  6
+--Best model validation accuracy: 77.48%
+
+Fold:  7
+--Best model validation accuracy: 81.98%
+
+Fold:  8
+--Best model validation accuracy: 82.88%
+
+Fold:  9
+--Best model validation accuracy: 84.68%
+
+
+Best models average validation accuracy: 0.8263
+Best models standard deviation of accuracy: 0.031417
+Iteration 3 time: 643.31 seconds
+
+
+~~~Grand mean of average accuracy: 0.821836
+~~~Grand mean of standard deviation accuracy: 0.031839
+\end{lstlisting}
+
+\section{Weryfikacja i ocena otrzymanych rezultatów}
+Przedstawione rezultaty by³y dotychczas sprawdzane jedynie na danych walidacyjnych. Prawdziwym sprawdzianem modelu jest zweryfikowanie jego skutecznoœci na wczeœniej wydzielonym, odrêbnym zbiorze testowym, który do tej pory nie bra³ udzia³u w procesie nauki. Model, który nie jest przeuczony i posiada dobr¹ zdolnoœæ generalizacji powinien osi¹gn¹æ podobn¹ skutecznoœæ dla danych testowych.
+
+W celu weryfikacji na danych testowych, do modelu sieci wczytane zosta³y wagi zapisane na dysku, które najlepiej radzi³y sobie podczas klasyfikacji na danych walidacyjnych. Proces sprawdzania skutecznoœci na danych testowych zosta³ wywo³any osobno dla ka¿dego modelu naczonego poszczególn¹ kombinacj¹ danych. Dziêki temu z uzyskanych wyników równie¿ mo¿na policzyæ œredni¹, która bêdzie lepiej oddawa³a rzeczywisty stan, ni¿ pojedynczy pomiar. 
+
+Na modelu wywo³ana zosta³a metoda \textit{evaluate}, której parametrami by³y dane wejœciowe oraz wyjœciowe ze zbioru testowego. Wynikiem wykonania tych poleceñ \ref{lst:test_verification} jest skutecznoœæ modelu na danych, które zosta³y u¿yte po raz pierwszy \ref{lst:test_results}.
+
+\begin{lstlisting}[caption=Sprawdzanie skutecznoœci modelu na danych testowych, language=Python, label={lst:test_verification}]
+model.load_weights("tmp/best_model.h5")
+model.evaluate(x_test_3d, y_test, batch_size=16, verbose=0)
+\end{lstlisting}
+
+\begin{lstlisting}[caption=Skutecznoœæ modelu na danych testowych, language=Python, label={lst:test_results}]
+Iteration 1
+
+Fold:  0
+--Best model test accuracy: 77.97%
+
+Fold:  1
+--Best model test accuracy: 79.66%
+
+Fold:  2
+--Best model test accuracy: 79.66%
+
+Fold:  3
+--Best model test accuracy: 72.88%
+
+Fold:  4
+--Best model test accuracy: 79.66%
+
+Fold:  5
+--Best model test accuracy: 79.66%
+
+Fold:  6
+--Best model test accuracy: 74.58%
+
+Fold:  7
+--Best model test accuracy: 81.36%
+
+Fold:  8
+--Best model test accuracy: 76.27%
+
+Fold:  9
+--Best model test accuracy: 77.97%
+
+Best models average test accuracy: 0.779661
+
+
+Iteration 2
+
+Fold:  0
+--Best model test accuracy: 74.58%
+
+Fold:  1
+--Best model test accuracy: 79.66%
+
+Fold:  2
+--Best model test accuracy: 74.58%
+
+Fold:  3
+--Best model test accuracy: 74.58%
+
+Fold:  4
+--Best model test accuracy: 77.97%
+
+Fold:  5
+--Best model test accuracy: 72.88%
+
+Fold:  6
+--Best model test accuracy: 67.80%
+
+Fold:  7
+--Best model test accuracy: 71.19%
+
+Fold:  8
+--Best model test accuracy: 79.66%
+
+Fold:  9
+--Best model test accuracy: 74.58%
+
+Best models average test accuracy: 0.747458
+
+
+Iteration 3
+
+Fold:  0
+--Best model test accuracy: 79.66%
+
+Fold:  1
+--Best model test accuracy: 74.58%
+
+Fold:  2
+--Best model test accuracy: 76.27%
+
+Fold:  3
+--Best model test accuracy: 77.97%
+
+Fold:  4
+--Best model test accuracy: 79.66%
+
+Fold:  5
+--Best model test accuracy: 76.27%
+
+Fold:  6
+--Best model test accuracy: 72.88%
+
+Fold:  7
+--Best model test accuracy: 83.05%
+
+Fold:  8
+--Best model test accuracy: 77.97%
+
+Fold:  9
+--Best model test accuracy: 81.36%
+
+Best models average test accuracy: 0.779661
+
+
+~~~Grand mean of average test accuracy: 0.768927
+\end{lstlisting}
+
+Osi¹gniête wyniki nie s¹ identyczne jak te uzyskane na danych walidacyjnych, jednak s¹ one wystarczaj¹co podobne, aby stwierdziæ, ¿e model dobrze radzi sobie z nowymi danymi. Wynik na poziomie prawie \textbf{77\%} (76.8927\%) na danych testowych jest zadowalaj¹cy i przekracza za³o¿ony próg 70\% \ref{expectation}.
+
+\section{Mo¿liwoœci rozwoju}
+Choæ osi¹gniêty zosta³ cel pracy, w przysz³oœci mo¿e zostaæ podjêta próba udoskonalenia wyników. Dzia³ania, które mog¹ byæ wykonane to m.in.:
+
+\begin{itemize}
+\item Próba zwalczenia zjawiska nadmiernego dopasowania dla zaproponowanego modelu
+\item Przetworzenie danych do innej postaci (\textit{ang. feature extraction}) np. wizualizacja aktywnoœci mózgu \cite{brain_visualization} lub stworzenie tzw. \textit{heat map}'y metod¹ \textit{matching pursuit} \cite{matching_pursuit}
+\item Wykorzystanie gotowych modeli sieci wbudowanych w bibliotekê \textit{Keras} np. \textit{Xception}, \textit{ResNet}, \textit{VGG19} itd. \cite{keras_applications} 
+\end{itemize}

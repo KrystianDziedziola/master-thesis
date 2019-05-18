@@ -19,5 +19,9 @@
 \contentsline {figure}{\numberline {5.7}{\ignorespaces Wyniki prostej sieci splotowej z 2-wymiarowym filtrem\relax }}{33}{figure.caption.15}
 \contentsline {figure}{\numberline {5.8}{\ignorespaces Wyniki prostej sieci rekurencyjnej\relax }}{34}{figure.caption.16}
 \contentsline {figure}{\numberline {5.9}{\ignorespaces Wyniki sieci konwoluncyjnej po\IeC {\l }\k aczonej z rekurencyjn\k a\relax }}{36}{figure.caption.17}
+\contentsline {figure}{\numberline {5.10}{\ignorespaces Wyniki modelu pocz\k atkowego konwolucyjnej sieci neuronowej\relax }}{37}{figure.caption.19}
+\contentsline {figure}{\numberline {5.11}{\ignorespaces Wyniki modelu konwolucyjnej sieci neuronowej z warstwami \textit {BatchNormalization}\relax }}{39}{figure.caption.20}
+\contentsline {figure}{\numberline {5.12}{\ignorespaces Wyniki modelu konwolucyjnej sieci neuronowej z warstwami \textit {Dropout}\relax }}{40}{figure.caption.21}
+\contentsline {figure}{\numberline {5.13}{\ignorespaces Wyniki modelu po dodaniu zmiennego wsp\'o\IeC {\l }czynnika uczenia\relax }}{41}{figure.caption.23}
 \addvspace {10\p@ }
 \addvspace {10\p@ }

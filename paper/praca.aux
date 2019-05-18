@@ -77,6 +77,7 @@
 \@writefile{toc}{\contentsline {section}{\numberline {3.1}Przedstawienie problemu}{11}{section.3.1}}
 \@writefile{toc}{\contentsline {section}{\numberline {3.2}Dost\k epne dane}{12}{section.3.2}}
 \@writefile{toc}{\contentsline {section}{\numberline {3.3}Oczekiwane rezultaty}{12}{section.3.3}}
+\newlabel{expectation}{{3.3}{12}{Oczekiwane rezultaty}{section.3.3}{}}
 \@writefile{toc}{\contentsline {chapter}{\numberline {4}Przegl\k ad dost\k epnych bibliotek oraz narz\k edzi programistycznych}{13}{chapter.4}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
@@ -169,14 +170,51 @@
 \newlabel{tbl:comparison}{{5.1}{35}{Porównanie czasów nauki oraz skutecznoœci poszczególnych typów sieci\relax }{table.caption.18}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {5.9}{\ignorespaces Wyniki sieci konwoluncyjnej po\IeC {\l }\k aczonej z rekurencyjn\k a\relax }}{36}{figure.caption.17}}
 \newlabel{fig:cnn_lstm}{{5.9}{36}{Wyniki sieci konwoluncyjnej po³¹czonej z rekurencyjn¹\relax }{figure.caption.17}{}}
+\citation{batch_normalization}
 \@writefile{toc}{\contentsline {section}{\numberline {5.4}Optymalizacja}{37}{section.5.4}}
 \newlabel{optimization}{{5.4}{37}{Optymalizacja}{section.5.4}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.5}Ocena otrzymanych rezultat\'ow}{37}{section.5.5}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {6}Zako\'nczenie}{38}{chapter.6}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.10}{\ignorespaces Wyniki modelu pocz\k atkowego konwolucyjnej sieci neuronowej\relax }}{37}{figure.caption.19}}
+\newlabel{fig:cnn_start}{{5.10}{37}{Wyniki modelu pocz¹tkowego konwolucyjnej sieci neuronowej\relax }{figure.caption.19}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4.1}Batch normalization}{38}{subsection.5.4.1}}
+\newlabel{lst:cnn_batch_normalization}{{5.17}{38}{Model sieci konwolucyjnej z warstwami BatchNormalization}{lstlisting.5.17}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {5.17}Model sieci konwolucyjnej z warstwami BatchNormalization}{38}{lstlisting.5.17}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4.2}Dropout}{38}{subsection.5.4.2}}
+\newlabel{lst:cnn_dropout}{{5.18}{38}{Model sieci konwolucyjnej z warstwami Dropout}{lstlisting.5.18}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {5.18}Model sieci konwolucyjnej z warstwami Dropout}{38}{lstlisting.5.18}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.11}{\ignorespaces Wyniki modelu konwolucyjnej sieci neuronowej z warstwami \textit  {BatchNormalization}\relax }}{39}{figure.caption.20}}
+\newlabel{fig:cnn_batch_normalization}{{5.11}{39}{Wyniki modelu konwolucyjnej sieci neuronowej z warstwami \textit {BatchNormalization}\relax }{figure.caption.20}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4.3}Wyb\'or optymalizatora}{39}{subsection.5.4.3}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.12}{\ignorespaces Wyniki modelu konwolucyjnej sieci neuronowej z warstwami \textit  {Dropout}\relax }}{40}{figure.caption.21}}
+\newlabel{fig:cnn_dropout}{{5.12}{40}{Wyniki modelu konwolucyjnej sieci neuronowej z warstwami \textit {Dropout}\relax }{figure.caption.21}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5.2}{\ignorespaces Por\'ownanie skuteczno\'sci sieci przy u\.zyciu poszczeg\'olnych optymalizator\'ow\relax }}{40}{table.caption.22}}
+\newlabel{tbl:optimizers}{{5.2}{40}{Porównanie skutecznoœci sieci przy u¿yciu poszczególnych optymalizatorów\relax }{table.caption.22}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4.4}Adaptacyjny wsp\'o\IeC {\l }czynnik uczenia}{40}{subsection.5.4.4}}
+\newlabel{adaptive_learning_rate}{{5.4.4}{40}{Adaptacyjny wspó³czynnik uczenia}{subsection.5.4.4}{}}
+\newlabel{lst:learning_rate_scheduler}{{5.19}{40}{Regu³a modyfikacji wspó³czynnika uczenia}{lstlisting.5.19}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {5.19}Regu\IeC {\l }a modyfikacji wsp\'o\IeC {\l }czynnika uczenia}{40}{lstlisting.5.19}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.13}{\ignorespaces Wyniki modelu po dodaniu zmiennego wsp\'o\IeC {\l }czynnika uczenia\relax }}{41}{figure.caption.23}}
+\newlabel{fig:adaptive_learning_rate}{{5.13}{41}{Wyniki modelu po dodaniu zmiennego wspó³czynnika uczenia\relax }{figure.caption.23}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4.5}Modyfikacja rozmiaru sieci}{41}{subsection.5.4.5}}
+\newlabel{lst:conv_final}{{5.20}{42}{Ostateczny model sieci konwolucyjnej}{lstlisting.5.20}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {5.20}Ostateczny model sieci konwolucyjnej}{42}{lstlisting.5.20}}
+\newlabel{lst:conv_summary}{{5.21}{42}{Podsumowanie modelu}{lstlisting.5.21}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {5.21}Podsumowanie modelu}{42}{lstlisting.5.21}}
+\newlabel{lst:results}{{5.22}{43}{Wyniki skutecznoœci}{lstlisting.5.22}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {5.22}Wyniki skuteczno\'sci}{43}{lstlisting.5.22}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.5}Weryfikacja i ocena otrzymanych rezultat\'ow}{45}{section.5.5}}
+\newlabel{lst:test_verification}{{5.23}{45}{Sprawdzanie skutecznoœci modelu na danych testowych}{lstlisting.5.23}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {5.23}Sprawdzanie skuteczno\'sci modelu na danych testowych}{45}{lstlisting.5.23}}
+\newlabel{lst:test_results}{{5.24}{45}{Skutecznoœæ modelu na danych testowych}{lstlisting.5.24}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {5.24}Skuteczno\'s\'c modelu na danych testowych}{45}{lstlisting.5.24}}
+\citation{brain_visualization}
+\citation{matching_pursuit}
+\citation{keras_applications}
+\@writefile{toc}{\contentsline {section}{\numberline {5.6}Mo\.zliwo\'sci rozwoju}{47}{section.5.6}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {6}Zako\'nczenie}{48}{chapter.6}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \bibdata{Bibliografia/bibliografia}
-\@writefile{toc}{\contentsline {chapter}{\numberline {A}P\IeC {\l }yta DVD}{39}{appendix.A}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {A}P\IeC {\l }yta DVD}{49}{appendix.A}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \bibcite{engmrk}{1}
@@ -191,3 +229,7 @@
 \bibcite{automated_system}{10}
 \bibcite{detecting_epileptic}{11}
 \bibcite{tensor_board}{12}
+\bibcite{batch_normalization}{13}
+\bibcite{brain_visualization}{14}
+\bibcite{matching_pursuit}{15}
+\bibcite{keras_applications}{16}
