@@ -10,7 +10,8 @@ podejmuje decyzje, które mog¹ symulowaæ ludzk¹ inteligencjê.
 W niektórych problemach maszyna jest w stanie podejmowaæ poprawne decyzje z dok³adnoœci¹ dorównuj¹c¹ 
 lub nawet przewy¿szaj¹c¹ zdolnoœci cz³owieka. Dodatkowo mo¿e to zrobiæ w znacznie krótszym czasie.
 
-// todo: uzupe³niæ
+W tej pracy zostanie sprawdzona mo¿liwoœæ zastosowania g³êbokich sieci neuronowych do diagnostyki 
+napadów padaczkowych na podstawie odczytów z elektoencefalogramu (EEG).
 
 \section{Cel i zakres pracy}
 Celem pracy jest próba wykorzystania g³êbokich sieci neuronowych do wspomagania diagnostki medycznej
@@ -26,8 +27,15 @@ Zakres pracy obejmuje:
 \end{itemize}
 
 \section{Przegl¹d literatury}
-\cite{Chollet:2018} \cite{Williams} \cite{MinskyPapert} 
-// todo:
+Czêœæ pracy dotycz¹ca teoretycznych pojêæ zwi¹zanych ze sztuczn¹ inteligencj¹, uczeniem maszynowym oraz klasycznymi i g³êbokimi 
+sieciami neuronowymi zosta³a oparta na kilku pozycjach obszernie opisuj¹cych tê tematykê. W szczególnoœci s¹ to: \cite{Chollet:2018}, \cite{Williams},  \cite{MinskyPapert} oraz \cite{Goodfellow-et-al-2016-Book}.
+
+Druga czêœæ opisuj¹ca praktyczne zastosowanie g³êbokich sieci neuronowych zosta³a oparta g³ównie na wiedzy zdobytej z ksi¹¿ki \cite{Chollet:2018} oraz wielu poradników i dokumentacji technicznej u¿ytych narzêdzi. Badania odnoœnie doboru modelu najlepiej dopasowanego do rozwi¹zywania wybranego problemu zosta³y
+podparte wiedz¹ uzyskan¹ z licznych publikacji naukowych, które opisywa³y próby rozwi¹zania podobnych problemów. S¹ to m.in. \cite{automated_system}, \cite{brain_visualization}, \cite{detecting_epileptic} oraz \cite{learning_robust}.
 
 \section{Struktura pracy}
-// todo:
+Tekst pracy podzielony zosta³ na dwie czêœci. Pierwsz¹ z nich stanowi¹ rozdzia³y \ref{chapter_2} oraz \ref{chapter_3}, które zawieraj¹ informacje teoretyczne.
+W rozdziale \ref{chapter_2} opisane zosta³y zagadnienie sztucznej inteligencji, uczenia maszynowego oraz klasycznych i g³êbokich sieci neuronowych. Rozdzia³ \ref{chapter_3} przedstawia opis wybranego problemu z zakresu diagnostyki medycznej, dla którego zostanie podjêta próba rozwi¹zania przy pomocy g³êgokich sieci neuronowych.
+
+W drugiej czêœci zawieraj¹ siê rozdzia³y \ref{chapter_4} oraz \ref{chapter_5}, które zawieraj¹ przegl¹d dostêpnych bibliotek oraz narzêdzi programistycznych,
+opis implementacji procesu uczenia oraz przeprowadzonych badañ w celu sprawdzenia mo¿liwoœci rozwi¹zania wybranego problemu.
