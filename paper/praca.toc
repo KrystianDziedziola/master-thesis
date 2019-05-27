@@ -47,3 +47,5 @@
 \contentsline {section}{\numberline {5.6}Mo\.zliwo\'sci rozwoju}{47}{section.5.6}
 \contentsline {chapter}{\numberline {A}P\IeC {\l }yta DVD}{48}{appendix.A}
 \contentsline {chapter}{\numberline {B}U\.zycie biblioteki Keras w j\k ezyku R}{49}{appendix.B}
+\contentsline {section}{\numberline {B.1}Implementacja przyk\IeC {\l }adowego modelu do klasyfikacji danych MNIST}{49}{section.B.1}
+\contentsline {section}{\numberline {B.2}Model sieci do rozpoznawania stan\'ow padaczkowych w j\k ezyku R}{51}{section.B.2}
