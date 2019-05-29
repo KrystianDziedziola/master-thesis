@@ -34,18 +34,18 @@
 \contentsline {subsection}{\numberline {5.3.1}Klasyczna sie\'c neuronowa typu fully connected}{30}{subsection.5.3.1}
 \contentsline {subsection}{\numberline {5.3.2}Sie\'c splotowa z filtrem 1-wymiarowym}{31}{subsection.5.3.2}
 \contentsline {subsection}{\numberline {5.3.3}Sie\'c splotowa z filtrem 2-wymiarowym}{32}{subsection.5.3.3}
-\contentsline {subsection}{\numberline {5.3.4}Sie\'c rekurencyjna}{34}{subsection.5.3.4}
-\contentsline {subsection}{\numberline {5.3.5}Po\IeC {\l }\k aczenie sieci splotowej z rekurencyjn\k a}{35}{subsection.5.3.5}
-\contentsline {subsection}{\numberline {5.3.6}Podsumowanie}{35}{subsection.5.3.6}
-\contentsline {section}{\numberline {5.4}Optymalizacja}{37}{section.5.4}
-\contentsline {subsection}{\numberline {5.4.1}Batch normalization}{38}{subsection.5.4.1}
+\contentsline {subsection}{\numberline {5.3.4}Sie\'c rekurencyjna}{33}{subsection.5.3.4}
+\contentsline {subsection}{\numberline {5.3.5}Po\IeC {\l }\k aczenie sieci splotowej z rekurencyjn\k a}{34}{subsection.5.3.5}
+\contentsline {subsection}{\numberline {5.3.6}Podsumowanie}{36}{subsection.5.3.6}
+\contentsline {section}{\numberline {5.4}Optymalizacja}{36}{section.5.4}
+\contentsline {subsection}{\numberline {5.4.1}Batch normalization}{36}{subsection.5.4.1}
 \contentsline {subsection}{\numberline {5.4.2}Dropout}{38}{subsection.5.4.2}
 \contentsline {subsection}{\numberline {5.4.3}Wyb\'or optymalizatora}{39}{subsection.5.4.3}
 \contentsline {subsection}{\numberline {5.4.4}Adaptacyjny wsp\'o\IeC {\l }czynnik uczenia}{40}{subsection.5.4.4}
-\contentsline {subsection}{\numberline {5.4.5}Modyfikacja rozmiaru sieci}{41}{subsection.5.4.5}
-\contentsline {section}{\numberline {5.5}Weryfikacja i ocena otrzymanych rezultat\'ow}{45}{section.5.5}
-\contentsline {section}{\numberline {5.6}Mo\.zliwo\'sci rozwoju}{47}{section.5.6}
-\contentsline {chapter}{\numberline {A}P\IeC {\l }yta DVD}{48}{appendix.A}
-\contentsline {chapter}{\numberline {B}U\.zycie biblioteki Keras w j\k ezyku R}{49}{appendix.B}
-\contentsline {section}{\numberline {B.1}Implementacja przyk\IeC {\l }adowego modelu do klasyfikacji danych MNIST}{49}{section.B.1}
-\contentsline {section}{\numberline {B.2}Model sieci do rozpoznawania stan\'ow padaczkowych w j\k ezyku R}{51}{section.B.2}
+\contentsline {subsection}{\numberline {5.4.5}Modyfikacja rozmiaru sieci}{40}{subsection.5.4.5}
+\contentsline {section}{\numberline {5.5}Weryfikacja i ocena otrzymanych rezultat\'ow}{44}{section.5.5}
+\contentsline {section}{\numberline {5.6}Mo\.zliwo\'sci rozwoju}{46}{section.5.6}
+\contentsline {chapter}{\numberline {A}P\IeC {\l }yta DVD}{47}{appendix.A}
+\contentsline {chapter}{\numberline {B}U\.zycie biblioteki Keras w j\k ezyku R}{48}{appendix.B}
+\contentsline {section}{\numberline {B.1}Implementacja przyk\IeC {\l }adowego modelu do klasyfikacji danych MNIST}{48}{section.B.1}
+\contentsline {section}{\numberline {B.2}Model sieci do rozpoznawania stan\'ow padaczkowych w j\k ezyku R}{50}{section.B.2}

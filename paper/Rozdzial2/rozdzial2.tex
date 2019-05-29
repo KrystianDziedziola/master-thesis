@@ -10,7 +10,7 @@ Pocz¹tkowo próby te by³y poczynione poprzez zaprogramowanie szeregu regu³, który
 Zauwa¿ono jednak, ¿e zbiór okreœlonych przez programistów regu³ sprawdza siê do rozwi¹zywania dobrze zdefiniowanych problemów logicznych takich jak np. gra w szachy.
 Takie podejœcie nie jest jednak wystarczaj¹ce do osi¹gniêcia przez komputer umiejêtnoœci podejmowania decyzji, która mog³aby symulowaæ ludzk¹ inteligencjê oraz wykonwania przez ni¹ bardziej abstrakcyjnych zadañ takich jak np. rozpoznawanie mowy, obrazu lub t³umacznie jêzyków.
 
-Nasuwa siê pytanie czy komputer jest w stanie wyjœæ poza ramy œciœle zdefiniowanych regu³ i samemu nauczyæ siê w jaki sposób wykonywaæ okreœlone zadania? Odpowiedzi¹ na to pytanie oraz niedoskona³oœci klasycznego programowania by³o zastosowanie podejœcia zwanego dziœ uczeniem maszynowym \textit{(ang. machine learning)}).
+Nasuwa siê pytanie czy komputer jest w stanie wyjœæ poza ramy œciœle zdefiniowanych regu³ i samemu nauczyæ siê w jaki sposób wykonywaæ okreœlone zadania? Odpowiedzi¹ na to pytanie oraz niedoskona³oœci klasycznego programowania by³o zastosowanie podejœcia zwanego dziœ uczeniem maszynowym \textit{(ang. machine learning)}.
 Polega ono na tym, ¿e maszynie nie jest dostarczany œciœle okreœlony algorytm dzia³ania, a jedynie przedstawiane s¹ dane oraz wyniki jakie powinny powstaæ po przetworzeniu tych¿e danych. Maszyna ma za zadanie stworzyæ swoje w³asne regu³y, które bêd¹ odzwierciedlaæ sposób w jaki prawid³owo nale¿y wykonaæ konkretne zadanie. Mo¿na wiêc powiedzieæ, ¿e w uczeniu maszynowym, maszyna jest uczona, a nie programowana.
 Pomimo tego, ¿e uczenie maszynowe zaczê³o siê rozwijaæ dopiero w latach 90-tych bardzo szybko sta³o siê popularne za spraw¹ tego, ¿e przynosi³o najlepsze wyniki spoœród wszystkich podejœæ w dziedzinie sztucznej inteligencji.
 Ró¿nicê pomiêdzy klasycznym programowaniem a uczeniem maszynowym zaprezentowano na rysunku \ref{fig:ai_vs_machine_learning}.
@@ -30,7 +30,7 @@ Kilka najczêœciej u¿ywanych, to m.in.:
 	\item \textbf{sztuczne sieci neuronowe} \textit{(ang. artificial neural networks)}. \cite{techtarget}
 \end{itemize}
 
-Przedmiotem tej pracy jest ostatnia z wymienionych metody, czyli sztuczne sieci neuronowe.
+Przedmiotem tej pracy jest ostatnia z wymienionych metod, czyli sztuczne sieci neuronowe.
 Jest to zestaw algorytmów, który zosta³ zaprojektowany w sposób inspirowany dzia³aniem ludzkiego mózgu. W rzeczywistoœci jednak, ich dzia³anie nie jest do koñca zgodne z tym, w jaki sposób dzia³a umys³ cz³owieka. 
 Sieci neuronowe potrafi¹ przyjmowaæ dane w formie wektorów liczbowych, które mog¹ zawieraæ takie informacje jak np. obrazy, dŸwiêki, tekst lub szeregi czasowe. Na ich podstawie s¹ w stanie dokonywaæ klasyfikacji, klasteryzacji oraz predykcji. Jednym z typów sztucznych sieci neuronowych s¹ tzw. g³êbokie sieci neuronowe \textit{(ang. deep neural networks)}, które znacz¹co zwiêkszaj¹ mo¿liwoœci klasycznych sieci neuronowych. Zostan¹ one omówione w rozdziale \ref{deep_neural_networks}.
 
@@ -45,7 +45,7 @@ Mo¿na zauwa¿yæ, ¿e sztuczna inteligencja jest pojêciem bardzo szerokim. W jej sk
 
 
 \section{Klasyczne sieci neuronowe}
-Sieci neuronowe to dziedzina uczenia maszynowego, która jako model matematyczny podlegaj¹cy uczeniu wykorzystuje sturukturê sieci sk³adaj¹c¹ siê z wielu jednostek obliczeniowych zwanych neuronami. Neurony wykonuj¹ podstawowe obliczenia i ich wyniki przekazuj¹ do kolejnych neuronów. Operacje, które s¹ wykonywane przez neurony to przewa¿nie sumowanie otrzymanych informacji oraz zastowanie prostej, nieliniowej funkcji. W wiêkszoœci sieci neuronowych, neurony zgrupowane s¹ w tzw. warstwy. Obliczenia wykonane przez jedn¹ warstwê s¹ przekazywane do kolejnej, która z kolei wykonuje obliczenia na otrzymanych wynikach. Ostatnia warstwa zwraca koñcowy wynik, który jest interpretowany w ró¿ny sposób w zale¿noœci od wykonywanej operacji np. klasyfikacja lub regresja. Schemat prostej sieci neuronowej przedstawiony zosta³ na rysunku \ref{fig:simple_nn}
+Sieci neuronowe to dziedzina uczenia maszynowego, która jako model matematyczny podlegaj¹cy uczeniu wykorzystuje sturukturê sieci sk³adaj¹c¹ siê z wielu jednostek obliczeniowych zwanych neuronami. Neurony wykonuj¹ podstawowe obliczenia i ich wyniki przekazuj¹ do kolejnych neuronów. Operacje, które s¹ przez nie wykonywane to przewa¿nie sumowanie otrzymanych informacji oraz zastowanie prostej, nieliniowej funkcji. W wiêkszoœci sieci neuronowych, neurony zgrupowane s¹ w tzw. warstwy. Obliczenia wykonane przez jedn¹ warstwê s¹ przekazywane do kolejnej, która z kolei wykonuje obliczenia na otrzymanych wynikach. Ostatnia warstwa zwraca koñcowy wynik, który jest interpretowany w ró¿ny sposób w zale¿noœci od wykonywanej operacji np. klasyfikacja lub regresja. Schemat prostej sieci neuronowej przedstawiony zosta³ na rysunku \ref{fig:simple_nn}
 
 \begin{figure}[h!]
 	\centering
@@ -54,7 +54,7 @@ Sieci neuronowe to dziedzina uczenia maszynowego, która jako model matematyczny 
 	\label{fig:simple_nn}
 \end{figure}
 
-Pierwsz¹ koncepcjê neuronu datuje siê na rok 1943, w którym to powsta³ model neuronu McCulloch-Pitts. By³ on bardzo prosty w porównaniu do wspó³czesnych sieci neuronowych, gdy¿ pozwala³ jedynie na wykorzystanie wartoœci binarnych na wyjœciu z neuronów. Ka¿dy z nich sumowa³ wartoœci wejœciowe i przyrównywa³ je do zera. Dodatkowo nie istnia³a ¿adna regu³a aktualizacji wewnêtrznych wartoœci neuronów (tzw. wag), która jest niezbêdna do prawid³owego przebiegu procesu adaptacji neuronu do nowych informacji. Bez takiej regu³y wszystkie wagi neuronów musia³yby byæ ustawiane rêcznie.
+Pierwsz¹ koncepcjê neuronu datuje siê na rok 1943, w którym to powsta³ model neuronu McCulloch-Pitts. By³ on bardzo prosty w porównaniu do wspó³czesnych sieci neuronowych, gdy¿ pozwala³ jedynie na wykorzystanie wartoœci binarnych na wyjœciu z neuronów. Ka¿dy z nich sumowa³ wartoœci wejœciowe i przyrównywa³ je do zera. Dodatkowo, nie istnia³a ¿adna regu³a aktualizacji wewnêtrznych wartoœci neuronów (tzw. wag), która jest niezbêdna do prawid³owego przebiegu procesu adaptacji neuronu do nowych informacji. Bez takiej regu³y wszystkie wagi neuronów musia³yby byæ ustawiane rêcznie.
 
 W latach 50-tych przedstawiony zosta³ perceptron, który jest najprostsz¹ sieci¹ neuronow¹ sk³adaj¹c¹ siê wielu neuronów McCullocha-Pittsa. Implementuje on algrotym uczenia nadzorowanego klasyfikatorów binarnych. Jest funkcj¹ przynale¿noœci potrafi¹ca przydzieliæ jedn¹ z dwóch klas do danych parametrów wejœciowych. W perceptronie zosta³a przedstawiona prosta regu³a s³u¿¹ca do aktualizacji wag dla kolejnych iteracji. Wzór na wagê w kroku \textit{t + 1} przedstawia siê nastêpuj¹co:
 
@@ -135,7 +135,7 @@ Przyk³adowy schemat splotowej sieci neuronowej sk³adaj¹cy siê z kliku warstw kon
 Zalet¹ tego typu sieci jest bez w¹tpienia mo¿liwoœæ przetwarzania wielowymiarowych danych, dziêki czemu s¹ one w stanie odnajdywaæ przestrzenne zale¿noœci pomiêdzy nimi, co przek³ada siê na ich wysok¹ skutecznoœæ i wszechstronnoœæ.
 
 \subsection{Rekurencyjne sieci neuronowe}
-Rekurencyjne sieci neuronowe s¹ czêsto u¿ywane do rozwi¹zywania problemów, gdzie wykorzystywane s¹ dane sekwencyjne. W praktyce znajduj¹ one zastosowanie w takich problemach jak np. przetwarzanie jêzyka naturalnego, synteza mowy czy automatyczne t³umaczenie jêzyków.
+Rekurencyjne sieci neuronowe s¹ czêsto u¿ywane do rozwi¹zywania problemów, gdzie wykorzystywane s¹ dane sekwencyjne. W praktyce znajduj¹ one zastosowanie w takich problemach jak np. synteza mowy, prognozowanie pogody czy automatyczne t³umaczenie jêzyków.
 
 Idea dzia³ania rekurencyjnych sieci neuronowych polega na zapamiêtywaniu pewnego ci¹gu sekwencji i dokonywanie wyborów nie tylko na podstawie aktualnych danych, ale równie¿ tych, które by³y przetwarzane poprzednio. Jest to realizowane za pomoc¹ wewnêtrznej pêtli, która polega na przekazywaniu wyników z danej warstwy jako dodatkowych danych wejœciowych podczas kolejnej iteracji. Schemat pêtli zaprezentowany zosta³ na rysunku \ref{fig:rnn}. 
 
@@ -148,4 +148,4 @@ Idea dzia³ania rekurencyjnych sieci neuronowych polega na zapamiêtywaniu pewnego
 
 Zalet¹ rekurencyjnych sieci neuronowych jest to, ¿e wspó³dziel¹ one jeden zestaw parametrów we wszystkich krokach, dziêki temu pozwala to zredukowaæ ich iloœæ. Mog¹ byæ on równie¿ u¿ywane w po³¹czeniu z sieciami splotowymi.
 
-Do wad nale¿y m.in. to, ¿e nie s¹ one w stanie zapamiêtywaæ zbyt d³ugich sekwencji. Dodatkowo ich g³êbokoœæ nie mo¿e byæ zbyt du¿a, poniewa¿ u¿ywane funkcje aktywacji powoduj¹, ¿e gradient zmian zanika po przejœciu przez kilka warstw.
+Do wad nale¿y m.in. to, ¿e nie s¹ one w stanie zapamiêtywaæ zbyt d³ugich sekwencji. Dodatkowo, ich g³êbokoœæ nie mo¿e byæ zbyt du¿a, poniewa¿ u¿ywane funkcje aktywacji powoduj¹, ¿e gradient zmian zanika po przejœciu przez kilka warstw.

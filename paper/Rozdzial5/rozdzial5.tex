@@ -22,7 +22,7 @@ Wszystkie wymienione kroki przedstawiaj¹ pe³en proces uczenia, który pokazuje z 
 \subsection{Przygotowanie danych}
 \label{data_preparation}
 W celu wykorzystania dostêpnych danych w procesie uczenia sieci neuronowej nale¿y je najpierw odpowiednio przygotowaæ.
-Dostarczone zosta³y dane w postaci plików tekstowych z liczbami reprezentuj¹cymi wartoœci zmierzone przy pomocy elektroencofalogramu. W poszczególnych kolumnach znajduj¹ siê wartoœci odpowiadaj¹ce konkretnym kana³om (\textit{EEG\_FP1\_F3}, \textit{EEG\_FP2\_F4} itd.). Ostatnia kolumna (o nag³ówku \textit{t}) przedstawia czas w sekundach, w którym mia³ miejsce pomiar. 
+Dostarczone zosta³y dane w postaci plików tekstowych z liczbami reprezentuj¹cymi wartoœci zmierzone przy pomocy elektroencefalogramu. W poszczególnych kolumnach znajduj¹ siê wartoœci odpowiadaj¹ce konkretnym kana³om (\textit{EEG\_FP1\_F3}, \textit{EEG\_FP2\_F4} itd.). Ostatnia kolumna (o nag³ówku \textit{t}) przedstawia czas w sekundach, w którym mia³ miejsce pomiar. 
 
 Dostêpne s¹ dane 104 pacjentów, u których wyst¹pi³y ataki. Ka¿dy z nich posiada odczyty wykonane z czêstotliwoœci¹ 500Hz przez blisko 15 minut. Jest to oko³o 450 000 linii w ka¿dym pliku. Dane zajmuj¹ 6,5 GB.
 
@@ -59,7 +59,7 @@ Do przygotowania danych stworzony zosta³ skrypt, który wykonuje nastêpuj¹ce czyn
 	\item przetworzenie danych do czêstotliwoœci 100Hz
 	\item podzia³ danych na okna czasowe o d³ugoœci przekazanej jako parametr (w sekundach)
 	\item normalizacja danych - œrednia 0, odchylenie standardowe 1
-	\item konwersja danych dotycz¹cych ataków na postaæ tzw. "jeden z n" \textit{(ang. one-hot encoding)}
+	\item konwersja danych dotycz¹cych czasu wyst¹pienia ataków na postaæ tzw. "jeden z n" \textit{(ang. one-hot encoding)}
 	\item wyœwietlanie informacji o postêpie przetwarzanych plików
 	\item zapis pobranych danych do plików tymczasowych umo¿liwiaj¹cych szybszy odczyt
 \end{itemize}
@@ -69,6 +69,7 @@ Technicznie skrypty zosta³y podzielone na 2 pliki:
 \item data\_reader.py
 \item chunks\_creator.py
 \end{itemize}
+
 Pierwszy z nich zajmuje siê wczytywaniem i korzysta z drugiego w celu stworzenia okien czasowych.
 G³ówn¹ funkcj¹ dostarczan¹ przez skrypt, która umo¿liwia wykonanie wszystkich wymienionych wy¿ej czynnoœci jest \textit{get\_data()}. Jako parametr przyjmuje ona czas w sekundach, który oznacza d³ugoœæ okna czasowego. Znajduje siê ona na koñcu pliku, gdy¿ z uwagi na specyfikê jêzyka wszystkie wykorzystywane przez ni¹ funkcje musz¹ byæ wczeœniej zadeklarowane. 
 Kod skryptu pobieraj¹cego dane rozszerzony o komentarze opisuj¹ce poszczególne kroki zaprezentowany zosta³ na listingu \ref{lst:data-reader.py}.
@@ -365,7 +366,7 @@ Przedstawion¹ metodê mo¿na rozszerzyæ do jej iteracyjnej wersji polegaj¹cej na t
 \subsubsection{Implementacja walidacji}
 \label{crossvalidation_implementation}
 Zaimplementowane zosta³y obie metody podzia³u danych, jednak ze wzglêdu na swoje zalety metody iteracyjnej \textit{k}-krotnej walidacji krzy¿owej to w³asnie ona zosta³a u¿yta do walidacji w procesie uczenie. Podzia³ danych wed³ug obu metod zosta³ wykonany za pomoc¹ biblioteki \textit{sklearn}, która dostarcza przygotowane do tego celu funkcje \ref{lst:split}.
-\begin{lstlisting}[caption=Podzia³ danych na zbiory, language=Python, label={lst:split}]
+\begin{lstlisting}[caption=Podzia³ danych na zbiory, language=Python, label={lst:split}, float=h!]
 from sklearn.model_selection import train_test_split, StratifiedKFold
 from data_reader import get_data
 
@@ -596,7 +597,7 @@ Na najprostszym widoku widoczne s¹ 4 wykresy ilustruj¹ce nastêpuj¹ce wartoœci:
 \item \textbf{loss} - wartoœæ funkcji strat w procesie uczenia
 \item \textbf{val\_acc} - dok³adnoœæ w procesie walidacji
 \item \textbf{val\_loss} - wartoœæ funkcji strat w procesie walidacji
-\end{itemize}
+\end{itemize}\
 Wykresy zosta³y zaprezentowane na rysunku \ref{fig:tensor-board}. S¹ one interaktywe, wiêc mo¿na sprawdziæ dok³adn¹ wartoœæ w ka¿dym punkcie wykresu.
 \begin{figure}[h!]
 	\centering
@@ -609,7 +610,7 @@ Wizualna reprezentacja utworzonego modelu równie¿ mo¿e byæ pomocna przy ocenie a
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=8cm]{Rysunki/Rozdzial5/tensor-board-model.png}
+	\includegraphics[width=7cm]{Rysunki/Rozdzial5/tensor-board-model.png}
 	\caption{Fragment schematu modelu wygenerowany przez TensorBoard}
 	\label{fig:tensor-board-model}
 \end{figure}
@@ -617,7 +618,7 @@ Wizualna reprezentacja utworzonego modelu równie¿ mo¿e byæ pomocna przy ocenie a
 TensorBoard udostêpnia równie¿ wiele innych funkcjonalnoœci, które nie zosta³y u¿yte jak np. rysowanie wykresów w³asnorêcznie zdefiniowanych metryk, monitorowanie i wizualizacjê rozk³adu danych w grafie itp. Wiêcej informacji na temat mo¿liwoœci TensorBoard mo¿na znaleŸæ w dokumentacji \cite{tensor_board}. 
 
 \section{Wybór rodzaju sieci neuronowej}
-Wybór rodzaju oraz wstêpnej architektury sieci neuronowej ma kluczowe znaczenie. To w³aœnie te czynnik bêd¹ w g³ównej mierze decydowaæ o skutecznoœci modelu. Po dobraniu rodzaju sieci neuronowej, który umo¿liwia uzyskanie jak najlepszych wyników nastêpuje faza optymalizacji, czyli dostosowywania parametrów, która zostanie opisana w rozdziale \ref{optimization}.
+Wybór rodzaju oraz wstêpnej architektury sieci neuronowej ma kluczowe znaczenie. To w³aœnie te czynniki bêd¹ w g³ównej mierze decydowaæ o skutecznoœci modelu. Po dobraniu rodzaju sieci neuronowej, który umo¿liwia uzyskanie jak najlepszych wyników nastêpuje faza optymalizacji, czyli dostosowywania parametrów, która zostanie opisana w rozdziale \ref{optimization}.
 
 Przy wyborze modelu warto zacz¹æ od rozwi¹zañ najprostszych. Proste modele bêd¹ potrzebowa³y zdecydowanie mniej czasu na naukê, ni¿ te z³o¿one, dlatego dziêki u¿yciu tego podejœcia bêdzie mo¿na w krótkim czasie uzyskaæ pierwsze rezultaty. Mo¿e siê równie¿ okazaæ, ¿e bardzo prosty model jest skuteczny w aktualnie rozpatrywanym problemie.
 
@@ -660,14 +661,14 @@ Proces nauki zaproponowanej sieci neuronowej przebiega³ szybko ze wzglêdu na jej
 	\label{fig:fully-connected-results}
 \end{figure}
 
-Mo¿na wiêc zauwa¿yæ, ¿e sieæ dzia³a³a praktycznie w sposób losowy, gdy¿ tyle wynosi w³aœnie prawdopodobieñstwo przewidzenia wyniku z poœród dwóch wartoœci. Pomimo próby modyfikacji sieci poprzez zwiêkszenie/zmniejsznie liczby warstw, zwiêkszenie/zmniejszenie liczby neuronów, zmiany optymalizatora i funkcji strat wci¹¿ przynosi³a podobne wyniki. Nie uda³o siê osi¹gn¹æ lepszych rezultatów dla tego typu sieci neuronowej, dlatego nie by³a ona wiêcej wykorzystywana. Okaza³a siê niewystarczaj¹ca do rozwi¹zania rozpatrywanego problemu.
+Mo¿na wiêc zauwa¿yæ, ¿e sieæ dzia³a³a praktycznie w sposób losowy, gdy¿ tyle wynosi w³aœnie prawdopodobieñstwo przewidzenia wyniku z poœród dwóch wartoœci. Pomimo próby modyfikacji sieci poprzez zwiêkszenie/zmniejsznie liczby warstw, zwiêkszenie/zmniejszenie liczby neuronów, zmiany optymalizatora i funkcji strat, wci¹¿ przynosi³a ona podobne wyniki. Nie uda³o siê osi¹gn¹æ lepszych rezultatów dla tego typu sieci neuronowej, dlatego nie by³a ona wiêcej wykorzystywana. Okaza³a siê niewystarczaj¹ca do rozwi¹zania rozpatrywanego problemu.
 
 
 \subsection{Sieæ splotowa z filtrem 1-wymiarowym}
 \label{conv-1d}
 Kolejnym testowanym typem by³a sieæ splotowa z 1-wymiarowym filtrem, której zastosowanie polecane jest do danych w formie szeregów czasowych np. dane z ¿yroskopu czy akcelerometru. W bibliotece Keras warstwy tego typu nazwane s¹ \textit{Conv1D (ang. Convolutional 1-dimension)}. Filtr jednowymiarowy jest w stanie odnajdywaæ podobieñstwa miêdzy danymi jedynie w jednym wymiarze. W przypadku dostêpnych danych z EEG mog¹ byæ to wartoœci tylko z jednego kana³u jednoczeœnie. Oznacza to, ¿e byæ mo¿e sieæ tego typu nie bêdzie w stanie zauwa¿yæ zale¿noœci pomiêdzy danymi znajduj¹cymi siê na ró¿nych kana³ach.
 
-Wstêpny model sieci, który zosta³ wybrany przedstawiony zosta³ na listingu \ref{lst:conv-1d}. Sk³ada siê on z dwóch warstw konwolucyjnych o odpowiednio 32 i 16 filtrach z warstwami \textit{max pooling}'u. Sieci splotowe zwykle zakoñczone s¹ kilkoma warstwami typu \textit{fully-connected}. W tym wypadku zosta³a zastosowana jedna warstwa z 64 neuronami oraz warstwa wyjœciowa z jednym neuronem i sigmoidaln¹ funkcj¹ aktywacji. Tego typu warstwa koñcowa bêdzie wykorzystywana w ka¿dym modelu, gdy¿ daje ona mo¿liwoœæ zwrócenia na wyjœciu z sieci wartoœci 0 lub 1, które oznaczaj¹ brak lub pojawienie siê ataku.
+Wstêpny model sieci, który zosta³ wybrany przedstawiony zosta³ na listingu \ref{lst:conv-1d}. Sk³ada siê on z dwóch warstw konwolucyjnych o odpowiednio 32 i 16 filtrach z warstwami \textit{max pooling}'u. Sieci splotowe zwykle zakoñczone s¹ kilkoma warstwami typu \textit{fully-connected}. W tym wypadku zosta³a zastosowana jedna warstwa z 64 neuronami oraz warstwa wyjœciowa z jednym neuronem i sigmoidaln¹ funkcj¹ aktywacji. Warstwa koñcowa tego typu bêdzie wykorzystywana w ka¿dym modelu, gdy¿ daje ona mo¿liwoœæ zwrócenia na wyjœciu z sieci wartoœæ 0 lub 1, które oznaczaj¹ brak lub pojawienie siê ataku.
 
 \begin{lstlisting}[caption=Model splotowej sieci neuronowej z 1-wymiarowym filtrem, language=Python, label={lst:conv-1d}]
 model = Sequential()
@@ -694,7 +695,7 @@ Skonstruowana w ten sposób sieæ neuronowa uczy³a siê co prawda d³u¿ej, ni¿ sieæ 
 	\label{fig:conv-1d-results}
 \end{figure}
 
-Wyniki by³y obiecuj¹ce, wiêc sieæ tego typu zosta³a wziêta pod uwagê w dalszych pracach polegaj¹cych na optymalizacji sieci w celu uzyskania jak najlepszych wyników \ref{optimization}.
+Wyniki by³y obiecuj¹ce, wiêc sieæ tego typu zosta³a wziêta pod uwagê w dalszych pracach polegaj¹cych na optymalizacji w celu uzyskania jak najlepszych wyników \ref{optimization}.
 
 \subsection{Sieæ splotowa z filtrem 2-wymiarowym}
 Nastêpnym typem sieci, która zosta³a przetestowana by³a sieæ splotowa z filtrem 2-wymiarowym \textit{(Conv2D)}. Sieæ ta jest bardzo podobna do konwolucyjnej sieci jednowymiarowej opisywanej w poprzednim podrozdziale \ref{conv-1d}. Ró¿nic¹ jest typ zastosowanego filtra, który w tym przypadku jest 2-wymiarowy. Pozwala wiêc analizowaæ dane w dwuwymiarowej przestrzeni. Sieci tego typu u¿ywane s¹ przewa¿nie do rozpoznawania obrazów, jednak równie dobrze mog¹ siê sprawdziæ te¿ na danych innego typu. W przypadku EEG sieæ z 2-wymiarowym filtrem bêdzie w stanie analizowaæ szereg czasowy obejmuj¹c kilka kana³ów jednoczeœnie, dziêki temu mo¿liwe bêdzie zauwa¿enie powi¹zania pomiêdzy danymi z innych kana³ów.
@@ -924,7 +925,7 @@ def step_decay(epoch):
     return lrate
 \end{lstlisting}
 
-Dynamiczna zmiana wspó³czynnika uczenia pozwoli³a na czêœciowe zredukowanie nadmiernego dopasowania sieci, jednak sieæ wci¹¿ zaobserwowaæ mo¿na jej przeuczanie. Mimo to skutecznoœæ zosta³a poprawiona do blisko \textbf{80,5\%} \ref{fig:adaptive_learning_rate}.
+Dynamiczna zmiana wspó³czynnika uczenia pozwoli³a na czêœciowe zredukowanie nadmiernego dopasowania sieci, jednak wci¹¿ zaobserwowaæ mo¿na jej przeuczanie. Mimo to skutecznoœæ zosta³a poprawiona do blisko \textbf{80,5\%} \ref{fig:adaptive_learning_rate}.
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=14cm]{Rysunki/Rozdzial5/conv-adaptive-rate.png}
@@ -937,7 +938,7 @@ Ostatnim wykonanym krokiem by³a modyfikacja rozmiaru sieci oraz poszczególnych w
 
 Listing \ref{lst:conv_final} zawiera model, który podczas testów osi¹gn¹³ najlepsze rezultaty. Zawiera on 3 warstwy konwolucyjne z kolejno 64, 64 i 32 filtrami o rozmiarze 3x3. Po ka¿dej z warstw zastosowano warstwê \textit{BatchNormalization}, funkcjê aktywacji \textit{relu} oraz warstwê \textit{max pooling}'u z filtrem o rozmiarze 2x2. W nastêpstwie warstw konwolucyjnych sieæ posiada 3 warstwy typu \textit{fully connected} rozdzielonych warstwami \textit{Dropout}. Warstwy posiadaj¹ rozmiar 64 oraz 32 neurony z warstw¹ wyjœciow¹ sk³adaj¹c¹ siê z jednego neuronu i sigmoidaln¹ funkcj¹ aktywacji \textit{(ang. sigmoid)}, która zwraca na wyjœciu wartoœæ 0 lub 1. Model skompilowany zosta³ przy u¿yciu optymalizatora \textit{SGD} i jako funkcja strat u¿yta zosta³a \textit{binary crossentropy}. 
 
-\begin{lstlisting}[caption=Ostateczny model sieci konwolucyjnej, language=Python, label={lst:conv_final}]
+\begin{lstlisting}[caption=Ostateczny model sieci konwolucyjnej, language=Python, label={lst:conv_final}, float=h! ]
 model = Sequential()
     
 model.add(Conv2D(64,(3,3),strides = (1,1),name='layer_conv1',padding='same', input_shape=input_shape))

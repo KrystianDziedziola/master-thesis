@@ -26,7 +26,7 @@ Zbiór MNIST dostêpny jest w bibliotece Keras.
 
 W celu wczytania wartoœci wystarczy u¿yæ funkcji \textit{dataset\_mnist()} i przypisaæ wartoœci do zmiennej, a nastêpnie wydzieliæ odpowiednie zbiory treningowe oraz testowe \ref{lst:r_data}.
 
-\begin{lstlisting}[caption=Wczytywanie danych MNIST, language=R, label={lst:r_data}]
+\begin{lstlisting}[caption=Wczytywanie danych MNIST, language=R, label={lst:r_data}, float=h!]
 mnist <- dataset_mnist()
 x_train <- mnist$train$x
 y_train <- mnist$train$y
@@ -35,9 +35,9 @@ y_test <- mnist$test$y
 \end{lstlisting}
 
 Stworzony zostanie prosty model sieci neuronowej typu \textit{fully connected}, która wymaga przekszta³cenia danych do postaci wektorów.
-Przygotowane dane wejœciowe s¹ w postaci 3-wymiarowej tablicy, wiêc nale¿y zredukowaæ liczbê wymiarów oraz dodatkowo przeskalowaæ, aby znalaz³y siê one w przedziale <0;1>.
+Przygotowane dane wejœciowe s¹ w postaci 3-wymiarowej tablicy, wiêc nale¿y zredukowaæ liczbê wymiarów oraz dodatkowo przeskalowaæ, aby znalaz³y siê one w przedziale <0;1> \ref{lst:r_reshape}.
 
-\begin{lstlisting}[caption=Przygotowanie danych wejœciowych, language=R, label={lst:r_data}]
+\begin{lstlisting}[caption=Przygotowanie danych wejœciowych, language=R, label={lst:r_reshape}, float=h!]
 x_train <- array_reshape(x_train, c(nrow(x_train), 784))
 x_test <- array_reshape(x_test, c(nrow(x_test), 784))
 
@@ -47,7 +47,7 @@ x_test <- x_test / 255
 
 Dane wyjœciowe nale¿y zakodowaæ za pomoc¹ kodu "1 z n" \textit{(ang. one-hot encoding)} \ref{lst:r_data_out}.
 
-\begin{lstlisting}[caption=Przygotowanie danych wyjœciowych, language=R, label={lst:r_data_out}]
+\begin{lstlisting}[caption=Przygotowanie danych wyjœciowych, language=R, label={lst:r_data_out}, float=h!]
 y_train <- to_categorical(y_train, 10)
 y_test <- to_categorical(y_test, 10)
 \end{lstlisting}
@@ -55,7 +55,7 @@ y_test <- to_categorical(y_test, 10)
 Utworzony zosta³ model sk³adaj¹cy siê z dwóch warstw ukrytych oraz jednej wyjœciowej, zawieraj¹cy odpowiednio 256, 128 i 10 neuronów.
 Na ostatniej warstwie u¿yta zosta³a funkcja aktywacji \textit{softmax}, która zwróci pradopowobieñstwo zajœcia jednego z 10 stanów \ref{lst:r_model}.
 
-\begin{lstlisting}[caption=Utworzenie modelu, language=R, label={lst:r_model}]
+\begin{lstlisting}[caption=Utworzenie modelu, language=R, label={lst:r_model}, float=h!]
 model <- keras_model_sequential() 
 model %>% 
   layer_dense(units = 256, activation = 'relu', input_shape = c(784)) %>% 
@@ -85,6 +85,9 @@ history <- model %>% fit(
 Sprawdzenie skutecznoœci modelu na danych testowych odbywa siê za pomoc¹ funkcji \textit{evaluate()} \ref{lst:r_evaluate}.
 
 \begin{lstlisting}[caption=Sprawdzenie modelu na danych testowych, language=R, label={lst:r_evaluate}]
+model %>% evaluate(x_test, y_test,verbose = 0)
+
+
 $loss
 [1] 0.1241
 
