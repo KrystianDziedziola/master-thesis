@@ -1,9 +1,9 @@
 from matplotlib import pyplot as plt
 
-plt.rcParams['figure.figsize'] = [20, 5]
+plt.rcParams['figure.figsize'] = [40, 5]
 
 
-def draw_plots(input, target, headers, patient, ratio, end_second, start_second=0):
+def draw_plots(input, target, headers, patient, ratio, end_second, start_second=0, to_pdf=False):
     patient_columns = input[patient]
     targets = target[patient]
     time_column = patient_columns[:, -1]
@@ -20,6 +20,8 @@ def draw_plots(input, target, headers, patient, ratio, end_second, start_second=
         end = end_second * ratio
         plt.plot(time_column[start:end], channel[start:end])
         draw_targets_in_range(targets, start_second, end_second)
+        if to_pdf:
+            plt.savefig("chanel-{}.pdf".format(column), bbox_inches='tight')
      
     
 def draw_targets_in_range(targets, start_second, end_second):
@@ -46,7 +48,7 @@ def draw_plots_with_chunks(input, target, headers, patient, chunks_input, to_pdf
         draw_targets(targets)
         draw_chunks_start(chunks_input)
         if to_pdf:
-            plt.savefig("chanel-{}.pdf".format(column), bbox_inches='tight')
+            plt.savefig("chanel-{}-with-seizure.pdf".format(column), bbox_inches='tight')
       
     
 def draw_targets(targets):

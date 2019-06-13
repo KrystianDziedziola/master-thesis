@@ -4,48 +4,47 @@
 \contentsline {section}{\numberline {1.3}Przegl\k ad literatury}{2}{section.1.3}
 \contentsline {section}{\numberline {1.4}Struktura pracy}{2}{section.1.4}
 \contentsline {chapter}{\numberline {2}Wprowadzenie do g\IeC {\l }\k ebokich sieci neuronowych}{3}{chapter.2}
-\contentsline {section}{\numberline {2.1}Sieci neuronowe a sztuczna inteligencja}{3}{section.2.1}
-\contentsline {section}{\numberline {2.2}Klasyczne sieci neuronowe}{5}{section.2.2}
-\contentsline {section}{\numberline {2.3}Deep learning, czyli g\IeC {\l }\k ebokie sieci neuronowe}{6}{section.2.3}
-\contentsline {section}{\numberline {2.4}Architektury g\IeC {\l }\k ebokich sieci neuronowych}{8}{section.2.4}
-\contentsline {subsection}{\numberline {2.4.1}Splotowe sieci neuronowe}{8}{subsection.2.4.1}
-\contentsline {subsection}{\numberline {2.4.2}Rekurencyjne sieci neuronowe}{9}{subsection.2.4.2}
-\contentsline {chapter}{\numberline {3}Om\'owienie wybranego problemu diagnostyki medycznej}{11}{chapter.3}
-\contentsline {section}{\numberline {3.1}Przedstawienie problemu}{11}{section.3.1}
-\contentsline {section}{\numberline {3.2}Dost\k epne dane}{12}{section.3.2}
-\contentsline {section}{\numberline {3.3}Oczekiwane rezultaty}{12}{section.3.3}
-\contentsline {chapter}{\numberline {4}Przegl\k ad dost\k epnych bibliotek oraz narz\k edzi programistycznych}{13}{chapter.4}
-\contentsline {section}{\numberline {4.1}Dost\k epne narz\k edzia}{13}{section.4.1}
-\contentsline {section}{\numberline {4.2}Wybrany stos technologiczny}{14}{section.4.2}
-\contentsline {chapter}{\numberline {5}Pr\'oba rozwi\k azania problemu}{15}{chapter.5}
-\contentsline {section}{\numberline {5.1}Proces uczenia}{15}{section.5.1}
-\contentsline {subsection}{\numberline {5.1.1}Przygotowanie danych}{15}{subsection.5.1.1}
-\contentsline {subsection}{\numberline {5.1.2}Metoda oceny wynik\'ow}{21}{subsection.5.1.2}
-\contentsline {subsubsection}{\numberline {5.1.2.1}Hold-out}{21}{subsubsection.5.1.2.1}
-\contentsline {subsubsection}{\numberline {5.1.2.2}Walidacja krzy\.zowa}{22}{subsubsection.5.1.2.2}
-\contentsline {subsubsection}{\numberline {5.1.2.3}Implementacja walidacji}{22}{subsubsection.5.1.2.3}
-\contentsline {subsection}{\numberline {5.1.3}Uruchomienie uczenia w\IeC {\l }a\'sciwego}{24}{subsection.5.1.3}
-\contentsline {subsubsection}{\numberline {5.1.3.1}Budowa modelu}{25}{subsubsection.5.1.3.1}
-\contentsline {subsubsection}{\numberline {5.1.3.2}Lista callback'\'ow}{25}{subsubsection.5.1.3.2}
-\contentsline {subsubsection}{\numberline {5.1.3.3}Funkcja dopasowania}{26}{subsubsection.5.1.3.3}
-\contentsline {subsubsection}{\numberline {5.1.3.4}Sprawdzenie skuteczno\'sci}{27}{subsubsection.5.1.3.4}
-\contentsline {section}{\numberline {5.2}Monitorowanie}{27}{section.5.2}
-\contentsline {section}{\numberline {5.3}Wyb\'or rodzaju sieci neuronowej}{29}{section.5.3}
-\contentsline {subsection}{\numberline {5.3.1}Klasyczna sie\'c neuronowa typu fully connected}{30}{subsection.5.3.1}
-\contentsline {subsection}{\numberline {5.3.2}Sie\'c splotowa z filtrem 1-wymiarowym}{31}{subsection.5.3.2}
-\contentsline {subsection}{\numberline {5.3.3}Sie\'c splotowa z filtrem 2-wymiarowym}{32}{subsection.5.3.3}
-\contentsline {subsection}{\numberline {5.3.4}Sie\'c rekurencyjna}{33}{subsection.5.3.4}
-\contentsline {subsection}{\numberline {5.3.5}Po\IeC {\l }\k aczenie sieci splotowej z rekurencyjn\k a}{34}{subsection.5.3.5}
-\contentsline {subsection}{\numberline {5.3.6}Podsumowanie}{36}{subsection.5.3.6}
-\contentsline {section}{\numberline {5.4}Optymalizacja}{36}{section.5.4}
-\contentsline {subsection}{\numberline {5.4.1}Batch normalization}{36}{subsection.5.4.1}
-\contentsline {subsection}{\numberline {5.4.2}Dropout}{38}{subsection.5.4.2}
-\contentsline {subsection}{\numberline {5.4.3}Wyb\'or optymalizatora}{39}{subsection.5.4.3}
-\contentsline {subsection}{\numberline {5.4.4}Adaptacyjny wsp\'o\IeC {\l }czynnik uczenia}{40}{subsection.5.4.4}
-\contentsline {subsection}{\numberline {5.4.5}Modyfikacja rozmiaru sieci}{40}{subsection.5.4.5}
-\contentsline {section}{\numberline {5.5}Weryfikacja i ocena otrzymanych rezultat\'ow}{44}{section.5.5}
-\contentsline {section}{\numberline {5.6}Mo\.zliwo\'sci rozwoju}{46}{section.5.6}
-\contentsline {chapter}{\numberline {A}P\IeC {\l }yta DVD}{47}{appendix.A}
-\contentsline {chapter}{\numberline {B}U\.zycie biblioteki Keras w j\k ezyku R}{48}{appendix.B}
-\contentsline {section}{\numberline {B.1}Implementacja przyk\IeC {\l }adowego modelu do klasyfikacji danych MNIST}{48}{section.B.1}
-\contentsline {section}{\numberline {B.2}Model sieci do rozpoznawania stan\'ow padaczkowych w j\k ezyku R}{50}{section.B.2}
+\contentsline {section}{\numberline {2.1}Deep learning, czyli g\IeC {\l }\k ebokie sieci neuronowe}{3}{section.2.1}
+\contentsline {section}{\numberline {2.2}Por\'ownanie klasycznych oraz g\IeC {\l }\k ebokich sieci neuronowych}{4}{section.2.2}
+\contentsline {section}{\numberline {2.3}Architektury g\IeC {\l }\k ebokich sieci neuronowych}{6}{section.2.3}
+\contentsline {subsection}{\numberline {2.3.1}Splotowe sieci neuronowe}{6}{subsection.2.3.1}
+\contentsline {subsection}{\numberline {2.3.2}Rekurencyjne sieci neuronowe}{7}{subsection.2.3.2}
+\contentsline {chapter}{\numberline {3}Om\'owienie wybranego problemu diagnostyki medycznej}{9}{chapter.3}
+\contentsline {section}{\numberline {3.1}Przedstawienie problemu}{9}{section.3.1}
+\contentsline {section}{\numberline {3.2}Dost\k epne dane}{10}{section.3.2}
+\contentsline {section}{\numberline {3.3}Oczekiwane rezultaty}{10}{section.3.3}
+\contentsline {chapter}{\numberline {4}Przegl\k ad dost\k epnych bibliotek oraz narz\k edzi programistycznych}{11}{chapter.4}
+\contentsline {section}{\numberline {4.1}Dost\k epne narz\k edzia}{11}{section.4.1}
+\contentsline {section}{\numberline {4.2}Wybrany stos technologiczny}{12}{section.4.2}
+\contentsline {chapter}{\numberline {5}Rozwi\k azanie praktycznego problemu}{13}{chapter.5}
+\contentsline {section}{\numberline {5.1}Przygotowanie danych}{13}{section.5.1}
+\contentsline {section}{\numberline {5.2}Metoda oceny wynik\'ow}{22}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}Hold-out}{23}{subsection.5.2.1}
+\contentsline {subsection}{\numberline {5.2.2}Walidacja krzy\.zowa}{23}{subsection.5.2.2}
+\contentsline {subsection}{\numberline {5.2.3}Implementacja walidacji}{24}{subsection.5.2.3}
+\contentsline {section}{\numberline {5.3}Uruchomienie uczenia w\IeC {\l }a\'sciwego}{25}{section.5.3}
+\contentsline {subsection}{\numberline {5.3.1}Budowa modelu}{26}{subsection.5.3.1}
+\contentsline {subsection}{\numberline {5.3.2}Lista callback'\'ow}{27}{subsection.5.3.2}
+\contentsline {subsection}{\numberline {5.3.3}Funkcja dopasowania}{28}{subsection.5.3.3}
+\contentsline {subsection}{\numberline {5.3.4}Sprawdzenie skuteczno\'sci}{28}{subsection.5.3.4}
+\contentsline {section}{\numberline {5.4}Monitorowanie}{29}{section.5.4}
+\contentsline {section}{\numberline {5.5}Wyb\'or rodzaju sieci neuronowej}{32}{section.5.5}
+\contentsline {subsection}{\numberline {5.5.1}Klasyczna sie\'c neuronowa typu fully connected}{32}{subsection.5.5.1}
+\contentsline {subsection}{\numberline {5.5.2}Sie\'c splotowa z filtrem 1-wymiarowym}{33}{subsection.5.5.2}
+\contentsline {subsection}{\numberline {5.5.3}Sie\'c splotowa z filtrem 2-wymiarowym}{35}{subsection.5.5.3}
+\contentsline {subsection}{\numberline {5.5.4}Sie\'c rekurencyjna}{36}{subsection.5.5.4}
+\contentsline {subsection}{\numberline {5.5.5}Po\IeC {\l }\k aczenie sieci splotowej z rekurencyjn\k a}{38}{subsection.5.5.5}
+\contentsline {subsection}{\numberline {5.5.6}Podsumowanie}{39}{subsection.5.5.6}
+\contentsline {section}{\numberline {5.6}Optymalizacja}{41}{section.5.6}
+\contentsline {subsection}{\numberline {5.6.1}Batch normalization}{42}{subsection.5.6.1}
+\contentsline {subsection}{\numberline {5.6.2}Dropout}{42}{subsection.5.6.2}
+\contentsline {subsection}{\numberline {5.6.3}Wyb\'or optymalizatora}{43}{subsection.5.6.3}
+\contentsline {subsection}{\numberline {5.6.4}Adaptacyjny wsp\'o\IeC {\l }czynnik uczenia}{44}{subsection.5.6.4}
+\contentsline {subsection}{\numberline {5.6.5}Modyfikacja rozmiaru sieci}{45}{subsection.5.6.5}
+\contentsline {section}{\numberline {5.7}Weryfikacja i ocena otrzymanych rezultat\'ow}{49}{section.5.7}
+\contentsline {section}{\numberline {5.8}Mo\.zliwo\'sci rozwoju}{51}{section.5.8}
+\contentsline {chapter}{\numberline {A}U\.zycie biblioteki Keras w j\k ezyku R}{52}{appendix.A}
+\contentsline {section}{\numberline {A.1}Implementacja przyk\IeC {\l }adowego modelu do klasyfikacji danych MNIST}{52}{section.A.1}
+\contentsline {section}{\numberline {A.2}Model sieci do rozpoznawania stan\'ow padaczkowych w j\k ezyku R}{54}{section.A.2}
+\contentsline {section}{\numberline {A.3}Podsumowanie}{55}{section.A.3}
+\contentsline {chapter}{\numberline {B}P\IeC {\l }yta DVD}{56}{appendix.B}

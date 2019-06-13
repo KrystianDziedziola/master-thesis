@@ -1,7 +1,7 @@
 \chapter{Wstêp}
 
 \section{Wprowadzenie}
-Wspó³czesna technologia sztucznej inteligencji, której du¿¹ czêœæ stanowi¹ sztuczne sieci neuronowe, 
+Sztucznej inteligencja, której du¿¹ czêœæ stanowi¹ sztuczne sieci neuronowe, 
 pozwala na wykonywanie przez maszyny zadañ, które do niedawna byli w stanie wykonywaæ tylko ludzie.
 Jednym z przyk³adów jest diagnostyka medyczna, która wymaga specjalistycznej wiedzy oraz doœwiadczenia.
 
@@ -10,7 +10,13 @@ podejmuje decyzje, które mog¹ symulowaæ ludzk¹ inteligencjê.
 W niektórych problemach maszyna jest w stanie podejmowaæ poprawne decyzje z dok³adnoœci¹ dorównuj¹c¹ 
 lub nawet przewy¿szaj¹c¹ zdolnoœci cz³owieka. Dodatkowo mo¿e to zrobiæ w znacznie krótszym czasie.
 
-W tej pracy zostanie sprawdzona mo¿liwoœæ zastosowania g³êbokich sieci neuronowych do diagnostyki 
+Kolejnym wcieleniem klasycznych sieci neuronowych s¹ g³êbokie sieci neuronowe (ang. \textit{deep neural networks}), 
+które znacz¹co zwiêkszaj¹ ich mo¿liwoœci oraz obszar zastosowañ. 
+Ewolucja sieci neuronowych by³a mo¿liwa dziêki szybkiemu rozwojowi sprzêtu komputerowego,
+który oferuje znacz¹co wiêksze moce obliczeniowe, co pozwala na efektywne uczenie bardziej skomplikowanych struktur sieci.
+Nowe mo¿liwoœci sieci neuronowych spowodowa³y znacz¹cy wzrost ich populanoœci.
+
+W tekœcie pracy przedstawiony zosta³ opis badañ maj¹cych na celu sprawdzenie mo¿liwoœæ zastosowania g³êbokich sieci neuronowych do diagnostyki 
 napadów padaczkowych na podstawie odczytów z elektoencefalogramu (EEG).
 
 \section{Cel i zakres pracy}
@@ -21,21 +27,21 @@ Zakres pracy obejmuje:
 \begin{itemize}
 \item krótkie wprowadzenie w tematykê sieci g³êbokich oraz porównanie z klasycznymi sieciami neuronowymi,
 \item przegl¹d dostêpnych bibliotek i narzêdzi programistycznych dla sieci g³êbokich,
-\item omówienie praktycznego problemu z dziedziny diagnostyki medycznej i próba rozwi¹zania z wykorzystaniem sieci g³êbokich,
+\item omówienie praktycznego problemu z dziedziny diagnostyki medycznej i próba rozwi¹zania go z wykorzystaniem sieci g³êbokich,
 \item przedstawienie szczegó³ów technicznych i implementacyjnych,
 \item wykonanie eksperymentów, ich ocena oraz sformu³owanie wniosków koñcowych.
 \end{itemize}
 
 \section{Przegl¹d literatury}
-Czêœæ pracy dotycz¹ca teoretycznych pojêæ zwi¹zanych ze sztuczn¹ inteligencj¹, uczeniem maszynowym oraz klasycznymi i g³êbokimi 
-sieciami neuronowymi zosta³a oparta na kilku pozycjach obszernie opisuj¹cych tê tematykê. W szczególnoœci s¹ to: \cite{Chollet:2018}, \cite{Williams},  \cite{MinskyPapert} oraz \cite{Goodfellow-et-al-2016-Book}.
+Czêœæ pracy dotycz¹ca teoretycznych pojêæ zwi¹zanych z klasycznymi i g³êbokimi  sieciami neuronowymi zosta³a oparta na kilku pozycjach obszernie opisuj¹cych tê tematykê: \cite{Chollet:2018, Williams, MinskyPapert, Goodfellow-et-al-2016-Book}.
 
 Druga czêœæ opisuj¹ca praktyczne zastosowanie g³êbokich sieci neuronowych zosta³a oparta g³ównie na wiedzy zdobytej z ksi¹¿ki \cite{Chollet:2018} oraz wielu poradników i dokumentacji technicznej u¿ytych narzêdzi. Badania odnoœnie doboru modelu najlepiej dopasowanego do rozwi¹zywania wybranego problemu zosta³y
-podparte wiedz¹ uzyskan¹ z licznych publikacji naukowych, które opisywa³y próby rozwi¹zania podobnych problemów. S¹ to m.in. \cite{automated_system}, \cite{brain_visualization}, \cite{detecting_epileptic} oraz \cite{learning_robust}.
+podparte wiedz¹ uzyskan¹ z licznych publikacji naukowych, które opisywa³y próby rozwi¹zania podobnych problemów. S¹ to m.in. pozycje \cite{learning_robust, automated_system, detecting_epileptic, brain_visualization}.
 
 \section{Struktura pracy}
 Tekst pracy podzielony zosta³ na dwie czêœci. Pierwsz¹ z nich stanowi¹ rozdzia³y \ref{chapter_2} oraz \ref{chapter_3}, które zawieraj¹ informacje teoretyczne.
-W rozdziale \ref{chapter_2} opisane zosta³y zagadnienie sztucznej inteligencji, uczenia maszynowego oraz klasycznych i g³êbokich sieci neuronowych. Rozdzia³ \ref{chapter_3} przedstawia opis wybranego problemu z zakresu diagnostyki medycznej, dla którego zostanie podjêta próba rozwi¹zania przy pomocy g³êgokich sieci neuronowych.
+W rozdziale \ref{chapter_2} opisane zosta³y zagadnienia g³êbokich oraz klasycznych sieci neuronowych wraz z ich porównaniem. 
+Rozdzia³ \ref{chapter_3} przedstawia opis wybranego problemu z zakresu diagnostyki medycznej, dla którego zostanie podjêta próba rozwi¹zania przy pomocy g³êgokich sieci neuronowych.
 
-Druga czêœæ sk³ada siê z rozdzia³ów \ref{chapter_4} oraz \ref{chapter_5}, które zawieraj¹ przegl¹d dostêpnych bibliotek oraz narzêdzi programistycznych,
-opis implementacji procesu uczenia oraz przeprowadzonych badañ w celu sprawdzenia mo¿liwoœci rozwi¹zania wybranego problemu.
+Druga czêœæ sk³ada siê z rozdzia³ów \ref{chapter_4} oraz \ref{chapter_5}. Rozdzia³ \ref{chapter_4} zawiera przegl¹d dostêpnych bibliotek oraz narzêdzi programistycznych. 
+Natomiast w rozdziale \ref{chapter_5} znalaz³ siê opis implementacji procesu uczenia oraz przeprowadzonych badañ w celu sprawdzenia mo¿liwoœci rozwi¹zania wybranego problemu.

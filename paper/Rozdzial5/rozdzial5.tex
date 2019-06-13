@@ -1,46 +1,61 @@
-\chapter{Próba rozwi¹zania problemu}
+\chapter{Rozwi¹zanie praktycznego problemu}
 \label{chapter_5}
-
-\section{Proces uczenia}
-Proces uczenia sieci neuronowej stworzony zosta³ w œrodowisku Jupyter Notebook, które umo¿liwia tworzenie dokumentów zawieraj¹cych opisy, wykresy oraz wykonywalne kody Ÿród³owe. Nazwa Jupyter wziê³a siê z tego, ¿e œrodowisko umo¿liwia pracê w trzech jêzykach: Julia, Python oraz R.
+Proces uczenia sieci neuronowej stworzony zosta³ w œrodowisku Jupyter Notebook. Umo¿liwia ono tworzenie dokumentów zawieraj¹cych opisy, wykresy oraz wykonywalne kody Ÿród³owe. Nazwa Jupyter wziê³a siê z tego, ¿e œrodowisko umo¿liwia pracê w trzech jêzykach: Julia, Python oraz R.
 
 Dokument sk³ada siê z wielu komórek, które mog¹ byæ wywo³ywane niezale¿nie.
 Przewag¹ kodu pisanego w tym œrodowisku nad tradycyjnymi skryptami jest oferowana przez nie mo¿liwoœæ zapamiêtywania stanu zmiennych. Dziêki temu nie ma potrzeby ka¿dorazowego wywo³ywania ca³ego kodu, a jedynie fragmentów, które w danej chwili s¹ potrzebne np. jednorazowe przygotowanie danych, a nastêpnie wykonywanie jedynie procesu uczenia.
 
 Proces uczenia sk³ada siê z kilku kroków:
 \begin{itemize}
-	\item pobranie i przygotowanie danych za pomoc¹ przygotowanych skryptów \ref{data_preparation}
+	\item pobranie i przygotowanie danych za pomoc¹ przygotowanych skryptów \ref{data_preparation},
 	\item podzia³ danych na zbiory s³u¿¹ce do nauki oraz testowania przy pomocy k-krotnej 
-walidacji krzy¿owej \textit{(ang. k-fold cross-validation)} \ref{validation_method}
-	\item utworzenie modelu sieci neuronowej \ref{build_model}
-	\item rozpoczêcie uczenia modelu \ref{run_learning}
-	\item sprawdzenie skutecznoœci i przedstawienie wyników \ref{verify_accuracy}
+walidacji krzy¿owej \textit{(ang. k-fold cross-validation)} \ref{validation_method},
+	\item utworzenie modelu sieci neuronowej \ref{build_model},
+	\item rozpoczêcie uczenia modelu \ref{run_learning},
+	\item sprawdzenie skutecznoœci i przedstawienie wyników \ref{verify_accuracy}.
 \end{itemize}
 
 Wszystkie wymienione kroki przedstawiaj¹ pe³en proces uczenia, który pokazuje z jak¹ dok³adnoœci¹ model jest w stanie wykrywaæ stany padaczkowe.
 
-\subsection{Przygotowanie danych}
+\section{Przygotowanie danych}
 \label{data_preparation}
 W celu wykorzystania dostêpnych danych w procesie uczenia sieci neuronowej nale¿y je najpierw odpowiednio przygotowaæ.
 Dostarczone zosta³y dane w postaci plików tekstowych z liczbami reprezentuj¹cymi wartoœci zmierzone przy pomocy elektroencefalogramu. W poszczególnych kolumnach znajduj¹ siê wartoœci odpowiadaj¹ce konkretnym kana³om (\textit{EEG\_FP1\_F3}, \textit{EEG\_FP2\_F4} itd.). Ostatnia kolumna (o nag³ówku \textit{t}) przedstawia czas w sekundach, w którym mia³ miejsce pomiar. 
 
 Dostêpne s¹ dane 104 pacjentów, u których wyst¹pi³y ataki. Ka¿dy z nich posiada odczyty wykonane z czêstotliwoœci¹ 500Hz przez blisko 15 minut. Jest to oko³o 450 000 linii w ka¿dym pliku. Dane zajmuj¹ 6,5 GB.
-
-Fragment jednego z plików z danymi wygl¹da nastêpuj¹co:
-
-\begin{lstlisting}[caption=Dane liczbowe z odczytu EEG]
-"EEG_FP1_F3"	"EEG_FP2_F4"	"EEG_F3_C3"	"EEG_F4_C4"	"EEG_C3_P3"	"EEG_C4_P4"	"EEG_P3_O1"	"EEG_P4_O2"	"EEG_FP1_F7"	"EEG_FP2_F8"	"EEG_F7_T3"	"EEG_F8_T4"	"EEG_T3_T5"	"EEG_T4_T6"	"EEG_T5_O1"	"EEG_T6_O2"	"t"
--1.7032	-3.3727	5.9014	2.512	2.6404	4.0193	16.9162	35.4401	5.3506	1.1355	-1.0843	-3.9932	9.4594	14.8409	10.0322	26.6143	0
--3.1702	-4.5883	5.8762	2.9638	3.5952	3.9019	17.1137	36.3634	4.3875	0.543	-1.356	-4.5697	10.309	14.1082	10.0724	28.5593	0.002
--4.2669	-5.2157	5.6852	3.1698	4.0053	3.6091	16.4135	36.7024	2.9881	0.4522	-1.7584	-5.4206	11.1134	13.3778	9.4926	29.8509	0.004
--4.8106	-5.2287	5.2889	2.6745	3.714	3.0257	14.9097	36.4086	1.6189	0.2802	-2.1206	-6.4522	11.2876	12.7727	8.3198	30.2831	0.006
--5.0684	-5.1176	4.7665	1.7354	2.9116	2.354	12.7327	35.6144	0.5718	-0.618	-2.57	-7.3378	10.6144	12.2487	6.7256	30.2934	0.008
--5.3637	-5.1568	4.399	1.03	1.764	1.9509	10.2011	34.6652	-0.2974	-2.1804	-3.1603	-7.7025	9.3368	11.727	5.1179	30.6433	0.01
+Fragment jednego z plików przedstawiony zosta³ na listingu \ref{lst:eeg}:
+\begin{landscape}
+\begin{lstlisting}[caption=Dane liczbowe z odczytu EEG, label=lst:eeg]
+"EEG_FP1_F3" "EEG_FP2_F4" "EEG_F3_C3" "EEG_F4_C4" "EEG_C3_P3" "EEG_C4_P4" "EEG_P3_O1" "EEG_P4_O2" "EEG_FP1_F7" "EEG_FP2_F8" "EEG_F7_T3" "EEG_F8_T4" "EEG_T3_T5" "EEG_T4_T6" "EEG_T5_O1" "EEG_T6_O2" "t"
+-1.7032  -3.3727 5.9014 2.512 2.6404 4.0193 16.9162 35.4401 5.3506 1.1355 -1.0843 -3.9932 9.4594 14.8409 10.0322 26.6143 0
+-3.1702 -4.5883 5.8762 2.9638 3.5952 3.9019 17.1137 36.3634 4.3875 0.543 -1.356 -4.5697 10.309 14.1082 10.0724 28.5593 0.002
+-4.2669 -5.2157 5.6852 3.1698 4.0053 3.6091 16.4135 36.7024 2.9881 0.4522 -1.7584 -5.4206 11.1134 13.3778 9.4926 29.8509 0.004
+-4.8106 -5.2287 5.2889 2.6745 3.714 3.0257 14.9097 36.4086 1.6189 0.2802 -2.1206 -6.4522 11.2876 12.7727 8.3198 30.2831 0.006
+-5.0684 -5.1176 4.7665 1.7354 2.9116 2.354 12.7327 35.6144 0.5718 -0.618 -2.57 -7.3378 10.6144 12.2487 6.7256 30.2934 0.008
+-5.3637 -5.1568 4.399 1.03 1.764 1.9509 10.2011 34.6652 -0.2974 -2.1804 -3.1603 -7.7025 9.3368 11.727 5.1179 30.6433 0.01
+-5.6214 -5.0654 4.3918 0.9508 0.24 1.8783 7.7188 33.8484 -1.2102 -3.7284 -3.7707 -7.4767 7.7603 11.2122 3.9518 31.6004 0.012
+-5.3918 -4.3726 4.6296 1.2678 -1.7391 1.9194 5.4296 32.8928 -2.0525 -4.7365 -4.371 -6.9662 6.0031 10.7833 3.3565 32.6295 0.014
+-4.4216 -2.9806 4.8926 1.4897 -4.0924 1.8759 3.1044 31.2302 -2.5055 -5.2621 -5.1323 -6.5737 4.1319 10.4842 2.993 32.964 0.016
+-3.0671 -1.3206 5.1772 1.4303 -6.5959 1.8178 0.4606 28.7023 -2.4988 -5.6443 -6.219 -6.4834 2.3209 10.2523 2.3732 32.5009 0.018
+-2.0125 0.0126 5.624 1.3708 -9.0008 1.8601 -2.4571 25.9613 -2.4216 -6.0744 -7.4599 -6.5563 0.7207 10.0158 1.3118 31.8217 0.02
+-1.6282 0.6792 6.1788 1.668 -11.1278 1.9872 -5.285 23.879 -2.7505 -6.5044 -8.4291 -6.466 -0.7268 9.7492 0.0498 31.4306 0.022
+-1.6657 0.8034 6.6003 2.2822 -12.8962 2.0405 -7.673 22.7264 -3.4955 -6.877 -8.9121 -5.952 -2.1528 9.4663 -1.074 31.2145 0.024
+-1.5719 0.7576 6.7409 2.7736 -14.344 1.9775 -9.5717 21.9936 -4.0627 -7.2927 -9.1401 -5.0143 -3.5228 9.1023 -2.0194 30.7051 0.026
+-1.0657 0.7511 6.7409 2.833 -15.5319 1.8759 -11.2415 20.9346 -3.915 -7.9234 -9.4655 -3.9029 -4.6154 8.5574 -3.1008 29.6605 0.028
+-0.4658 0.64 6.7481 2.6388 -16.4105 1.8674 -12.9338 19.1106 -3.3982 -8.8312 -9.7774 -2.8922 -5.2413 7.7923 -4.6393 28.1837 0.03
+-0.4283 0.1433 6.6724 2.5675 -16.8789 1.9739 -14.6844 16.5569 -3.66 -9.9301 -9.5996 -2.0969 -5.4112 6.8556 -6.6483 26.4136 0.032
+-1.2579 -0.837 6.2977 2.6904 -17.0425 2.1591 -16.2868 13.5512 -5.3513 -11.1628 -8.8048 -1.3918 -5.2607 5.7612 -8.8668 24.3656 0.034
+-2.5281 -2.1571 5.5879 2.726 -17.2241 2.3092 -17.4808 10.3421 -7.6669 -12.6201 -7.9998 -0.5653 -4.9359 4.4372 -11.0386 21.9677 0.036
+-3.4233 -3.5492 4.6692 2.5041 -17.6387 2.3055 -18.1227 6.9393 -9.0697 -14.3688 -7.8724 0.5427 -4.5573 2.8026 -13.0119 19.2251 0.038
+-3.5686 -4.719 3.6748 2.1871 -18.0668 2.0102 -18.226 3.2427 -9.0093 -16.2083 -8.3252 1.8902 -4.2347 0.9176 -14.6128 16.1274 0.04
+-3.292 -5.4248 2.7057 1.9731 -18.0892 1.3869 -17.9791 -0.8025 -8.4321 -17.699 -8.5968 3.1857 -3.9831 -0.9698 -15.6362 12.613 0.042
+-3.1795 -5.5751 2.0283 1.7869 -17.5715 0.4949 -17.5975 -5.0931 -8.516 -18.5016 -8.1441 4.0158 -3.6433 -2.5673 -16.0108 8.6663 0.044
 \end{lstlisting}
+\end{landscape}
 
 Dodatkowo dostarczony zosta³ plik przechowuj¹cy wyznaczone przez lekarza momenty wyst¹pienia ataków dla ka¿dego z pacjentów. Plik w kolejnych wierszach zawiera punkty w czasie rozdzielone przecinkami (w sekundach).
 Ka¿dy wiersz odpowiada jednemu pacjentowi, dlatego plik zawiera 104 wiersze. Fragment pliku z czasami wyst¹pienia ataków:
-\begin{lstlisting}[caption=Punkty w czasie wyst¹pienia ataków]
+\begin{lstlisting}[caption=Punkty w czasie wyst¹pienia ataków (w sekundach)] 
 835,853,865,873,889,908
 18,48,110,309,466,618,757
 216,239
@@ -50,24 +65,38 @@ Ka¿dy wiersz odpowiada jednemu pacjentowi, dlatego plik zawiera 104 wiersze. Fra
 622,653,676,737
 \end{lstlisting}
 
+Dane z kilku kana³ów z naniesionym momentem wyst¹pienia ataku przedstawione zosta³y na rysunku \ref{fig:data_vis}.
+Mo¿na zaobserowaæ, ¿e bez posiadania specjalistycznej wiedzy ciê¿ko by³oby okreœliæ moment wyst¹pienia ataku. 
+Fragmenty odczytu w momencie ataku na pierwszy rzut oka nieznacznie ró¿ni¹ siê od pozosta³ych.
+Œwiadczy o wiele wiêkszej z³o¿onoœci problemu w porównaniu do zadañ, z którymi mózg praktycznie ka¿dego cz³owieka radzi sobie doskonale np. rozpoznawanie liczb, odró¿nianie psów od kotów itp.
+
+\begin{landscape}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=25cm]{Rysunki/Rozdzial2/eeg_vis.png}
+	\caption{Wykres przedstawiaj¹cy odczyt EEG z zaznaczonym momentem wyst¹pienia ataku}
+	\label{fig:data_vis}
+\end{figure}
+\end{landscape}
+
 W celu wykorzystania przedstawionych danych w procesie uczenia sieci neuronowej musz¹ zostaæ one odpowiednio przygotowane.
 Wybrane podejœcie zak³ada podzielenie danych na okna czasowe o okreœlonej d³ugoœci. Znane s¹ jedynie pocz¹tki ataków, jednak nie wiadomo jak d³ugo trwa³y. D³ugoœæ okna czasowego, wed³ug którego podzielone zostan¹ dane bêdzie wiêc jednym z parametrów, który nale¿y dobraæ w celu uzyskania najlepszych rezultatów.
 
 Do przygotowania danych stworzony zosta³ skrypt, który wykonuje nastêpuj¹ce czynnoœci:
 \begin{itemize}
-	\item wczytanie danych pacjentów oraz informacji o atakach
-	\item przetworzenie danych do czêstotliwoœci 100Hz
-	\item podzia³ danych na okna czasowe o d³ugoœci przekazanej jako parametr (w sekundach)
-	\item normalizacja danych - œrednia 0, odchylenie standardowe 1
-	\item konwersja danych dotycz¹cych czasu wyst¹pienia ataków na postaæ tzw. "jeden z n" \textit{(ang. one-hot encoding)}
-	\item wyœwietlanie informacji o postêpie przetwarzanych plików
-	\item zapis pobranych danych do plików tymczasowych umo¿liwiaj¹cych szybszy odczyt
+	\item wczytanie danych pacjentów oraz informacji o atakach,
+	\item przetworzenie danych do czêstotliwoœci 100Hz,
+	\item podzia³ danych na okna czasowe o d³ugoœci przekazanej jako parametr (w sekundach),
+	\item normalizacja danych - œrednia 0, odchylenie standardowe 1,
+	\item konwersja danych dotycz¹cych czasu wyst¹pienia ataków na postaæ tzw. "jeden z n" \textit{(ang. one-hot encoding)},
+	\item wyœwietlanie informacji o postêpie przetwarzanych plików,
+	\item zapis pobranych danych do plików tymczasowych umo¿liwiaj¹cych szybszy odczyt.
 \end{itemize}
 
 Technicznie skrypty zosta³y podzielone na 2 pliki:
 \begin{itemize}
-\item data\_reader.py
-\item chunks\_creator.py
+\item data\_reader.py,
+\item chunks\_creator.py.
 \end{itemize}
 
 Pierwszy z nich zajmuje siê wczytywaniem i korzysta z drugiego w celu stworzenia okien czasowych.
@@ -217,7 +246,7 @@ Funkcja \textit{prepare\_data()} w powy¿szym skrypcie korzysta z osobnego pliku 
 Dla danych ka¿dego z pacjentów tworzonych jest \textit{2 * n} okien czasowych, gdzie \textit{n} oznacza iloœæ zdiagnozowanych ataków. 
 
 Porcje danych zawieracj¹ce ataki tworzone s¹ na pocz¹tku ka¿dego z nich i trwaj¹ przez okreœlony czas podany w parametrze. Nastêpnie tworzone jest \textit{n} kolejnych porcji danych zawieraj¹cych dane liczbowe z okresu, w którym nie wyst¹pi³ atak.
-Utworzone okna czasowe zawieraj¹ wiêc proporcjonaln¹ iloœæ danych z atakami oraz bez.
+Utworzone okna czasowe zawieraj¹ wiêc tak¹ sam¹ iloœæ danych z atakami oraz bez.
 Dodatkowo tworzona jest tablica zawieraj¹ca informacje o tym czy dla danego okna czasowego wyst¹pi³  \textit{(wartoœæ 1)} lub nie wyst¹pi³ \textit{(wartoœæ 0)} atak.
 
 Implementacja skryptu odopowiadaj¹cego za przetwarzanie danych do postaci okien czasowych przedstawiona zosta³a na listlingu \ref{lst:chunks-creator.py}.
@@ -333,12 +362,12 @@ def prepare_chunks(input, target, chunk_size_in_seconds, ratio):
 
 Przedstawione skrypty umo¿liwiaj¹ pobranie odpowiednio przygotowanych danych, które nastêpnie mog¹ byæ u¿yte w procesie uczenia sieci neuronowej.
 
-\subsection{Metoda oceny wyników}
+\section{Metoda oceny wyników}
 \label{validation_method}
 Do zweryfikowania skutecznoœci modelu wymagane jest podzielenie danych na odpowiednie zbiory. Korzystanie z jednego, identycznego zbioru danych do nauki oraz testowania jest b³êdem, gdy¿ mo¿e wprowadziæ z³udne wra¿enie, ¿e model posiada bardzo dobr¹ skutecznoœæ. Sieæ neuronowa, której dzia³anie weryfikowane jest na danych, które pos³u¿y³y do nauki bêdzie posiadaæ skutecznoœæ blisk¹ 100\%. Dzieje siê tak dlatego, ¿e umie ona rozpoznawaæ te konkretne dane, gdy¿ zna dla nich wartoœci wyjœciowe, które podane zosta³y podczas nauki. W ten sposób nauczony model bêdzie natomiast posiada³ bardzo nisk¹ skutecznoœæ, gdy na jego wejœcie podane zostan¹ dane, które nigdy wczeœniej nie zosta³y mu przedstawione.
-W ka¿dym rodzaju uczenia maszynowego d¹¿y siê do uzyskania jak najwiêkszej zdolnoœci generalizacji, czyli skutecznoœci klasyfikacji danych, które nie zosta³y nigdy wczeœniej przekazane do modelu. Przeciwieñstwem tego jest tzw. "nadmierne dopasowanie" \textit{(ang. overfitting)}, czyli sytuacja, w której model zbytnio dopasowuje siê do danych ucz¹cych, co powoduje bardzo s³ab¹ zdolnoœæ generalizacji. Zjawisko to jest g³ównym problemem podczas uczenia modelu.
+W ka¿dym rodzaju uczenia maszynowego d¹¿y siê do uzyskania jak najwiêkszej zdolnoœci generalizacji, czyli skutecznoœci klasyfikacji danych, które nie zosta³y nigdy wczeœniej przekazane do modelu. Przeciwieñstwem tego jest tzw. \textit{nadmierne dopasowanie} (ang. \textit{overfitting}), czyli sytuacja, w której model zbytnio dopasowuje siê do danych ucz¹cych, co powoduje bardzo s³ab¹ zdolnoœæ generalizacji. Zjawisko to jest g³ównym problemem podczas uczenia modelu.
 
-\subsubsection{Hold-out}
+\subsection{Hold-out}
 Podstawowym sposobem oceny wyników jest podzielenie danych na dwa zbiory: treningowy oraz testowy \textit{(ang. hold-out)}. Mo¿na dzieliæ je w ró¿nych proporcjach np. 80/20, 90/10, 95/5 itp. w zale¿noœci od iloœci posiadanych danych. Przy niewielkich zbiorach wydzielenie zbyt du¿ej liczby danych do zbioru testowego mo¿e powodowaæ niedobory w procesie nauki. Wydzielenie jedynie dwóch zbiorów danych nie rozwi¹zuje jednak do koñca problemu \textit{overfitting}'u, gdy¿ zbyt czêsta zmiana modelu i sprawdzanie jego skutecznoœci na danych testowych mo¿e spowodowaæ zbyt du¿e dopasowanie do zbioru testowego \cite{Chollet:2018}. Z tego wzglêdu czêsto stosowany jest dodatkowy zbiór walidacyjny \textit{(ang. validation set)}. W tym podejœciu model uczony jest na danych treningowych, sprawdzany na danych walidacyjnych i na podstawie tych wyników wprowadza siê modyfikacje w modelu. Zbiór testowy s³u¿y jedynie do ostatecznego sprawdzenia skutecznoœci modelu, gdy¿ s¹ to dane, które nigdy wczeœniej nie zosta³y u¿yte w procesie nauki. Dane dzielone s¹ w proporcjach np. 80/10/10, 90/5/5. Schemat tego podejœcia przedstawiony jest na rysunku \ref{fig:hold-out-validation}
 
 \begin{figure}[h!]
@@ -348,10 +377,10 @@ Podstawowym sposobem oceny wyników jest podzielenie danych na dwa zbiory: trenin
 	\label{fig:hold-out-validation}
 \end{figure}
 
-Metoda ta rozwi¹zuje problem zbytniego dopasowywania siê do zbioru testowego, jednak równie¿ posiada drug¹ wadê poprzedniego rozwi¹zania. Przy niewielkiej iloœci danych wydzielanie osobnych zbiorów mo¿e spowodowaæ, ¿e zbiór ucz¹cy bêdzie zbyt ma³y. W celu unikniêcia tego problemu mo¿na zastosowaæ tzw. walidacjê krzy¿ow¹ i jej iteracyjne rozszerzenie.
+Metoda ta rozwi¹zuje problem zbytniego dopasowywania siê do zbioru testowego, jednak równie¿ posiada wadê poprzedniego rozwi¹zania. Przy niewielkiej iloœci danych wydzielanie osobnych zbiorów mo¿e spowodowaæ, ¿e zbiór ucz¹cy bêdzie zbyt ma³y. W celu unikniêcia tego problemu mo¿na zastosowaæ tzw. walidacjê krzy¿ow¹ i jej iteracyjne rozszerzenie.
 
 
-\subsubsection{Walidacja krzy¿owa}
+\subsection{Walidacja krzy¿owa}
 Kolejn¹ metod¹ walidacji jest tzw. \textit{k}-krotna walidacja krzy¿owa \textit{(ang. k-fold cross-validation)}. Tak samo jak w przypadku metody \textit{holdout} nale¿y najpierw wydzieliæ zbiór testowy, który nie bêdzie bra³ udzia³u w procesie uczenia i walidacji. Pozosta³e dane dzielone s¹ na \textit{k} zbiorów, przewa¿nie jest to \textit{k = 5} lub \textit{k = 10}. Nastêpnie \textit{k}-krotnie powtarzany jest proces wyboru jednego \textit{i}-tego zbioru, gdzie \textit{i} oznacza kolejne liczby z przedzia³u \textit{<1; k>}. Zbiór o numerze \textit{i} wybierany jest jako zbiór walidacyjny, natomiast reszta \textit{k - 1} zbiorów s³u¿¹ jako dane ucz¹ce. Nale¿y pamiêtaæ, ¿eby w ka¿dym przebiegu uczyæ now¹ instancjê modelu. W rezultacie model uczony jest \textit{k}-krotnie na ró¿nych kombinacjach danych. Jako wynik koñcowy brana jest pod uwagê œrednia skutecznoœæ wszystkich modeli. Sposób podzia³u danych w tej metodzie ilustruje rysunek \ref{fig:cross-validation}.
 
 \begin{figure}[h!]
@@ -363,10 +392,10 @@ Kolejn¹ metod¹ walidacji jest tzw. \textit{k}-krotna walidacja krzy¿owa \textit{
 
 Przedstawion¹ metodê mo¿na rozszerzyæ do jej iteracyjnej wersji polegaj¹cej na tym, ¿e ca³y proces \textit{k}-krotnej walidacji krzy¿owej wykonywany jest \textit{n} razy. Dodatkowo po ka¿dej iteracji mo¿na zastosowaæ mieszanie danych. Walidacja t¹ metod¹ co prawda trwa o wiele d³u¿ej, gdy¿ model walidowany jest \textit{k * n} razy, jednak pozwala uzyskaæ bardziej wiarygodne wyniki, gdy nie jest dostêpna zbyt du¿a liczba danych.
 
-\subsubsection{Implementacja walidacji}
+\subsection{Implementacja walidacji}
 \label{crossvalidation_implementation}
-Zaimplementowane zosta³y obie metody podzia³u danych, jednak ze wzglêdu na swoje zalety metody iteracyjnej \textit{k}-krotnej walidacji krzy¿owej to w³asnie ona zosta³a u¿yta do walidacji w procesie uczenie. Podzia³ danych wed³ug obu metod zosta³ wykonany za pomoc¹ biblioteki \textit{sklearn}, która dostarcza przygotowane do tego celu funkcje \ref{lst:split}.
-\begin{lstlisting}[caption=Podzia³ danych na zbiory, language=Python, label={lst:split}, float=h!]
+Zaimplementowane zosta³y obie metody podzia³u danych, jednak ze wzglêdu na swoje zalety metody iteracyjnej \textit{k}-krotnej walidacji krzy¿owej to w³asnie ona zosta³a u¿yta do walidacji w procesie uczenie. Podzia³ danych wed³ug obu metod zosta³ wykonany za pomoc¹ biblioteki \textit{sklearn}, która dostarcza przygotowane do tego celu funkcje (patrz listing \ref{lst:split}).
+\begin{lstlisting}[caption=Podzia³ danych na podzbiory treningowe i testowe, language=Python, label={lst:split}, float=h!]
 from sklearn.model_selection import train_test_split, StratifiedKFold
 from data_reader import get_data
 
@@ -424,18 +453,18 @@ print("~~~Grand mean of average accuracy: {}".format(round(grand_mean_avg, 6)))
 
 Do uruchamiania procesu uczenia u¿ywana jest funkcja \textit{run\_pipeline}, która szczegó³owo opisana zostanie w rozdziale \ref{run_learning}.
 
-\subsection{Uruchomienie uczenia w³aœciwego}
+\section{Uruchomienie uczenia w³aœciwego}
 \label{run_learning}
 Do uruchomienia procesu uczenia w³aœciwego s³u¿y funkcja \textit{run\_pipeline()}, która wykonuje nastêpuj¹ce czynnoœci:
 \begin{itemize}
-\item tworzy model na podstawie dostarczonych specyfikacji (\ref{build_model})
-\item pobiera odpowiednie porcje danych dla ka¿dego kroku z przytogowanych wczeœniej zbiorów (\ref{crossvalidation_implementation})
-\item tworzy listê tzw. \textit{callback}'ów (\ref{callbacks})
-\item uruchamia na modelu metodê s³u¿¹c¹ do dopasowania, która rozpoczyna uczenie (\ref{fit})
-\item wczytuje wagi najlepszego modelu i sprawdza jego skutecznoœæ (\ref{verify_accuracy})
+\item tworzy model na podstawie dostarczonych specyfikacji (\ref{build_model}),
+\item pobiera odpowiednie porcje danych dla ka¿dego kroku z przytogowanych wczeœniej zbiorów (\ref{crossvalidation_implementation}),
+\item tworzy listê tzw. \textit{callback}'ów (\ref{callbacks}),
+\item uruchamia na modelu metodê rozpoczynaj¹c¹ uczenie (\ref{fit}),
+\item wczytuje wagi najlepszego modelu i sprawdza jego skutecznoœæ (\ref{verify_accuracy}).
 \end{itemize}
 
-Ca³e cia³o metody \textit{run\_pipeline} zaprezentowane zosta³o na listingu \ref{lst:run-pipeline}. Poszczególne kroki zostan¹ opisane w kolejnych rozdzia³ach.
+Kod metody \textit{run\_pipeline} zaprezentowany zosta³ na listingu \ref{lst:run-pipeline}. Poszczególne kroki zostan¹ opisane w kolejnych rozdzia³ach.
 
 \begin{lstlisting}[caption=Implementacja metody uruchamiaj¹cej uczenie w³aœciwe, language=Python, label={lst:run-pipeline}]
 def run_pipeline(create_model, folds, x, y, epochs):
@@ -474,9 +503,9 @@ def run_pipeline(create_model, folds, x, y, epochs):
     return best_model_score
 \end{lstlisting}
 
-\subsubsection{Budowa modelu}
+\subsection{Budowa modelu}
 \label{build_model}
-Model tworzony jest na podstawie dostarczonych specyfikacji w postaci funkcji. Funkcja zawiera kroki buduj¹ce model z kolejnych warstw, które dostêpne s¹ jako gotowe komponenty z biblioteki Keras. Ka¿da z warstw jest parametryzowana wybranymi wartoœciami. 
+Model tworzony jest na podstawie dostarczonych specyfikacji w postaci funkcji. Funkcja wykonuje kolejne kroki buduj¹ce model z kolejnych warstw, które dostêpne s¹ jako gotowe komponenty z biblioteki Keras. Ka¿da z warstw jest parametryzowana wybranymi wartoœciami. 
 Po utworzeniu modelu jest on kompilowany. Na tym etapie podawane s¹ równie¿ informacje odnoœnie tego jaki optymalizator, funkcja strat oraz metryka skutecznoœci ma zostaæ u¿yta. Dodatkowo tworzony jest równie¿ opis modelu wykorzystywany póŸniej w procesie monitorowania.
 
 Na listingu \ref{lst:model-example} zosta³a zaprezentowana funkcja tworz¹ca przyk³adowy model splotowej sieci neuronowej z 1-wymiarowym filtrem.
@@ -509,16 +538,16 @@ def conv_1D_with_adam(input_shape):
     return model, description
 \end{lstlisting}
 
-\subsubsection{Lista callback'ów}
+\subsection{Lista callback'ów}
 \label{callbacks}
 Dodatkowym parametrem przekazywanym do procesu uczenia jest lista tzw. \textit{callback}'ów, czyli wywo³añ zwrotnych, które umo¿liwiaj¹ otrzymywanie informacji z wnêtrza modelu podczas jego nauki.
 
 Zosta³y utworzone 4 nastêpuj¹ce callbacki:
 \begin{itemize}
-\item \textbf{EarlyStopping} - pozwala na wczeœniejsze zatrzymanie procesu uczenia w przypadku, gdy monitorowana metryka nie zosta³a poprawiona przez okreœlon¹ iloœæ epok
-\item \textbf{LearningRateScheduler} - implementuje adaptacyjn¹ metodê zmiany wspó³czynnika uczenia wed³ug podanych regu³
-\item \textbf{ModelCheckpoint} - umo¿liwia zapisanie modelu, który posiada najlepsze dopasowanie wed³ug okreœlonej metryki
-\item \textbf{TensorBoard} - tworzy logi z procesu uczenia w podanym folderze, które mog¹ byæ u¿yte do monitorowania przez narzêdzie TensorBoard \ref{monitoring}
+\item \textbf{EarlyStopping} - pozwala na wczeœniejsze zatrzymanie procesu uczenia w przypadku, gdy monitorowana metryka nie zosta³a poprawiona przez okreœlon¹ iloœæ epok,
+\item \textbf{LearningRateScheduler} - implementuje adaptacyjn¹ metodê zmiany wspó³czynnika uczenia wed³ug podanych regu³,
+\item \textbf{ModelCheckpoint} - umo¿liwia zapisanie modelu, który posiada najlepsze dopasowanie wed³ug okreœlonej metryki,
+\item \textbf{TensorBoard} - tworzy logi z procesu uczenia w podanym folderze, które mog¹ byæ u¿yte do monitorowania przez narzêdzie TensorBoard \ref{monitoring}.
 \end{itemize}
 
 
@@ -556,12 +585,12 @@ def callbacks_list(description):
 ]
 \end{lstlisting}
 
-\subsubsection{Funkcja dopasowania}
+\subsection{Funkcja dopasowania}
 \label{fit}
 Wykonywana na modelu funkcja \textit{fit()} rozpoczyna procedurê uczenia, czyli dopasowania do danych.
 Jako argumenty przykazywane s¹ do niej dane treningowe i walidacyjne, liczba epok ucz¹cych, \textit{callback}'i oraz inne parametry. Podczas nauki wyœwietlane s¹ informacje o postêpie uczenia oraz zwracany jest raport zawieraj¹cy historiê wartoœci metryk w kolejnych epokach, na podstawie których mo¿na np. narysowaæ wykres przedstawiaj¹cy postêpy.
-Te wartoœci nie bêd¹ jednak u¿ywane, gdy¿ ca³a historia i postêpy uczenia s¹ ³adowane do programu monitoruj¹cego TensorBoard z logów tworzonych przez callback TensorBoard \ref{monitoring}.
-Dodatkowo dla ka¿dej iteracji zapisywany jest najlepszy model, który na sam koniec zostanie za³adowany i sprawdzony pod k¹tem skutecznoœci \ref{verify_accuracy}.
+Te wartoœci nie bêd¹ jednak u¿ywane, gdy¿ ca³a historia i postêpy uczenia s¹ ³adowane do programu monitoruj¹cego TensorBoard z logów tworzonych przez callback TensorBoard (patrz rozdzia³ \ref{monitoring}).
+Dodatkowo dla ka¿dej iteracji zapisywany jest najlepszy model, który na sam koniec zostanie za³adowany i sprawdzony pod k¹tem skutecznoœci (patrz listing \ref{verify_accuracy}).
 
 \begin{lstlisting}[caption=Wywo³anie metody \textit{fit()} na modelu, language=Python, label={lst:fit}]
 history = model.fit(x_train_cv,
@@ -573,7 +602,7 @@ history = model.fit(x_train_cv,
                     verbose=0)
 \end{lstlisting}
 
-\subsubsection{Sprawdzenie skutecznoœci}
+\subsection{Sprawdzenie skutecznoœci}
 \label{verify_accuracy}
 W celu sprawdzenia skutecznoœci wczytywany jest najlepiej dopasowany model z danej iteracji i jest on sprawdzany metod¹ \textit{evaluate()} na danych walidacyjnych. Wynik jest nastêpnie wyœwietlany i zapisywany do tablicy, która pos³u¿y do policzenia œredniej skutecznoœci modelu. Przedstawione dzia³ania wykonuje kod zaprezentowany na listingu \ref{lst:validation}
 
@@ -587,21 +616,21 @@ print("--Best model validation accuracy: %.2f%%" % (best_model_score[fold_number
 
 \section{Monitorowanie}
 \label{monitoring}
-Model sieci neuronowej po zakoñczeniu procesu nauki zwraca obiekt zawieraj¹cy raport z wynikami. W sytuacji gdy proces uczenia przeprowadzany jest kilkukrotnie nale¿a³oby rêcznie zarz¹dzaæ obiektami raportów. Dodatkowo, przedstawienie wyników w sposób czytelny i ³atwy do zinterpretowania wymaga zaimplementowania metod wizualizacyjnych np. rysowanie wykresu. Nie ma jednak potrzeby rêcznej implementacji wy¿ej wymienionych funkcjonalnoœci, gdy¿ istniej¹ dedykowane narzêdzia umo¿liwiaj¹ce prezentacjê wyników w czasie rzeczywistym w przyjaznej dla u¿ytkownika formie.
+Model sieci neuronowej po zakoñczeniu procesu nauki zwraca obiekt zawieraj¹cy raport z wynikami. W sytuacji, gdy proces uczenia przeprowadzany jest kilkukrotnie nale¿a³oby rêcznie zarz¹dzaæ obiektami raportów. Dodatkowo, przedstawienie wyników w sposób czytelny i ³atwy do zinterpretowania wymaga zaimplementowania metod wizualizacyjnych np. rysowanie wykresu. Nie ma jednak potrzeby rêcznej implementacji wy¿ej wymienionych funkcjonalnoœci, gdy¿ istniej¹ dedykowane narzêdzia umo¿liwiaj¹ce prezentacjê wyników w czasie rzeczywistym w przyjaznej dla u¿ytkownika formie.
 
 Do monitorowania procesu uczenia zosta³o u¿yte narzêdzie \textit{TensorBoard}, które dostarczone jest razem z bibliotek¹ \textit{TensorFlow}. Pozwala ono m.in. na graficzn¹ wizualizacjê postêpów w procesie uczenia oraz automatyczne generowanie schematu modelu sieci neuronowej. Jest to narzêdzie uruchamiane w przegl¹darce, które wykorzystuje logi wygenerowane przez \textit{callback.TensorBoard} omawiany w rozdziale \ref{callbacks}. 
 
-Na najprostszym widoku widoczne s¹ 4 wykresy ilustruj¹ce nastêpuj¹ce wartoœci:
+Na podstawowym widoku przedstawione s¹ 4 wykresy ilustruj¹ce nastêpuj¹ce wartoœci:
 \begin{itemize}
-\item \textbf{acc} - dok³adnoœæ w procesie uczenia
-\item \textbf{loss} - wartoœæ funkcji strat w procesie uczenia
-\item \textbf{val\_acc} - dok³adnoœæ w procesie walidacji
-\item \textbf{val\_loss} - wartoœæ funkcji strat w procesie walidacji
+\item \textbf{acc} - dok³adnoœæ w procesie uczenia,
+\item \textbf{loss} - wartoœæ funkcji strat w procesie uczenia,
+\item \textbf{val\_acc} - dok³adnoœæ w procesie walidacji,
+\item \textbf{val\_loss} - wartoœæ funkcji strat w procesie walidacji.
 \end{itemize}\
 Wykresy zosta³y zaprezentowane na rysunku \ref{fig:tensor-board}. S¹ one interaktywe, wiêc mo¿na sprawdziæ dok³adn¹ wartoœæ w ka¿dym punkcie wykresu.
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=12cm]{Rysunki/Rozdzial5/tensor-board.png}
+	\includegraphics[width=14cm]{Rysunki/Rozdzial5/tensor-board.png}
 	\caption{Dynamicznie tworzone wykresy w programie TensorBoard}
 	\label{fig:tensor-board}
 \end{figure}
@@ -610,7 +639,7 @@ Wizualna reprezentacja utworzonego modelu równie¿ mo¿e byæ pomocna przy ocenie a
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=7cm]{Rysunki/Rozdzial5/tensor-board-model.png}
+	\includegraphics[width=10cm]{Rysunki/Rozdzial5/tensor-board-model.png}
 	\caption{Fragment schematu modelu wygenerowany przez TensorBoard}
 	\label{fig:tensor-board-model}
 \end{figure}
@@ -620,15 +649,15 @@ TensorBoard udostêpnia równie¿ wiele innych funkcjonalnoœci, które nie zosta³y u
 \section{Wybór rodzaju sieci neuronowej}
 Wybór rodzaju oraz wstêpnej architektury sieci neuronowej ma kluczowe znaczenie. To w³aœnie te czynniki bêd¹ w g³ównej mierze decydowaæ o skutecznoœci modelu. Po dobraniu rodzaju sieci neuronowej, który umo¿liwia uzyskanie jak najlepszych wyników nastêpuje faza optymalizacji, czyli dostosowywania parametrów, która zostanie opisana w rozdziale \ref{optimization}.
 
-Przy wyborze modelu warto zacz¹æ od rozwi¹zañ najprostszych. Proste modele bêd¹ potrzebowa³y zdecydowanie mniej czasu na naukê, ni¿ te z³o¿one, dlatego dziêki u¿yciu tego podejœcia bêdzie mo¿na w krótkim czasie uzyskaæ pierwsze rezultaty. Mo¿e siê równie¿ okazaæ, ¿e bardzo prosty model jest skuteczny w aktualnie rozpatrywanym problemie.
+Przy wyborze modelu warto zacz¹æ od rozwi¹zañ najprostszych. Proste modele bêd¹ potrzebowa³y zdecydowanie mniej czasu na naukê, ni¿ te z³o¿one, dlatego dziêki u¿yciu tego podejœcia bêdzie mo¿na w krótkim czasie uzyskaæ pierwsze rezultaty. Mo¿e siê równie¿ okazaæ, ¿e bardzo prosty model jest dostatecznie skuteczny w aktualnie rozpatrywanym problemie.
 
 Podczas próby znalezienia odpowiedniego rodzaju sieci neuronowej rozpatrzone zosta³y nastêpuj¹ce opcje:
 \begin{itemize}
-\item klasyczna sieæ typu \textit{fully-connected}
-\item sieæ splotowa z filtrem 1-wymiarowym
-\item sieæ splotowa z filtrem 2-wymiarowym
-\item sieæ rekurencyjna
-\item po³¹czenie sieci splotowej z rekurencyjn¹
+\item klasyczna sieæ typu \textit{fully-connected},
+\item sieæ splotowa z filtrem 1-wymiarowym,
+\item sieæ splotowa z filtrem 2-wymiarowym,
+\item sieæ rekurencyjna,
+\item po³¹czenie sieci splotowej z rekurencyjn¹.
 \end{itemize}
 
 \subsection{Klasyczna sieæ neuronowa typu fully connected}
@@ -649,8 +678,25 @@ model.compile(loss='binary_crossentropy', optimizer=sgd, metrics=['accuracy'])
 Sieæ sk³ada siê z warstwy wejœciowej \textit{Flatten}, która odpowiada za zmniejszenie stopnia wymiarowoœci danych tak, aby mog³y byæ u¿yte w sieci tego typu. Przez tê operacjê tracone s¹ pewne informacje o s¹siedztwie danych, gdy¿ teraz s¹ one jedynie wektorem zamiast wielowymiarow¹ tablic¹, jednak jest ona wymagana.
 Kolejne warstwy stanowi¹ warstwy \textit{Dense} zawieraj¹ce ró¿n¹ iloœæ neuronów. Pocz¹tkowo zosta³y u¿yte wartoœci 1000 i 30.
 Sieæ zakoñczona jest warstw¹ z jednym neuronem i sigmoidaln¹ funkcj¹ aktywacji, która zwraca na wyjœciu wartoœæ 1 lub 0.
-Jako optymalizator u¿yty zosta³ \textit{SGD} (\textit{ang. stochastic gradient descent}) z funkcj¹ strat binarnej entropii krzy¿owej \textit{(ang. binary crossentropy)}.
+Jako optymalizator u¿yty zosta³ \textit{SGD} (\textit{ang. stochastic gradient descent}) z funkcj¹ strat binarnej entropii krzy¿owej \textit{(ang. binary crossentropy)}. Podsumowanie modelu wygenerowane przez bibliotekê \textit{Keras}, opisuj¹ce iloœæ warstw oraz ich wielkoœci, zamieszczono na listingu \ref{lst:summary_fc}.
 
+\begin{lstlisting}[caption=Podsumowanie modelu sieci neuronowej typu \textit{fully connected}, language=Python, label={lst:summary_fc}]
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+flatten_3 (Flatten)          (None, 3200)              0         
+_________________________________________________________________
+dense_3 (Dense)              (None, 1000)              3201000   
+_________________________________________________________________
+dense_4 (Dense)              (None, 30)                30030     
+_________________________________________________________________
+dense_5 (Dense)              (None, 1)                 31        
+=================================================================
+Total params: 3,231,061
+Trainable params: 3,231,061
+Non-trainable params: 0
+____________________________
+\end{lstlisting}
 
 Proces nauki zaproponowanej sieci neuronowej przebiega³ szybko ze wzglêdu na jej prostotê. Jedna pe³na iteracja trwa³a jedynie oko³o 90 sekund. Wyniki by³y jednak bardzo s³abe. Skutecznoœæ podczas uczenia modelu oscylowa³a wokó³ wartoœci 50\% (48\% - 52\%). Skutecznoœæ walidacyjna równie¿ by³a praktycznie sta³a i zawsze bliska \textbf{50\%} \ref{fig:fully-connected-results}. 
 
@@ -668,7 +714,7 @@ Mo¿na wiêc zauwa¿yæ, ¿e sieæ dzia³a³a praktycznie w sposób losowy, gdy¿ tyle wyn
 \label{conv-1d}
 Kolejnym testowanym typem by³a sieæ splotowa z 1-wymiarowym filtrem, której zastosowanie polecane jest do danych w formie szeregów czasowych np. dane z ¿yroskopu czy akcelerometru. W bibliotece Keras warstwy tego typu nazwane s¹ \textit{Conv1D (ang. Convolutional 1-dimension)}. Filtr jednowymiarowy jest w stanie odnajdywaæ podobieñstwa miêdzy danymi jedynie w jednym wymiarze. W przypadku dostêpnych danych z EEG mog¹ byæ to wartoœci tylko z jednego kana³u jednoczeœnie. Oznacza to, ¿e byæ mo¿e sieæ tego typu nie bêdzie w stanie zauwa¿yæ zale¿noœci pomiêdzy danymi znajduj¹cymi siê na ró¿nych kana³ach.
 
-Wstêpny model sieci, który zosta³ wybrany przedstawiony zosta³ na listingu \ref{lst:conv-1d}. Sk³ada siê on z dwóch warstw konwolucyjnych o odpowiednio 32 i 16 filtrach z warstwami \textit{max pooling}'u. Sieci splotowe zwykle zakoñczone s¹ kilkoma warstwami typu \textit{fully-connected}. W tym wypadku zosta³a zastosowana jedna warstwa z 64 neuronami oraz warstwa wyjœciowa z jednym neuronem i sigmoidaln¹ funkcj¹ aktywacji. Warstwa koñcowa tego typu bêdzie wykorzystywana w ka¿dym modelu, gdy¿ daje ona mo¿liwoœæ zwrócenia na wyjœciu z sieci wartoœæ 0 lub 1, które oznaczaj¹ brak lub pojawienie siê ataku.
+Wstêpny model sieci, który zosta³ wybrany przedstawiony zosta³ na listingu \ref{lst:conv-1d}. Sk³ada siê on z dwóch warstw konwolucyjnych o odpowiednio 32 i 16 filtrach z warstwami \textit{max pooling}'u. Sieci splotowe zwykle zakoñczone s¹ kilkoma warstwami typu \textit{fully-connected}. W tym wypadku zosta³a zastosowana jedna warstwa z 64 neuronami oraz warstwa wyjœciowa z jednym neuronem i sigmoidaln¹ funkcj¹ aktywacji. Warstwa koñcowa tego typu bêdzie wykorzystywana w ka¿dym modelu, gdy¿ daje ona mo¿liwoœæ zwrócenia na wyjœciu z sieci wartoœæ 0 lub 1, które oznaczaj¹ brak lub pojawienie siê ataku. Podsumowanie modelu znajduje siê na listingu \ref{lst:conv1d_summary}
 
 \begin{lstlisting}[caption=Model splotowej sieci neuronowej z 1-wymiarowym filtrem, language=Python, label={lst:conv-1d}]
 model = Sequential()
@@ -686,7 +732,35 @@ model.add(Dense(1, activation='sigmoid'))
 model.compile(optimizer=Adam(), loss='binary_crossentropy', metrics=['acc'])
 \end{lstlisting}
 
-Skonstruowana w ten sposób sieæ neuronowa uczy³a siê co prawda d³u¿ej, ni¿ sieæ typu \textit{fully-connected}, gdy¿ czas nauki wynosi³ oko³o 240 sekund, jednak wyniki by³y o wiele lepsze i oscylowa³y w okolicach \textbf{70\%}. Jest to bardzo dobry wynik w porównaniu do poprzedniego bior¹c pod uwagê prost¹ architekturê sieci. Sieæ jednak bardzo szybko siê przeucza³a \textit{(ang. overfitting)}. Mo¿na to zauwa¿yæ po osi¹gniêciu 100\% skutecznoœci podczas procesu nauki \textit{(acc)} oraz wzroœcie wartoœci funkcji strat podczas walidacji \textit{(val\_loss)} \ref{fig:conv-1d-results}.
+\begin{lstlisting}[caption=Podsumowanie modelu splotowej sieci neuronowej z 1-wymiarowym filtrem, language=Python, label={lst:conv1d_summary}]
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+conv1d_2 (Conv1D)            (None, 200, 32)           3104      
+_________________________________________________________________
+dropout_5 (Dropout)          (None, 200, 32)           0         
+_________________________________________________________________
+max_pooling1d_1 (MaxPooling1 (None, 100, 32)           0         
+_________________________________________________________________
+conv1d_3 (Conv1D)            (None, 100, 16)           3088      
+_________________________________________________________________
+dropout_6 (Dropout)          (None, 100, 16)           0         
+_________________________________________________________________
+max_pooling1d_2 (MaxPooling1 (None, 50, 16)            0         
+_________________________________________________________________
+flatten_5 (Flatten)          (None, 800)               0         
+_________________________________________________________________
+dense_9 (Dense)              (None, 64)                51264     
+_________________________________________________________________
+dense_10 (Dense)             (None, 1)                 65        
+=================================================================
+Total params: 57,521
+Trainable params: 57,521
+Non-trainable params: 0
+__________________________
+\end{lstlisting}
+
+Skonstruowana w ten sposób sieæ neuronowa uczy³a siê co prawda d³u¿ej, ni¿ sieæ typu \textit{fully-connected}, gdy¿ czas nauki wynosi³ oko³o 240 sekund, jednak wyniki by³y o wiele lepsze i oscylowa³y w okolicach \textbf{70\%}. Jest to bardzo dobry wynik w porównaniu do poprzedniego bior¹c pod uwagê prost¹ architekturê sieci. Sieæ jednak bardzo szybko siê przeucza³a \textit{(ang. overfitting)}. Mo¿na to zauwa¿yæ po osi¹gniêciu 100\% skutecznoœci podczas procesu nauki \textit{(acc)} oraz wzroœcie wartoœci funkcji strat podczas walidacji \textit{(val\_loss)} (patrz rysunek \ref{fig:conv-1d-results}).
 
 \begin{figure}[h!]
 	\centering
@@ -695,14 +769,15 @@ Skonstruowana w ten sposób sieæ neuronowa uczy³a siê co prawda d³u¿ej, ni¿ sieæ 
 	\label{fig:conv-1d-results}
 \end{figure}
 
-Wyniki by³y obiecuj¹ce, wiêc sieæ tego typu zosta³a wziêta pod uwagê w dalszych pracach polegaj¹cych na optymalizacji w celu uzyskania jak najlepszych wyników \ref{optimization}.
+Wyniki by³y obiecuj¹ce, wiêc sieæ tego typu zosta³a wziêta pod uwagê w dalszych pracach polegaj¹cych na optymalizacji w celu uzyskania jak najlepszych wyników (rozdzia³ \ref{optimization}).
 
 \subsection{Sieæ splotowa z filtrem 2-wymiarowym}
 Nastêpnym typem sieci, która zosta³a przetestowana by³a sieæ splotowa z filtrem 2-wymiarowym \textit{(Conv2D)}. Sieæ ta jest bardzo podobna do konwolucyjnej sieci jednowymiarowej opisywanej w poprzednim podrozdziale \ref{conv-1d}. Ró¿nic¹ jest typ zastosowanego filtra, który w tym przypadku jest 2-wymiarowy. Pozwala wiêc analizowaæ dane w dwuwymiarowej przestrzeni. Sieci tego typu u¿ywane s¹ przewa¿nie do rozpoznawania obrazów, jednak równie dobrze mog¹ siê sprawdziæ te¿ na danych innego typu. W przypadku EEG sieæ z 2-wymiarowym filtrem bêdzie w stanie analizowaæ szereg czasowy obejmuj¹c kilka kana³ów jednoczeœnie, dziêki temu mo¿liwe bêdzie zauwa¿enie powi¹zania pomiêdzy danymi z innych kana³ów.
 
-Analogicznie do modelu sieci z filtrem jednowymiarowym zosta³ stworzony podobny z 2-wymiarowym filtrem \ref{lst:conv-2d}
+Analogicznie do modelu sieci z filtrem jednowymiarowym zosta³ stworzony podobny z 2-wymiarowym filtrem (patrz listing \ref{lst:conv-2d}).
+Podsumowanie modelu zaprezentowano na listingu \ref{lst:conv2d_summary}.
 
-\begin{lstlisting}[caption=Model splotowej sieci neuronowej z 2-wymiarowym filtrem, language=Python, label={lst:conv-2d}]
+\begin{lstlisting}[caption=Model splotowej sieci neuronowej z 2-wymiarowym filtrem, language=Python, label={lst:conv-2d}, float=!h]
 model = Sequential()
 
 model.add(Conv2D(32,(3,3),strides = (1,1),padding='same', activation = 'relu', input_shape=input_shape))
@@ -718,6 +793,30 @@ model.add(Dense(1, activation='sigmoid'))
 model.compile(optimizer=Adam(), loss='binary_crossentropy', metrics=['acc'])
 \end{lstlisting}
 
+\begin{lstlisting}[caption=Podsumowanie modelu splotowej sieci neuronowej z 2-wymiarowym filtrem, language=Python, label={lst:conv2d_summary}, float=!h]
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+conv2d_1 (Conv2D)            (None, 200, 16, 32)       320       
+_________________________________________________________________
+max_pooling2d_1 (MaxPooling2 (None, 100, 8, 32)        0         
+_________________________________________________________________
+conv3 (Conv2D)               (None, 98, 6, 16)         4624      
+_________________________________________________________________
+max_pooling2d_2 (MaxPooling2 (None, 49, 3, 16)         0         
+_________________________________________________________________
+flatten_1 (Flatten)          (None, 2352)              0         
+_________________________________________________________________
+dense_1 (Dense)              (None, 64)                150592    
+_________________________________________________________________
+dense_2 (Dense)              (None, 1)                 65        
+=================================================================
+Total params: 155,601
+Trainable params: 155,601
+Non-trainable params: 0
+_________________________________________________________________
+\end{lstlisting}
+
 Nauka tego modelu sieci trwa³a trochê d³u¿ej, ni¿ poprzedniego, gdy¿ czas wynosi³ oko³o 300 sekund. Okaza³o siê jednak, ¿e sieæ która ró¿ni siê od poprzedniej jedynie wymiarem filtra osi¹gnê³a skutecznoœæ na poziomie \textbf{75\%}. 
 Po wynikach zaprezentowanych na rysunku \ref{fig:conv-2d-results} mo¿na jednak zauwa¿yæ, ¿e pomimo lepszej skutecznoœci sieæ tego typu równie¿ bardzo szybko ulega przeuczeniu. Problem ten bêdzie rozwi¹zywany podczas próby jej optymalizacji w rozdziale \ref{optimization}.
 
@@ -729,15 +828,29 @@ Po wynikach zaprezentowanych na rysunku \ref{fig:conv-2d-results} mo¿na jednak z
 \end{figure}
 
 \subsection{Sieæ rekurencyjna}
-W nastêpnym kroku przetestowana zosta³a rekurencyjna sieæ neuronowa. Pocz¹tkowy model sieci, który zosta³ utworzony zaprezentowany zosta³ na listingu \ref{lst:recursive}. 
+W nastêpnym kroku przetestowana zosta³a rekurencyjna sieæ neuronowa. Pocz¹tkowy model sieci, który zosta³ utworzony zaprezentowany zosta³ na listingu \ref{lst:recursive}. Podsumowanie modelu zamieszczono na listingu \ref{lst:rec_summary}.
 
-\begin{lstlisting}[caption=Model rekurencyjnej sieci neuronowej, language=Python, label={lst:recursive}]
+\begin{lstlisting}[caption=Model rekurencyjnej sieci neuronowej, language=Python, label={lst:recursive}, float=!h]
 model = Sequential()
 
 model.add(LSTM(100, input_shape=input_shape))
 model.add(Dense(1, activation='sigmoid'))
     
 model.compile(optimizer='rmsprop', loss='binary_crossentropy', metrics=['acc'])
+\end{lstlisting}
+
+\begin{lstlisting}[caption=Podsumowanie modelu rekurencyjnej sieci neuronowej, language=Python, label={lst:rec_summary}, float=!h]
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+lstm_2 (LSTM)                (None, 100)               46800     
+_________________________________________________________________
+dense_17 (Dense)             (None, 1)                 101       
+=================================================================
+Total params: 46,901
+Trainable params: 46,901
+Non-trainable params: 0
+_________________________________________________________________
 \end{lstlisting}
 
 Sk³ada siê ona z jednej warstwy typu \textit{LSTM (ang. Long Short-Term Memory)}. Sieæ mimo prostej budowy uczy siê bardzo d³ugo. Czas pe³nej iteracji nauki wynosi a¿ 5700 sekund. Wynika to ze z³o¿onoœci sposobu funkcjonowania tego typu sieci. Pomimo d³u¿szego czasu nauki zaproponowana sieæ osi¹ga skutecznoœæ na poziomie jedynie ok. \textbf{60\%} \ref{fig:recursive-results}. 
@@ -749,15 +862,15 @@ Sk³ada siê ona z jednej warstwy typu \textit{LSTM (ang. Long Short-Term Memory)}
 	\label{fig:recursive-results}
 \end{figure}
 
-Jest to wynik o wiele gorszy w porównaniu do sieci konwolucyjnych testowanych w poprzednich rozdzia³ach. Próby rozbudowy i prostej optymalizacji sieci nie przynosi³y skutków, dlatego zosta³a ona pominiêta w dalszych badaniach.
+Jest to wynik o wiele gorszy w porównaniu do sieci konwolucyjnych testowanych w poprzednich rozdzia³ach. Próby rozbudowy i prostej optymalizacji sieci nie przynosi³y po¿¹danych skutków, dlatego zosta³a ona pominiêta w dalszych badaniach.
  
 Poczyniono jednak próby po³¹czenia tego typu sieci z sieciami konwolucyjnymi. Wyniki przeprowadzonych prób opisane zosta³y w rozdziale \ref{cnn_lstm}
 
 \subsection{Po³¹czenie sieci splotowej z rekurencyjn¹}
 \label{cnn_lstm}
-Ostatnim typem sieci, którego skutecznoœæ zosta³a sprawdzona jest po³¹czenie sieci splotowej z rekurencyjn¹ tzw. \textit{CNN LSTM}. Jest to bardziej rozbudowana stuktura sieci polegaj¹ca na u¿yciu kilku warstw konwolucyjnych zakoñczonych warstwami rekurencyjnymi. Prosty model sieci zbudowany wed³ug tej koncepcji zaprezentowany zosta³ na listingu \ref{lst:cnn_lstm} 
+Ostatnim typem sieci, którego skutecznoœæ zosta³a sprawdzona jest po³¹czenie sieci splotowej z rekurencyjn¹ tzw. \textit{CNN LSTM}. Jest to bardziej rozbudowana stuktura sieci polegaj¹ca na u¿yciu kilku warstw konwolucyjnych zakoñczonych warstwami rekurencyjnymi. Prosty model sieci zbudowany wed³ug tej koncepcji zaprezentowany zosta³ na listingu \ref{lst:cnn_lstm}. Jego podsumowanie zamieszczono na listingu \ref{lst:cnn_lstm_summary}.
 
-\begin{lstlisting}[caption=Model sieci typu CNN LSTM, language=Python, label={lst:cnn_lstm}]
+\begin{lstlisting}[caption=Model sieci typu CNN LSTM, language=Python, label={lst:cnn_lstm}, float=!h]
 model = Sequential()
 
 model.add(Conv1D(filters=64, kernel_size=6, padding='same', activation='relu', input_shape=input_shape))
@@ -771,6 +884,34 @@ model.add(Dense(128, activation='relu'))
 model.add(Dense(1, activation='sigmoid'))
     
 model.compile(optimizer=Adam(), loss='binary_crossentropy', metrics=['acc'])
+\end{lstlisting}
+
+\begin{lstlisting}[caption=Podsumowanie modelu sieci typu CNN LSTM, language=Python, label={lst:cnn_lstm_summary}, float=!h]
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+conv1d_2 (Conv1D)            (None, 200, 32)           3104      
+_________________________________________________________________
+dropout_1 (Dropout)          (None, 200, 32)           0         
+_________________________________________________________________
+max_pooling1d_1 (MaxPooling1 (None, 100, 32)           0         
+_________________________________________________________________
+conv1d_3 (Conv1D)            (None, 100, 16)           3088      
+_________________________________________________________________
+dropout_2 (Dropout)          (None, 100, 16)           0         
+_________________________________________________________________
+max_pooling1d_2 (MaxPooling1 (None, 50, 16)            0         
+_________________________________________________________________
+lstm_4 (LSTM)                (None, 100)               46800     
+_________________________________________________________________
+dense_19 (Dense)             (None, 128)               12928     
+_________________________________________________________________
+dense_20 (Dense)             (None, 1)                 129       
+=================================================================
+Total params: 66,049
+Trainable params: 66,049
+Non-trainable params: 0
+_________________________________________________________________
 \end{lstlisting}
 
 Pomimo bardziej z³o¿onej struktury proces nauki utworzonej sieci przebiega³ krócej, ni¿ w przypadku tej sk³adaj¹cej siê jedynie z warstwy rekurencyjnej i wynosi³ oko³o 1800 sekund. Spowodowane jest to tym, ¿e dane wejœciowe ulegaj¹ zmniejszeniu za pomoc¹ warstw konwolucyjnych i wstêpnie przetworzone trafiaj¹ na warstwê rekurencyjn¹. Dziêki temu warstwa rekurencyjna potrzebuje mniej czasu do nauki, ni¿ w przypadku, gdy podawane jej s¹ nieprzygotowane dane.
@@ -808,7 +949,7 @@ Mo¿na zauwa¿yæ, ¿e najlepsze wyniki i stosunkowo niedu¿e czasy nauki osi¹gnê³a s
 
 \section{Optymalizacja}
 \label{optimization}
-Sieæ typu konwolucyjnego z filtrem 2-wymiarowym osi¹ga³a najlepsze wyniki testuj¹c prototypy ró¿nych typów sieci neuronowych. To w³aœnie tej architekturze zosta³o wiêc poœwiêcone najwiêcej pracy maj¹cej na celu optymalizacjê i polepszenie otrzymywanych wyników. 
+Sieæ typu konwolucyjnego z filtrem 2-wymiarowym osi¹ga³a najlepsze wyniki wœród testowanych prototypów. To w³aœnie tej architekturze zosta³o wiêc poœwiêcone najwiêcej pracy maj¹cej na celu optymalizacjê i polepszenie otrzymywanych wyników. 
 Wyniki ju¿ nawet przy zaprezentowanym prostym modelu by³y obiecuj¹ce, gdy¿ sieæ osi¹ga³a œrednio 75\% skutecznoœci.
 
 Najwiêkszym i najczêœciej wystêpuj¹cym problemem podczas nauki sieci neuronowych jest przeuczenie \textit{(ang. overfitting)}, które polega na zbytnim dopasowaniu siê modelu do danych ucz¹cych. Przeuczony model bêdzie posiada³ zbyt ma³¹ umiejêtnoœæ generalizacji, w wyniku czego bêdzie bardzo dobrze potrafi³ klasyfikowaæ dane, które do tej pory widzia³, jednak nie poradzi sobie zbyt dobrze z zupe³nie nowymi.
@@ -915,7 +1056,7 @@ Optymalizatorem, który osi¹ga³ najlepsze wyniki by³ SGD. Dodatkowo optymalizator
 Nastêpnym krokiem jest dodanie mechanizmu, który pozwoli na adaptacyjny dobór wspó³czynnika uczenia. Sieæ przeucza siê, gdy¿ w póŸniejszych epokach uczy siê zbyt intensywnie istniej¹cych ju¿ reprezentacji danych. Wspó³czynnik uczenia kontroluje stopieñ nauki sieci i mo¿e byæ on ustawiany dynamicznie. Za pomoc¹ wczeœniej opisywanych \textit{callback}'ów dodany zosta³ \textit{LearningRateScheduler}, który bêdzie obni¿a³ wspó³czynnik uczenia wraz z postêpem epok ucz¹cych.
 Listing \ref{lst:learning_rate_scheduler} przedstawia regu³ê, wed³ug której bêdzie on modyfikowany.
 
-\begin{lstlisting}[caption=Regu³a modyfikacji wspó³czynnika uczenia, language=Python, label={lst:learning_rate_scheduler}]
+\begin{lstlisting}[caption=Regu³a modyfikacji wspó³czynnika uczenia, language=Python, label={lst:learning_rate_scheduler}, float=!h]
 def step_decay(epoch):    
     initial_lrate=0.1
     drop=0.6
@@ -1141,7 +1282,7 @@ Przedstawione rezultaty by³y dotychczas sprawdzane jedynie na danych walidacyjny
 
 W celu weryfikacji na danych testowych, do modelu sieci wczytane zosta³y wagi zapisane na dysku, które najlepiej radzi³y sobie podczas klasyfikacji na danych walidacyjnych. Proces sprawdzania skutecznoœci na danych testowych zosta³ wywo³any osobno dla ka¿dego modelu naczonego poszczególn¹ kombinacj¹ danych. Dziêki temu z uzyskanych wyników równie¿ mo¿na policzyæ œredni¹, która bêdzie lepiej oddawa³a rzeczywisty stan, ni¿ pojedynczy pomiar. 
 
-Na modelu wywo³ana zosta³a metoda \textit{evaluate}, której parametrami by³y dane wejœciowe oraz wyjœciowe ze zbioru testowego. Wynikiem wykonania tych poleceñ \ref{lst:test_verification} jest skutecznoœæ modelu na danych, które zosta³y u¿yte po raz pierwszy \ref{lst:test_results}.
+Na modelu wywo³ana zosta³a metoda \textit{evaluate}, której parametrami by³y dane wejœciowe oraz wyjœciowe ze zbioru testowego. Wynikiem wykonania tych poleceñ (listing \ref{lst:test_verification}) jest skutecznoœæ modelu na danych, które zosta³y u¿yte po raz pierwszy (listing \ref{lst:test_results}).
 
 \begin{lstlisting}[caption=Sprawdzanie skutecznoœci modelu na danych testowych, language=Python, label={lst:test_verification}]
 model.load_weights("tmp/best_model.h5")
@@ -1257,13 +1398,13 @@ Best models average test accuracy: 0.779661
 ~~~Grand mean of average test accuracy: 0.768927
 \end{lstlisting}
 
-Osi¹gniête wyniki nie s¹ identyczne jak te uzyskane na danych walidacyjnych, jednak s¹ one wystarczaj¹co podobne, aby stwierdziæ, ¿e model dobrze radzi sobie z nowymi danymi. Wynik na poziomie prawie \textbf{77\%} (76.8927\%) na danych testowych jest zadowalaj¹cy i przekracza za³o¿ony próg 70\% \ref{expectation}.
+Osi¹gniête wyniki nie s¹ identyczne jak te uzyskane na danych walidacyjnych, jednak s¹ one wystarczaj¹co podobne, aby stwierdziæ, ¿e model dobrze radzi sobie z nowymi danymi. Wynik na poziomie prawie \textbf{77\%} (76.89\%) na danych testowych jest zadowalaj¹cy i przekracza za³o¿ony próg 70\% ustalony w rozdziale \ref{expectation}.
 
 \section{Mo¿liwoœci rozwoju}
 Choæ osi¹gniêty zosta³ cel pracy, w przysz³oœci mo¿e zostaæ podjêta próba udoskonalenia wyników. Dzia³ania, które mog¹ byæ wykonane to m.in.:
 
 \begin{itemize}
-\item Próba zwalczenia zjawiska nadmiernego dopasowania dla zaproponowanego modelu
-\item Przetworzenie danych do innej postaci (\textit{ang. feature extraction}) np. wizualizacja aktywnoœci mózgu \cite{brain_visualization} lub stworzenie tzw. \textit{heat map}'y metod¹ \textit{matching pursuit} \cite{matching_pursuit}
-\item Wykorzystanie gotowych modeli sieci wbudowanych w bibliotekê \textit{Keras} np. \textit{Xception}, \textit{ResNet}, \textit{VGG19} itd. \cite{keras_applications} 
+\item Próba zwalczenia zjawiska nadmiernego dopasowania dla zaproponowanego modelu,
+\item Przetworzenie danych do innej postaci (\textit{ang. feature extraction}) np. wizualizacja aktywnoœci mózgu opisana w pozycji \cite{brain_visualization} lub stworzenie tzw. \textit{heat map}'y metod¹ \textit{matching pursuit} przedstawiona w ksi¹¿ce \cite{matching_pursuit},
+\item Wykorzystanie gotowych modeli sieci wbudowanych w bibliotekê \textit{Keras} np. \textit{Xception}, \textit{ResNet}, \textit{VGG19} itd. opisane w dokumentacji Keras \cite{keras_applications}.
 \end{itemize}

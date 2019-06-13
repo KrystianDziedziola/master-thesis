@@ -1,129 +1,15 @@
-\chapter{U¿ycie biblioteki Keras w jêzyku R}
-Biblioteka Keras powszechnie u¿ywana jest pisz¹c kod w jêzyku Python, jednak istnieje równie¿ mo¿liwoœæ wykorzystania jej w jêzyku R.
-Pomimo, ¿e podczas pisania pracy wykorzystany zosta³ Python z uwagi na jego popularnoœæ, to poczyniono równie¿ pewne kroki w celu sprawdzenia w jaki sposób u¿yæ biblioteki Keras w jêzyku R.
+\chapter{P³yta DVD}
+%=================================================================================================
 
-W niniejszym dodatku przedstawione zostanie jak stworzyæ prosty model sieci neuronowej, która zostanie nauczona na przyk³adowych danych. Dodatkowo zaprezentowane zostanie jak wygl¹da definicja zaproponowanego modelu dla problemu rozpoznawania napadów padaczkowych na podstawie odczytów z EEG (rozdzia³ \ref{optimization}) w jêzyku R i œrodowisku RStudio.
+Do tesktu pracy za³¹czona zosta³a p³yta DVD z nastêpuj¹c¹ zawartoœci¹:
+\begin{itemize}
+\item plik \textbf{/praca-dyplomowa.pdf} - tekst pracy dyplomowej,
+\item katalog \textbf{/projekt/} - zawiera wszystkie pliki wykonanego projektu,
+\item katalog \textbf{/oprogramowanie/} - zawiera oprogramowanie wymagane do uruchomienia projektu.
+W szczególnoœci s¹ to:
+	\begin{itemize}
+	\item katalog \textbf{/oprogramowanie/docker/} - program Docker do tworzenia wirtualnych kontenerów, umo¿liwiaj¹cy uruchomienie ca³ego œrodowiska programistycznego
+	\end{itemize}
+\end{itemize}
 
-\section{Implementacja przyk³adowego modelu do klasyfikacji danych MNIST}
-Po uruchomieniu œrodowiska RStudio nale¿y zainstalowaæ bibliotekê keras \ref{lst:r_install_keras}.
-
-\begin{lstlisting}[caption=Instalacja Keras, language=R, label={lst:r_install_keras}]
-devtools::install_github("rstudio/keras")
-
-library(keras)
-install_keras()
-\end{lstlisting}
-
-W tym przyk³adzie zostanie u¿yty klasyczny zbiór danych MNIST, który zawiera obrazki w skali szaroœci o rozmiarach 28x28 pixeli przedstawiaj¹ce odrêcznie pisane cyfry wraz z odpowiadaj¹cymi im etykietami \ref{fig:mnist}.
-Zbiór MNIST dostêpny jest w bibliotece Keras.
-
-\begin{figure}[h!]
-	\centering
-	\includegraphics[width=10cm]{Rysunki/DodatekB/MnistExamples.png}
-	\caption{Przyk³adowe dane ze zbioru MNIST}
-	\label{fig:mnist}
-\end{figure}
-
-W celu wczytania wartoœci wystarczy u¿yæ funkcji \textit{dataset\_mnist()} i przypisaæ wartoœci do zmiennej, a nastêpnie wydzieliæ odpowiednie zbiory treningowe oraz testowe \ref{lst:r_data}.
-
-\begin{lstlisting}[caption=Wczytywanie danych MNIST, language=R, label={lst:r_data}, float=h!]
-mnist <- dataset_mnist()
-x_train <- mnist$train$x
-y_train <- mnist$train$y
-x_test <- mnist$test$x
-y_test <- mnist$test$y
-\end{lstlisting}
-
-Stworzony zostanie prosty model sieci neuronowej typu \textit{fully connected}, która wymaga przekszta³cenia danych do postaci wektorów.
-Przygotowane dane wejœciowe s¹ w postaci 3-wymiarowej tablicy, wiêc nale¿y zredukowaæ liczbê wymiarów oraz dodatkowo przeskalowaæ, aby znalaz³y siê one w przedziale <0;1> \ref{lst:r_reshape}.
-
-\begin{lstlisting}[caption=Przygotowanie danych wejœciowych, language=R, label={lst:r_reshape}, float=h!]
-x_train <- array_reshape(x_train, c(nrow(x_train), 784))
-x_test <- array_reshape(x_test, c(nrow(x_test), 784))
-
-x_train <- x_train / 255
-x_test <- x_test / 255
-\end{lstlisting}
-
-Dane wyjœciowe nale¿y zakodowaæ za pomoc¹ kodu "1 z n" \textit{(ang. one-hot encoding)} \ref{lst:r_data_out}.
-
-\begin{lstlisting}[caption=Przygotowanie danych wyjœciowych, language=R, label={lst:r_data_out}, float=h!]
-y_train <- to_categorical(y_train, 10)
-y_test <- to_categorical(y_test, 10)
-\end{lstlisting}
-
-Utworzony zosta³ model sk³adaj¹cy siê z dwóch warstw ukrytych oraz jednej wyjœciowej, zawieraj¹cy odpowiednio 256, 128 i 10 neuronów.
-Na ostatniej warstwie u¿yta zosta³a funkcja aktywacji \textit{softmax}, która zwróci pradopowobieñstwo zajœcia jednego z 10 stanów \ref{lst:r_model}.
-
-\begin{lstlisting}[caption=Utworzenie modelu, language=R, label={lst:r_model}, float=h!]
-model <- keras_model_sequential() 
-model %>% 
-  layer_dense(units = 256, activation = 'relu', input_shape = c(784)) %>% 
-  layer_dropout(rate = 0.4) %>% 
-  layer_dense(units = 128, activation = 'relu') %>%
-  layer_dropout(rate = 0.3) %>%
-  layer_dense(units = 10, activation = 'softmax')
-
-model %>% compile(
-  loss = 'categorical_crossentropy',
-  optimizer = optimizer_rmsprop(),
-  metrics = c('accuracy')
-)
-\end{lstlisting}
-
-Po utworzeniu modelu wywo³ywana jest metoda \textit{fit()}, która rozpoczyna proces uczenia \ref{lst:r_training}. 
-Zastosowany zosta³ podzia³ na zbiory ucz¹cy i validacyjny w stosunku 4:1.
-
-\begin{lstlisting}[caption=Rozpoczêcie procesu uczenia, language=R, label={lst:r_training}]
-history <- model %>% fit(
-  x_train, y_train, 
-  epochs = 50, batch_size = 64, 
-  validation_split = 0.2
-)
-\end{lstlisting}
-
-Sprawdzenie skutecznoœci modelu na danych testowych odbywa siê za pomoc¹ funkcji \textit{evaluate()} \ref{lst:r_evaluate}.
-
-\begin{lstlisting}[caption=Sprawdzenie modelu na danych testowych, language=R, label={lst:r_evaluate}]
-model %>% evaluate(x_test, y_test,verbose = 0)
-
-
-$loss
-[1] 0.1241
-
-$acc
-[1] 0.9788
-\end{lstlisting}
-
-\section{Model sieci do rozpoznawania stanów padaczkowych w jêzyku R}
-Na listingu \ref{lst:r_eeg} zaprezentowany zosta³ model konwolucyjnej sieci neuronowej utworzony w jêzyku R odzwierciedlaj¹cy sieæ u¿yt¹ do rozpoznawania stanów padaczkowych przedstawion¹ w rozdziale \ref{optimization}.
-
-\begin{lstlisting}[caption=Model konwolucyjnej sieci neuronowej do rozpoznawania stanów padaczkowych, language=R, label={lst:r_eeg}]
-model <- keras_model_sequential() %>%
-
-  layer_conv_2d(filters = 64, kernel_size = c(3, 3), input_shape = input_shape) %>%
-  layer_batch_normalization() %>%
-  layer_activation("relu") %>% 
-  layer_max_pooling_2d(pool_size = c(2, 2)) %>%
-
-  layer_conv_2d(filters = 64, kernel_size = c(3, 3), input_shape = input_shape) %>%
-  layer_batch_normalization() %>%
-  layer_activation("relu") %>% 
-  layer_max_pooling_2d(pool_size = c(2, 2)) %>%
-
-  layer_conv_2d(filters = 32, kernel_size = c(3, 3), input_shape = input_shape) %>%
-  layer_batch_normalization() %>%
-  layer_activation("relu") %>% 
-  layer_max_pooling_2d(pool_size = c(2, 2)) %>%
-
-  layer_flatten() %>%
-  layer_dense(units = 64, activation = "relu") %>%
-  layer_dropout(rate=0.25) %>%
-  layer_dense(units = 32, activation = "relu") %>%
-  layer_dropout(rate=0.25) %>%
-
-  layer_dense(units = 1, activation = "sigmoid")%>% compile(
-    optimizer=optimizer_sgd(lr=0.01, momentum=0.5, decay=0.0, nesterov=False),
-    loss='categorical_crossentropy',
-    metrics='accuracy')
-\end{lstlisting}
+%=================================================================================================

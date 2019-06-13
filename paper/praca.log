@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2019.3.13)  30 MAY 2019 21:25
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2019.3.13)  14 JUN 2019 19:04
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -901,6 +901,14 @@ Package textcomp Info: Setting ptmj sub-encoding to TS1/4 on input line 409.
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2015/06/04 1.6 listings language file
 ))
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/pdflscape.sty
+Package: pdflscape 2008/08/11 v0.10 Display of landscape pages in PDF (HO)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/lscape.sty
+Package: lscape 2000/10/22 v3.01 Landscape Pages (DPC)
+)
+Package pdflscape Info: Auto-detected driver: pdftex on input line 80.
+)
 (./Ustawienia/ustawienia.tex) (./praca.aux)
 \openout1 = `praca.aux'.
 
@@ -1092,7 +1100,7 @@ czenie.tex)
 
 (./Rozdzial1/rozdzial1.tex
 Rozdzia\PlPrIeC {\l } 1.
-LaTeX Font Info:    Try loading font information for TS1+lmr on input line 22.
+LaTeX Font Info:    Try loading font information for TS1+lmr on input line 28.
 (/usr/share/texmf/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 ) [1
@@ -1100,318 +1108,332 @@ File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 ]) (./Rozdzial2/rozdzial2.tex
 [2]
 Rozdzia\PlPrIeC {\l } 2.
-
-Underfull \vbox (badness 5359) has occurred while \output is active []
-
- [3
-
-]
-<Rysunki/Rozdzial2/ai_vs_machine_learning.pdf, id=388, 228.855pt x 111.29579pt>
-File: Rysunki/Rozdzial2/ai_vs_machine_learning.pdf Graphic file (type pdf)
-<use Rysunki/Rozdzial2/ai_vs_machine_learning.pdf>
-Package pdftex.def Info: Rysunki/Rozdzial2/ai_vs_machine_learning.pdf used on i
-nput line 20.
-(pdftex.def)             Requested size: 256.0748pt x 124.53833pt.
-
-<Rysunki/Rozdzial2/ai_comparison.pdf, id=392, 225.7233pt x 138.5175pt>
-File: Rysunki/Rozdzial2/ai_comparison.pdf Graphic file (type pdf)
-
-<use Rysunki/Rozdzial2/ai_comparison.pdf>
-Package pdftex.def Info: Rysunki/Rozdzial2/ai_comparison.pdf used on input line
- 41.
-(pdftex.def)             Requested size: 256.0748pt x 157.14433pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[4 <./Rysunki/Rozdzial2/ai_vs_machine_learning.pdf>]
-<Rysunki/Rozdzial2/simple_nn.pdf, id=415, 308.15125pt x 174.6525pt>
-File: Rysunki/Rozdzial2/simple_nn.pdf Graphic file (type pdf)
-
-<use Rysunki/Rozdzial2/simple_nn.pdf>
-Package pdftex.def Info: Rysunki/Rozdzial2/simple_nn.pdf used on input line 52.
-
-(pdftex.def)             Requested size: 256.0748pt x 145.14807pt.
- [5 <./Rysunki/Rozdzial2/ai_comparison.pdf
-
-pdfTeX warning: /usr/bin/pdflatex (file ./Rysunki/Rozdzial2/ai_comparison.pdf):
- PDF inclusion: invalid other resource which is no dict (key 'ProcSets', type <
-array>); ignored.
-> <./Rysunki/Rozdzial2/simple_nn.pdf
-
-pdfTeX warning: /usr/bin/pdflatex (file ./Rysunki/Rozdzial2/simple_nn.pdf): PDF
- inclusion: invalid other resource which is no dict (key 'ProcSets', type <arra
-y>); ignored.
->] [6] <Rysunki/Rozdzial2/learning_flow.pdf, id=452, 352.43669pt x 412.4208pt>
+<Rysunki/Rozdzial2/learning_flow.pdf, id=377, 352.43669pt x 412.4208pt>
 File: Rysunki/Rozdzial2/learning_flow.pdf Graphic file (type pdf)
 
 <use Rysunki/Rozdzial2/learning_flow.pdf>
 Package pdftex.def Info: Rysunki/Rozdzial2/learning_flow.pdf used on input line
- 85.
+ 15.
 (pdftex.def)             Requested size: 312.9803pt x 366.27931pt.
- [7 <./Rysunki/Rozdzial2/learning_flow.pdf
-
-pdfTeX warning: /usr/bin/pdflatex (file ./Rysunki/Rozdzial2/learning_flow.pdf):
- PDF inclusion: invalid other resource which is no dict (key 'ProcSets', type <
-array>); ignored.
->] <Rysunki/Rozdzial2/cnn_rgb.pdf, id=494, 251.9814pt x 201.63329pt>
-File: Rysunki/Rozdzial2/cnn_rgb.pdf Graphic file (type pdf)
-
-<use Rysunki/Rozdzial2/cnn_rgb.pdf>
-Package pdftex.def Info: Rysunki/Rozdzial2/cnn_rgb.pdf used on input line 119.
-(pdftex.def)             Requested size: 170.71652pt x 136.61038pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[8] <Rysunki/Rozdzial2/cnn.png, id=502, 692.5875pt x 234.1247pt>
-File: Rysunki/Rozdzial2/cnn.png Graphic file (type png)
+[3
 
-<use Rysunki/Rozdzial2/cnn.png>
-Package pdftex.def Info: Rysunki/Rozdzial2/cnn.png used on input line 130.
-(pdftex.def)             Requested size: 426.79134pt x 144.27698pt.
- [9 <./Rysunki/Rozdzial2/cnn_rgb.pdf
+] <Rysunki/Rozdzial2/nn_vs_dnn.png, id=383, 803.0pt x 254.551pt>
+File: Rysunki/Rozdzial2/nn_vs_dnn.png Graphic file (type png)
+
+<use Rysunki/Rozdzial2/nn_vs_dnn.png>
+Package pdftex.def Info: Rysunki/Rozdzial2/nn_vs_dnn.png used on input line 40.
+
+(pdftex.def)             Requested size: 426.79134pt x 135.29591pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[4 <./Rysunki/Rozdzial2/learning_flow.pdf
+
+pdfTeX warning: /usr/bin/pdflatex (file ./Rysunki/Rozdzial2/learning_flow.pdf):
+ PDF inclusion: invalid other resource which is no dict (key 'ProcSets', type <
+array>); ignored.
+>] [5 <./Rysunki/Rozdzial2/nn_vs_dnn.png>]
+<Rysunki/Rozdzial2/cnn_rgb.pdf, id=431, 251.9814pt x 201.63329pt>
+File: Rysunki/Rozdzial2/cnn_rgb.pdf Graphic file (type pdf)
+
+<use Rysunki/Rozdzial2/cnn_rgb.pdf>
+Package pdftex.def Info: Rysunki/Rozdzial2/cnn_rgb.pdf used on input line 72.
+(pdftex.def)             Requested size: 170.71652pt x 136.61038pt.
+ [6 <./Rysunki/Rozdzial2/cnn_rgb.pdf
 
 pdfTeX warning: /usr/bin/pdflatex (file ./Rysunki/Rozdzial2/cnn_rgb.pdf): PDF i
 nclusion: invalid other resource which is no dict (key 'ProcSets', type <array>
 ); ignored.
-> <./Rysunki/Rozdzial2/cnn.png>]
-<Rysunki/Rozdzial2/rnn.pdf, id=524, 132.495pt x 163.57109pt>
-File: Rysunki/Rozdzial2/rnn.pdf Graphic file (type pdf)
+>] <Rysunki/Rozdzial2/cnn.png, id=454, 692.5875pt x 234.1247pt>
+File: Rysunki/Rozdzial2/cnn.png Graphic file (type png)
 
-<use Rysunki/Rozdzial2/rnn.pdf>
-Package pdftex.def Info: Rysunki/Rozdzial2/rnn.pdf used on input line 144.
-(pdftex.def)             Requested size: 142.26378pt x 175.6433pt.
-) (./Rozdzial3/rozdzial3.tex [10 <./Rysunki/Rozdzial2/rnn.pdf
+<use Rysunki/Rozdzial2/cnn.png>
+Package pdftex.def Info: Rysunki/Rozdzial2/cnn.png used on input line 83.
+(pdftex.def)             Requested size: 426.79134pt x 144.27698pt.
 
-pdfTeX warning: /usr/bin/pdflatex (file ./Rysunki/Rozdzial2/rnn.pdf): PDF inclu
-sion: invalid other resource which is no dict (key 'ProcSets', type <array>); i
-gnored.
->]
+<Rysunki/Rozdzial2/recurent_nn.png, id=459, 442.65375pt x 398.48875pt>
+File: Rysunki/Rozdzial2/recurent_nn.png Graphic file (type png)
+
+<use Rysunki/Rozdzial2/recurent_nn.png>
+Package pdftex.def Info: Rysunki/Rozdzial2/recurent_nn.png used on input line 1
+02.
+(pdftex.def)             Requested size: 284.52756pt x 256.15073pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [7 <./Rysunki/Rozdzial2/cnn.png>]) (./Rozdzial3/rozdzial3.tex [8 <./Rysunki/Ro
+zdzial2/recurent_nn.png>]
 Rozdzia\PlPrIeC {\l } 3.
+[9
+
+]) (./Rozdzial4/rozdzial4.tex [10]
+Rozdzia\PlPrIeC {\l } 4.
 [11
 
-]) (./Rozdzial4/rozdzial4.tex [12]
-Rozdzia\PlPrIeC {\l } 4.
+]) (./Rozdzial5/rozdzial5.tex [12]
+Rozdzia\PlPrIeC {\l } 5.
 [13
 
-]) (./Rozdzial5/rozdzial5.tex [14]
-Rozdzia\PlPrIeC {\l } 5.
-[15
-
-]
+] [14]
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 31.
-LaTeX Font Info:    Try loading font information for T1+zi4 on input line 31.
+nput line 28.
+LaTeX Font Info:    Try loading font information for T1+zi4 on input line 28.
  (/usr/share/texlive/texmf-dist/tex/latex/inconsolata/t1zi4.fd
 File: t1zi4.fd 2014/06/22 T1/zi4 (Inconsolata)
-) [16]
+)
+[15
+
+] [16
+
+] <Rysunki/Rozdzial2/eeg_vis.png, id=550, 1463.869pt x 915.42pt>
+File: Rysunki/Rozdzial2/eeg_vis.png Graphic file (type png)
+
+<use Rysunki/Rozdzial2/eeg_vis.png>
+Package pdftex.def Info: Rysunki/Rozdzial2/eeg_vis.png used on input line 76.
+(pdftex.def)             Requested size: 711.3189pt x 444.83023pt.
+
+Overfull \hbox (8.53581pt too wide) in paragraph at lines 76--77
+ [][] 
+ []
+
+
+LaTeX Warning: Float too large for page by 41.63887pt on input line 79.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[17 <./Rysunki/Rozdzial2/eeg_vis.png>]
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2015/06/04 1.6 listings language file
 )
 LaTeX Font Info:    Font shape `T1/zi4/bx/n' in size <8> not available
-(Font)              Font shape `T1/zi4/b/n' tried instead on input line 78.
- [17]
+(Font)              Font shape `T1/zi4/b/n' tried instead on input line 107.
+ [18
+
+
+]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [18]
-Overfull \hbox (14.81314pt too wide) in paragraph at lines 198--199
+ [19]
+Overfull \hbox (14.81314pt too wide) in paragraph at lines 227--228
 [][][][][][][][][]  
  []
 
-[19]
-Underfull \vbox (badness 10000) has occurred while \output is active []
+
+Underfull \vbox (badness 1087) has occurred while \output is active []
 
  [20]
-[21]
-<Rysunki/Rozdzial5/hold-out-validation.pdf, id=868, 290.0436pt x 150.5625pt>
+[21] [22]
+<Rysunki/Rozdzial5/hold-out-validation.pdf, id=828, 290.0436pt x 150.5625pt>
 File: Rysunki/Rozdzial5/hold-out-validation.pdf Graphic file (type pdf)
 
 <use Rysunki/Rozdzial5/hold-out-validation.pdf>
 Package pdftex.def Info: Rysunki/Rozdzial5/hold-out-validation.pdf used on inpu
-t line 346.
+t line 375.
 (pdftex.def)             Requested size: 256.0748pt x 132.93419pt.
+ [23 <./Rysunki/Rozdzial5/hold-out-validation.pdf
 
-<Rysunki/Rozdzial5/cross-validation.pdf, id=870, 470.7186pt x 260.89468pt>
+pdfTeX warning: /usr/bin/pdflatex (file ./Rysunki/Rozdzial5/hold-out-validation
+.pdf): PDF inclusion: invalid other resource which is no dict (key 'ProcSets', 
+type <array>); ignored.
+>] <Rysunki/Rozdzial5/cross-validation.pdf, id=853, 470.7186pt x 260.89468pt>
 File: Rysunki/Rozdzial5/cross-validation.pdf Graphic file (type pdf)
 
 <use Rysunki/Rozdzial5/cross-validation.pdf>
 Package pdftex.def Info: Rysunki/Rozdzial5/cross-validation.pdf used on input l
-ine 359.
+ine 388.
 (pdftex.def)             Requested size: 398.33858pt x 220.79016pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[22 <./Rysunki/Rozdzial5/hold-out-validation.pdf
-
-pdfTeX warning: /usr/bin/pdflatex (file ./Rysunki/Rozdzial5/hold-out-validation
-.pdf): PDF inclusion: invalid other resource which is no dict (key 'ProcSets', 
-type <array>); ignored.
->] [23 <./Rysunki/Rozdzial5/cross-validation.pdf
+[24 <./Rysunki/Rozdzial5/cross-validation.pdf
 
 pdfTeX warning: /usr/bin/pdflatex (file ./Rysunki/Rozdzial5/cross-validation.pd
 f): PDF inclusion: invalid other resource which is no dict (key 'ProcSets', typ
 e <array>); ignored.
 >]
-Overfull \hbox (0.45053pt too wide) in paragraph at lines 425--426
+Overfull \hbox (0.45053pt too wide) in paragraph at lines 454--455
 []\T1/lmr/m/n/12 Do uru-cha-mia-nia pro-ce-su ucze-nia u»y-wa-na jest funk-cja 
 \T1/lmr/m/it/12 run_pipeline\T1/lmr/m/n/12 , któ-ra szcze-
  []
 
-[24] [25] [26]
-<Rysunki/Rozdzial5/tensor-board.png, id=1087, 684.5575pt x 532.99126pt>
+[25] [26] [27] [28]
+<Rysunki/Rozdzial5/tensor-board.png, id=1064, 684.5575pt x 532.99126pt>
 File: Rysunki/Rozdzial5/tensor-board.png Graphic file (type png)
 
 <use Rysunki/Rozdzial5/tensor-board.png>
 Package pdftex.def Info: Rysunki/Rozdzial5/tensor-board.png used on input line 
-604.
-(pdftex.def)             Requested size: 341.43306pt x 265.84435pt.
- [27]
-<Rysunki/Rozdzial5/tensor-board-model.png, id=1107, 439.6425pt x 840.13875pt>
+633.
+(pdftex.def)             Requested size: 398.33858pt x 310.15175pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<Rysunki/Rozdzial5/tensor-board-model.png, id=1066, 439.6425pt x 840.13875pt>
 File: Rysunki/Rozdzial5/tensor-board-model.png Graphic file (type png)
 
 <use Rysunki/Rozdzial5/tensor-board-model.png>
 Package pdftex.def Info: Rysunki/Rozdzial5/tensor-board-model.png used on input
- line 613.
-(pdftex.def)             Requested size: 199.16928pt x 380.5972pt.
+ line 642.
+(pdftex.def)             Requested size: 284.52756pt x 543.73776pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[28 <./Rysunki/Rozdzial5/tensor-board.png>] [29 <./Rysunki/Rozdzial5/tensor-boa
-rd-model.png>]
-<Rysunki/Rozdzial5/fully-connected-results.png, id=1123, 625.33624pt x 260.975p
+[29] [30 <./Rysunki/Rozdzial5/tensor-board.png>] [31 <./Rysunki/Rozdzial5/tenso
+r-board-model.png>] [32
+
+]
+<Rysunki/Rozdzial5/fully-connected-results.png, id=1101, 625.33624pt x 260.975p
 t>
 File: Rysunki/Rozdzial5/fully-connected-results.png Graphic file (type png)
  <use Rysunki/Rozdzial5/fully-connected-results.png>
 Package pdftex.def Info: Rysunki/Rozdzial5/fully-connected-results.png used on 
-input line 659.
+input line 705.
 (pdftex.def)             Requested size: 398.33858pt x 166.24292pt.
- [30 <./Rysunki/Rozdzial5/fully-connected-results.png>]
-<Rysunki/Rozdzial5/conv-1d-results.png, id=1140, 699.61375pt x 602.25pt>
+ [33 <./Rysunki/Rozdzial5/fully-connected-results.png>]
+<Rysunki/Rozdzial5/conv-1d-results.png, id=1125, 699.61375pt x 602.25pt>
 File: Rysunki/Rozdzial5/conv-1d-results.png Graphic file (type png)
 
 <use Rysunki/Rozdzial5/conv-1d-results.png>
 Package pdftex.def Info: Rysunki/Rozdzial5/conv-1d-results.png used on input li
-ne 693.
+ne 767.
 (pdftex.def)             Requested size: 398.33858pt x 342.90929pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
+[34]
 
-Underfull \vbox (badness 1616) has occurred while \output is active []
+LaTeX Warning: `!h' float specifier changed to `!ht'.
 
- [31]
-[32 <./Rysunki/Rozdzial5/conv-1d-results.png>]
-<Rysunki/Rozdzial5/conv-2d-results.png, id=1180, 699.61375pt x 602.25pt>
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[35 <./Rysunki/Rozdzial5/conv-1d-results.png>]
+<Rysunki/Rozdzial5/conv-2d-results.png, id=1183, 699.61375pt x 602.25pt>
 File: Rysunki/Rozdzial5/conv-2d-results.png Graphic file (type png)
 
 <use Rysunki/Rozdzial5/conv-2d-results.png>
 Package pdftex.def Info: Rysunki/Rozdzial5/conv-2d-results.png used on input li
-ne 726.
-(pdftex.def)             Requested size: 398.33858pt x 342.90929pt.
- [33 <./Rysunki/Rozdzial5/conv-2d-results.png>]
-<Rysunki/Rozdzial5/recursive-results.png, id=1198, 699.61375pt x 602.25pt>
-File: Rysunki/Rozdzial5/recursive-results.png Graphic file (type png)
-
-<use Rysunki/Rozdzial5/recursive-results.png>
-Package pdftex.def Info: Rysunki/Rozdzial5/recursive-results.png used on input 
-line 747.
-(pdftex.def)             Requested size: 398.33858pt x 342.90929pt.
- [34 <./Rysunki/Rozdzial5/recursive-results.png>]
-<Rysunki/Rozdzial5/cnn-lstm-results.png, id=1209, 699.61375pt x 602.25pt>
-File: Rysunki/Rozdzial5/cnn-lstm-results.png Graphic file (type png)
-
-<use Rysunki/Rozdzial5/cnn-lstm-results.png>
-Package pdftex.def Info: Rysunki/Rozdzial5/cnn-lstm-results.png used on input l
-ine 782.
+ne 825.
 (pdftex.def)             Requested size: 398.33858pt x 342.90929pt.
 
-Overfull \hbox (2.07715pt too wide) in paragraph at lines 795--804
-[][] 
- []
 
-[35 <./Rysunki/Rozdzial5/cnn-lstm-results.png>]
-<Rysunki/Rozdzial5/cnn-start.png, id=1231, 699.61375pt x 602.25pt>
-File: Rysunki/Rozdzial5/cnn-start.png Graphic file (type png)
-
-<use Rysunki/Rozdzial5/cnn-start.png>
-Package pdftex.def Info: Rysunki/Rozdzial5/cnn-start.png used on input line 819
-.
-(pdftex.def)             Requested size: 398.33858pt x 342.90929pt.
+LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [36]
-Overfull \hbox (1.43257pt too wide) in paragraph at lines 829--830
+<Rysunki/Rozdzial5/recursive-results.png, id=1238, 699.61375pt x 602.25pt>
+File: Rysunki/Rozdzial5/recursive-results.png Graphic file (type png)
+
+<use Rysunki/Rozdzial5/recursive-results.png>
+Package pdftex.def Info: Rysunki/Rozdzial5/recursive-results.png used on input 
+line 860.
+(pdftex.def)             Requested size: 398.33858pt x 342.90929pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+Underfull \vbox (badness 6332) has occurred while \output is active []
+
+ [37 <./Rysunki/Rozdzial5/conv-2d-results.png>]
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[38 <./Rysunki/Rozdzial5/recursive-results.png>]
+<Rysunki/Rozdzial5/cnn-lstm-results.png, id=1281, 699.61375pt x 602.25pt>
+File: Rysunki/Rozdzial5/cnn-lstm-results.png Graphic file (type png)
+
+<use Rysunki/Rozdzial5/cnn-lstm-results.png>
+Package pdftex.def Info: Rysunki/Rozdzial5/cnn-lstm-results.png used on input l
+ine 923.
+(pdftex.def)             Requested size: 398.33858pt x 342.90929pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+Overfull \hbox (2.07715pt too wide) in paragraph at lines 936--945
+[][] 
+ []
+
+[39] [40 <./Rysunki/Rozdzial5/cnn-lstm-results.png>]
+<Rysunki/Rozdzial5/cnn-start.png, id=1321, 699.61375pt x 602.25pt>
+File: Rysunki/Rozdzial5/cnn-start.png Graphic file (type png)
+
+<use Rysunki/Rozdzial5/cnn-start.png>
+Package pdftex.def Info: Rysunki/Rozdzial5/cnn-start.png used on input line 960
+.
+(pdftex.def)             Requested size: 398.33858pt x 342.90929pt.
+
+Underfull \vbox (badness 4391) has occurred while \output is active []
+
+ [41 <./Rysunki/Rozdzial5/cnn-start.png>]
+Overfull \hbox (1.43257pt too wide) in paragraph at lines 970--971
 \T1/lmr/m/n/12 do-star-cza-j¡-ce opi-sa-n¡ funk-cjo-nal-no±¢. Wy-star-czy do-da
 ¢ war-stw¦ po-prze-dza-j¡-c¡ funk-
  []
 
 
-<Rysunki/Rozdzial5/cnn-batch-normalization.png, id=1240, 699.61375pt x 602.25pt
+<Rysunki/Rozdzial5/cnn-batch-normalization.png, id=1330, 699.61375pt x 602.25pt
 >
 File: Rysunki/Rozdzial5/cnn-batch-normalization.png Graphic file (type png)
  <use Rysunki/Rozdzial5/cnn-batch-normalization.png>
 Package pdftex.def Info: Rysunki/Rozdzial5/cnn-batch-normalization.png used on 
-input line 855.
-(pdftex.def)             Requested size: 398.33858pt x 342.90929pt.
- [37 <./Rysunki/Rozdzial5/cnn-start.png>] [38 <./Rysunki/Rozdzial5/cnn-batch-no
-rmalization.png>]
-<Rysunki/Rozdzial5/cnn-dropout.png, id=1284, 699.61375pt x 602.25pt>
-File: Rysunki/Rozdzial5/cnn-dropout.png Graphic file (type png)
-
-<use Rysunki/Rozdzial5/cnn-dropout.png>
-Package pdftex.def Info: Rysunki/Rozdzial5/cnn-dropout.png used on input line 8
-88.
+input line 996.
 (pdftex.def)             Requested size: 398.33858pt x 342.90929pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[39 <./Rysunki/Rozdzial5/cnn-dropout.png>]
-<Rysunki/Rozdzial5/conv-adaptive-rate.png, id=1301, 699.61375pt x 602.25pt>
+[42] <Rysunki/Rozdzial5/cnn-dropout.png, id=1368, 699.61375pt x 602.25pt>
+File: Rysunki/Rozdzial5/cnn-dropout.png Graphic file (type png)
+
+<use Rysunki/Rozdzial5/cnn-dropout.png>
+Package pdftex.def Info: Rysunki/Rozdzial5/cnn-dropout.png used on input line 1
+029.
+(pdftex.def)             Requested size: 398.33858pt x 342.90929pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[43 <./Rysunki/Rozdzial5/cnn-batch-normalization.png>]
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<Rysunki/Rozdzial5/conv-adaptive-rate.png, id=1386, 699.61375pt x 602.25pt>
 File: Rysunki/Rozdzial5/conv-adaptive-rate.png Graphic file (type png)
 
 <use Rysunki/Rozdzial5/conv-adaptive-rate.png>
 Package pdftex.def Info: Rysunki/Rozdzial5/conv-adaptive-rate.png used on input
- line 931.
+ line 1072.
 (pdftex.def)             Requested size: 398.33858pt x 342.90929pt.
+ [44 <./Rysunki/Rozdzial5/cnn-dropout.png>] [45 <./Rysunki/Rozdzial5/conv-adapt
+ive-rate.png>] [46] [47] [48]
+[49]
+Underfull \vbox (badness 7486) has occurred while \output is active []
 
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[40]
-
-LaTeX Warning: Text page 41 contains only floats.
-
-
-Overfull \vbox (1.04572pt too high) has occurred while \output is active []
-
-
-[41 <./Rysunki/Rozdzial5/conv-adaptive-rate.png>] [42]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [43]
-[44]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [45])
-(./Dodatki/dodatek_a.tex [46]
+ [50])
+(./Dodatki/dodatek_a.tex [51]
 Dodatek A.
-) (./Dodatki/dodatek_b.tex [47
 
-]
-Dodatek B.
+Overfull \hbox (0.40375pt too wide) in paragraph at lines 7--7
+[]\T1/lmr/bx/n/17.28 Implementacja przy-kªa-do-we-go mo-de-lu do kla-
+ []
+
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2015/06/04 1.6 listings language file
 )
@@ -1421,7 +1443,7 @@ File: lstlang2.sty 2015/06/04 1.6 listings language file
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang3.sty
 File: lstlang3.sty 2015/06/04 1.6 listings language file
 )
-<Rysunki/DodatekB/MnistExamples.png, id=1661, 596.2275pt x 362.35374pt>
+<Rysunki/DodatekB/MnistExamples.png, id=1748, 596.2275pt x 362.35374pt>
 File: Rysunki/DodatekB/MnistExamples.png Graphic file (type png)
 
 <use Rysunki/DodatekB/MnistExamples.png>
@@ -1435,58 +1457,58 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[48
+[52
 
 ]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[49 <./Rysunki/DodatekB/MnistExamples.png>] [50]) (./praca.bbl [51] [52
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[53 <./Rysunki/DodatekB/MnistExamples.png>] [54]) (./Dodatki/dodatek_b.tex
+[55]
+Dodatek B.
+) (./praca.bbl [56
+
+] [57
 
 ])
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 135.
-
-[53]
+ [58]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 135.
  (./praca.aux)
 Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 135.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 135.
 Package rerunfilecheck Info: File `praca.out' has not changed.
-(rerunfilecheck)             Checksum: C5EA1E3CEB5360DE35B9D5C0958E1BA9;10057.
+(rerunfilecheck)             Checksum: 509DC7209DCE4B58AD9D5C0BDAA09F5D;9892.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 135.
  ) 
 Here is how much of TeX's memory you used:
- 21406 strings out of 493029
- 311719 string characters out of 6136234
- 543521 words of memory out of 5000000
- 23423 multiletter control sequences out of 15000+600000
- 77697 words of font info for 57 fonts, out of 8000000 for 9000
+ 21590 strings out of 493029
+ 314546 string characters out of 6136234
+ 582027 words of memory out of 5000000
+ 23474 multiletter control sequences out of 15000+600000
+ 73433 words of font info for 56 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  48i,12n,80p,1946b,2062s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texlive/texmf-dist
-/fonts/enc/dvips/inconsolata/i4-t1-0.enc}{/usr/share/texmf/fonts/enc/dvips/lm/l
-m-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/f
-onts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ts1.enc
-}{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texlive
-/texmf-dist/fonts/type1/public/inconsolata/Inconsolata-zi4b.pfb></usr/share/tex
-live/texmf-dist/fonts/type1/public/inconsolata/Inconsolata-zi4r.pfb></usr/share
-/texmf/fonts/type1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/type1/public/lm
-/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi12.pfb></usr/share/texm
-f/fonts/type1/public/lm/lmmi8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10
-.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/
-type1/public/lm/lmr17.pfb></usr/share/texmf/fonts/type1/public/lm/lmr6.pfb></us
-r/share/texmf/fonts/type1/public/lm/lmri10.pfb></usr/share/texmf/fonts/type1/pu
-blic/lm/lmri12.pfb></usr/share/texmf/fonts/type1/public/lm/lmri8.pfb></usr/shar
-e/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/c
-m-super/sfxc1728.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfxc2074.pfb
->
-Output written on praca.pdf (60 pages, 1254144 bytes).
+{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/en
+c/dvips/lm/lm-ec.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/inconsolata
+/i4-t1-0.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ts1.enc}{/usr/share/texmf/
+fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texlive/texmf-dist/fonts/t
+ype1/public/inconsolata/Inconsolata-zi4b.pfb></usr/share/texlive/texmf-dist/fon
+ts/type1/public/inconsolata/Inconsolata-zi4r.pfb></usr/share/texmf/fonts/type1/
+public/lm/lmbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/s
+hare/texmf/fonts/type1/public/lm/lmmi12.pfb></usr/share/texmf/fonts/type1/publi
+c/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/te
+xmf/fonts/type1/public/lm/lmr17.pfb></usr/share/texmf/fonts/type1/public/lm/lmr
+6.pfb></usr/share/texmf/fonts/type1/public/lm/lmri10.pfb></usr/share/texmf/font
+s/type1/public/lm/lmri12.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfxc
+1728.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfxc2074.pfb>
+Output written on praca.pdf (65 pages, 1487812 bytes).
 PDF statistics:
- 2066 PDF objects out of 2073 (max. 8388607)
- 1895 compressed objects within 19 object streams
- 1051 named destinations out of 1200 (max. 500000)
- 514 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 2175 PDF objects out of 2487 (max. 8388607)
+ 2010 compressed objects within 21 object streams
+ 1180 named destinations out of 1200 (max. 500000)
+ 501 words of extra memory for PDF output out of 10000 (max. 10000000)
 
