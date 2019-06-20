@@ -6,18 +6,18 @@
 \contentsline {chapter}{\numberline {2}Wprowadzenie do g\IeC {\l }\k ebokich sieci neuronowych}{3}{chapter.2}
 \contentsline {section}{\numberline {2.1}Deep learning, czyli g\IeC {\l }\k ebokie sieci neuronowe}{3}{section.2.1}
 \contentsline {section}{\numberline {2.2}Por\'ownanie klasycznych oraz g\IeC {\l }\k ebokich sieci neuronowych}{4}{section.2.2}
-\contentsline {section}{\numberline {2.3}Architektury g\IeC {\l }\k ebokich sieci neuronowych}{6}{section.2.3}
-\contentsline {subsection}{\numberline {2.3.1}Splotowe sieci neuronowe}{6}{subsection.2.3.1}
-\contentsline {subsection}{\numberline {2.3.2}Rekurencyjne sieci neuronowe}{7}{subsection.2.3.2}
-\contentsline {chapter}{\numberline {3}Om\'owienie wybranego problemu diagnostyki medycznej}{9}{chapter.3}
-\contentsline {section}{\numberline {3.1}Przedstawienie problemu}{9}{section.3.1}
-\contentsline {section}{\numberline {3.2}Dost\k epne dane}{10}{section.3.2}
-\contentsline {section}{\numberline {3.3}Oczekiwane rezultaty}{10}{section.3.3}
-\contentsline {chapter}{\numberline {4}Przegl\k ad dost\k epnych bibliotek oraz narz\k edzi programistycznych}{11}{chapter.4}
-\contentsline {section}{\numberline {4.1}Dost\k epne narz\k edzia}{11}{section.4.1}
-\contentsline {section}{\numberline {4.2}Wybrany stos technologiczny}{12}{section.4.2}
-\contentsline {chapter}{\numberline {5}Rozwi\k azanie praktycznego problemu}{13}{chapter.5}
-\contentsline {section}{\numberline {5.1}Przygotowanie danych}{13}{section.5.1}
+\contentsline {section}{\numberline {2.3}Architektury g\IeC {\l }\k ebokich sieci neuronowych}{5}{section.2.3}
+\contentsline {subsection}{\numberline {2.3.1}Splotowe sieci neuronowe}{5}{subsection.2.3.1}
+\contentsline {subsection}{\numberline {2.3.2}Rekurencyjne sieci neuronowe}{6}{subsection.2.3.2}
+\contentsline {chapter}{\numberline {3}Om\'owienie wybranego problemu diagnostyki medycznej}{8}{chapter.3}
+\contentsline {section}{\numberline {3.1}Przedstawienie problemu}{8}{section.3.1}
+\contentsline {section}{\numberline {3.2}Dost\k epne dane}{9}{section.3.2}
+\contentsline {section}{\numberline {3.3}Oczekiwane rezultaty}{9}{section.3.3}
+\contentsline {chapter}{\numberline {4}Przegl\k ad dost\k epnych bibliotek oraz narz\k edzi programistycznych}{10}{chapter.4}
+\contentsline {section}{\numberline {4.1}Dost\k epne narz\k edzia}{10}{section.4.1}
+\contentsline {section}{\numberline {4.2}Wybrany stos technologiczny}{11}{section.4.2}
+\contentsline {chapter}{\numberline {5}Rozwi\k azanie problemu}{12}{chapter.5}
+\contentsline {section}{\numberline {5.1}Przygotowanie danych}{12}{section.5.1}
 \contentsline {section}{\numberline {5.2}Metoda oceny wynik\'ow}{22}{section.5.2}
 \contentsline {subsection}{\numberline {5.2.1}Hold-out}{23}{subsection.5.2.1}
 \contentsline {subsection}{\numberline {5.2.2}Walidacja krzy\.zowa}{23}{subsection.5.2.2}
@@ -41,8 +41,9 @@
 \contentsline {subsection}{\numberline {5.6.3}Wyb\'or optymalizatora}{43}{subsection.5.6.3}
 \contentsline {subsection}{\numberline {5.6.4}Adaptacyjny wsp\'o\IeC {\l }czynnik uczenia}{44}{subsection.5.6.4}
 \contentsline {subsection}{\numberline {5.6.5}Modyfikacja rozmiaru sieci}{45}{subsection.5.6.5}
-\contentsline {section}{\numberline {5.7}Weryfikacja i ocena otrzymanych rezultat\'ow}{49}{section.5.7}
-\contentsline {section}{\numberline {5.8}Mo\.zliwo\'sci rozwoju}{51}{section.5.8}
+\contentsline {section}{\numberline {5.7}Weryfikacja i ocena otrzymanych rezultat\'ow}{48}{section.5.7}
+\contentsline {chapter}{\numberline {6}Podsumowanie i wnioski ko\'ncowe}{51}{chapter.6}
+\contentsline {section}{\numberline {6.1}Mo\.zliwo\'sci rozwoju}{51}{section.6.1}
 \contentsline {chapter}{\numberline {A}U\.zycie biblioteki Keras w j\k ezyku R}{52}{appendix.A}
 \contentsline {section}{\numberline {A.1}Implementacja przyk\IeC {\l }adowego modelu do klasyfikacji danych MNIST}{52}{section.A.1}
 \contentsline {section}{\numberline {A.2}Model sieci do rozpoznawania stan\'ow padaczkowych w j\k ezyku R}{54}{section.A.2}

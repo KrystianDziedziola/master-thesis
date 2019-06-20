@@ -1,0 +1,21 @@
+\chapter{Podsumowanie i wnioski koñcowe}
+Struktura sieci utworzona podczas przeprowadzonych badañ osi¹gnê³a skutecznoœæ na poziomie przewy¿szaj¹cym pocz¹tkowe za³o¿enia.
+Mo¿na wiêc stwierdziæ, ¿e cel pracy zosta³ osi¹gniêty. 
+Pomyœlna próba wykorzystania g³êbokich sieci neuronowych w tym konkretnym problemie jest kolejnym potwierdzeniem tego, ¿e dziedzina \textit{deep learning}'u niesie za sob¹ bardzo du¿e mo¿liwoœci. 
+
+Ze wzglêdu na du¿¹ popularnoœæ uczenia g³êbokiego, z dnia na dzieñ powstaj¹ nowe architektury sieci oraz metody ich nauki.
+W czasie przeprowadzonych badañ nie zosta³y przetestowane wszystkie dostêpne opcje, dlatego wci¹¿ istnieje mo¿liwoœæ ulepszenia otrzymanych rezultatów.
+Kilka metod, które mog¹ zostaæ wziête pod uwagê, opisano w rozdziale \ref{future_work}.
+
+Wypracowany model osi¹gn¹³ zadowalaj¹cy poziom skutecznoœci na danych testowych, jednak dodatkowym sprawdzianem jego efektywnoœci by³aby ponowna weryfikacja na zupe³nie innym zbiorze danych np. nowych pacjentów ze Szpitala Uniwersyteckiego oraz porównanie wskazañ sieci neuronowej z wiedz¹ wykwalifikowanego neurologa. Alternatywnym zbiorem danych, który mo¿e zostaæ wziêty pod uwagê podczas dodatkowej weryfikacji jest wspomniany w rozdziale \ref{expectation} publicznie dostêpny zbiór CHB-MIT (Children’s Hospital of Boston-Massachusetts Institute of Technology).
+
+\section{Mo¿liwoœci rozwoju}
+\label{future_work}
+Choæ osi¹gniêty zosta³ cel pracy, w przysz³oœci mo¿e zostaæ podjêta próba udoskonalenia wyników. 
+Dzia³ania, które mog¹ byæ wykonane to m.in.:
+
+\begin{itemize}
+\item Próba zwalczenia zjawiska nadmiernego dopasowania dla zaproponowanego modelu,
+\item Przetworzenie danych do innej postaci (\textit{ang. feature extraction}) np. wizualizacja aktywnoœci mózgu opisana w pozycji \cite{brain_visualization} lub stworzenie tzw. \textit{heat map}'y metod¹ \textit{matching pursuit} przedstawiona w ksi¹¿ce \cite{matching_pursuit},
+\item Wykorzystanie gotowych modeli sieci wbudowanych w bibliotekê \textit{Keras} np. \textit{Xception}, \textit{ResNet}, \textit{VGG19} itd. opisane w dokumentacji Keras \cite{keras_applications}.
+\end{itemize}

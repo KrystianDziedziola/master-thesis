@@ -6,6 +6,11 @@ engmrk.com.
 \newblock
   \url{https://engmrk.com/module-22-implementation-of-cnn-using-keras/}.
 
+\bibitem{10_20}
+wikipedia.com.
+\newblock {\em 10-20 system (EEG)}.
+\newblock \url{https://en.wikipedia.org/wiki/10%E2%80%9320_system_(EEG)}.
+
 \bibitem{Chollet:2018}
 Francois Chollet.
 \newblock {\em Deep Learning with Python}.
@@ -22,27 +27,10 @@ Marvin Minsky and Seymour Paper.
 \newblock {\em Perceptrons}.
 \newblock 1969.
 
-\bibitem{futureoflife}
-futureoflife.org.
-\newblock {\em Benefits \& risks of artificial intelligence}.
-\newblock
-  \url{https://futureoflife.org/background/benefits-risks-of-artificial-intelligence}.
-
-\bibitem{techtarget}
-searchenterpriseai.techtarget.com.
-\newblock {\em Machine learning (ML)}.
-\newblock
-  \url{https://searchenterpriseai.techtarget.com/definition/machine-learning-ML}.
-
 \bibitem{Goodfellow-et-al-2016-Book}
 Yoshua~Bengio Ian~Goodfellow and Aaron Courville.
 \newblock Deep learning.
 \newblock Book in preparation for MIT Press, 2016.
-
-\bibitem{epilepsy_foundation}
-Epilepsy foundation.
-\newblock {\em About Epilepsy: The Basics}.
-\newblock \url{https://www.epilepsy.com/learn/about-epilepsy-basics}.
 
 \bibitem{learning_robust}
 Andrew~Lim Pierre~Thodoroff, Joelle~Pineau.
@@ -59,6 +47,17 @@ Emad-ul-Haq~Qazi Ihsan~Ullah, Muhammad~Hussain and Hatim Aboalsamh.
 Nick Hershey.
 \newblock {\em Detecting Epileptic Seizures in Electroencephalogram Data}.
 
+\bibitem{brain_visualization}
+Andrew~Lim Pierre~Thodorof, Joelle~Pineau.
+\newblock {\em Learning Robust Features using Deep Learning for Automatic
+  Seizure Detection}.
+\newblock arXiv:1608.00220v1 [cs.LG] 31 Jul 2016.
+
+\bibitem{epilepsy_foundation}
+Epilepsy foundation.
+\newblock {\em About Epilepsy: The Basics}.
+\newblock \url{https://www.epilepsy.com/learn/about-epilepsy-basics}.
+
 \bibitem{tensor_board}
 Tensorflow.
 \newblock {\em Tensorboard docs}.
@@ -69,12 +68,6 @@ Christian~Szegedy Sergey~Ioffe.
 \newblock {\em Batch Normalization: Accelerating Deep Network Training by
   Reducing Internal Covariate Shift}.
 \newblock arXiv:1502.03167v3 [cs.LG] 2 Mar 2015.
-
-\bibitem{brain_visualization}
-Andrew~Lim Pierre~Thodorof, Joelle~Pineau.
-\newblock {\em Learning Robust Features using Deep Learning for Automatic
-  Seizure Detection}.
-\newblock arXiv:1608.00220v1 [cs.LG] 31 Jul 2016.
 
 \bibitem{matching_pursuit}
 Rafa³ Scherer-Ryszard Tadeusiewicz Lotfi A. Zadeh Jacek M. Zurada~(Eds.)

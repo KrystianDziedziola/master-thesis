@@ -1,4 +1,4 @@
-\chapter{Rozwi¹zanie praktycznego problemu}
+\chapter{Rozwi¹zanie problemu}
 \label{chapter_5}
 Proces uczenia sieci neuronowej stworzony zosta³ w œrodowisku Jupyter Notebook. Umo¿liwia ono tworzenie dokumentów zawieraj¹cych opisy, wykresy oraz wykonywalne kody Ÿród³owe. Nazwa Jupyter wziê³a siê z tego, ¿e œrodowisko umo¿liwia pracê w trzech jêzykach: Julia, Python oraz R.
 
@@ -8,7 +8,7 @@ Przewag¹ kodu pisanego w tym œrodowisku nad tradycyjnymi skryptami jest oferowan
 Proces uczenia sk³ada siê z kilku kroków:
 \begin{itemize}
 	\item pobranie i przygotowanie danych za pomoc¹ przygotowanych skryptów \ref{data_preparation},
-	\item podzia³ danych na zbiory s³u¿¹ce do nauki oraz testowania przy pomocy k-krotnej 
+	\item podzia³ danych na zbiory s³u¿¹ce do nauki oraz testowania parzy pomocy k-krotnej 
 walidacji krzy¿owej \textit{(ang. k-fold cross-validation)} \ref{validation_method},
 	\item utworzenie modelu sieci neuronowej \ref{build_model},
 	\item rozpoczêcie uczenia modelu \ref{run_learning},
@@ -20,7 +20,18 @@ Wszystkie wymienione kroki przedstawiaj¹ pe³en proces uczenia, który pokazuje z 
 \section{Przygotowanie danych}
 \label{data_preparation}
 W celu wykorzystania dostêpnych danych w procesie uczenia sieci neuronowej nale¿y je najpierw odpowiednio przygotowaæ.
-Dostarczone zosta³y dane w postaci plików tekstowych z liczbami reprezentuj¹cymi wartoœci zmierzone przy pomocy elektroencefalogramu. W poszczególnych kolumnach znajduj¹ siê wartoœci odpowiadaj¹ce konkretnym kana³om (\textit{EEG\_FP1\_F3}, \textit{EEG\_FP2\_F4} itd.). Ostatnia kolumna (o nag³ówku \textit{t}) przedstawia czas w sekundach, w którym mia³ miejsce pomiar. 
+Dostarczone zosta³y dane w postaci plików tekstowych z liczbami reprezentuj¹cymi wartoœci zmierzone przy pomocy elektroencefalogramu. W poszczególnych kolumnach znajduj¹ siê wartoœci ró¿nic potencja³ów pomiêdzy dwoma elektrodami dla 16 kana³ów. 
+Jest to bardzo typowy uk³ad wynikaj¹cy z rozmieszczenia elektrod na g³owie pacjenta - tzw. system 10-20 (patrz rysunek \ref{fig:10_20}).
+
+Nag³ówki kolumn poszczególnych kana³ów posiadaj¹ etykiety \textit{EEG\_FP1\_F3}, \textit{EEG\_FP2\_F4} itd. 
+Przyk³adowo, \textit{EEG\_FP1\_F3} oznacza sygna³ ró¿nicowy pomiêdzy elektrodami \textit{FP1} oraz \textit{F3}.  Ostatnia kolumna (o nag³ówku \textit{t}) przedstawia czas w sekundach, w którym mia³ miejsce pomiar. 
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=10cm]{Rysunki/Rozdzial2/10-20.png}
+	\caption{Rozmieszczenie elektrod w systemie 10-20. ród³o: \cite{10_20}}
+	\label{fig:10_20}
+\end{figure}
 
 Dostêpne s¹ dane 104 pacjentów, u których wyst¹pi³y ataki. Ka¿dy z nich posiada odczyty wykonane z czêstotliwoœci¹ 500Hz przez blisko 15 minut. Jest to oko³o 450 000 linii w ka¿dym pliku. Dane zajmuj¹ 6,5 GB.
 Fragment jednego z plików przedstawiony zosta³ na listingu \ref{lst:eeg}:
@@ -68,7 +79,7 @@ Ka¿dy wiersz odpowiada jednemu pacjentowi, dlatego plik zawiera 104 wiersze. Fra
 Dane z kilku kana³ów z naniesionym momentem wyst¹pienia ataku przedstawione zosta³y na rysunku \ref{fig:data_vis}.
 Mo¿na zaobserowaæ, ¿e bez posiadania specjalistycznej wiedzy ciê¿ko by³oby okreœliæ moment wyst¹pienia ataku. 
 Fragmenty odczytu w momencie ataku na pierwszy rzut oka nieznacznie ró¿ni¹ siê od pozosta³ych.
-Œwiadczy o wiele wiêkszej z³o¿onoœci problemu w porównaniu do zadañ, z którymi mózg praktycznie ka¿dego cz³owieka radzi sobie doskonale np. rozpoznawanie liczb, odró¿nianie psów od kotów itp.
+Œwiadczy o wiele wiêkszej z³o¿onoœci problemu w porównaniu do zadañ, z którymi mózg praktycznie ka¿dego cz³owieka radzi sobie doskonale np. rozpoznawanie liczb, odró¿nianie psów od kotów itp. Wykresy przedstawiaj¹ce odczyty ze wszystkich 16 kana³ów zaprezentowano na rysunku \ref{fig:16_channels}.
 
 \begin{landscape}
 \begin{figure}[h!]
@@ -78,6 +89,13 @@ Fragmenty odczytu w momencie ataku na pierwszy rzut oka nieznacznie ró¿ni¹ siê o
 	\label{fig:data_vis}
 \end{figure}
 \end{landscape}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=15cm]{Rysunki/Rozdzial5/16channels.png}
+	\caption{Odczyty ze wszystkich 16 kana³ów z zaznaczonymi miejscami wyst¹pienia ataków}
+	\label{fig:16_channels}
+\end{figure}
 
 W celu wykorzystania przedstawionych danych w procesie uczenia sieci neuronowej musz¹ zostaæ one odpowiednio przygotowane.
 Wybrane podejœcie zak³ada podzielenie danych na okna czasowe o okreœlonej d³ugoœci. Znane s¹ jedynie pocz¹tki ataków, jednak nie wiadomo jak d³ugo trwa³y. D³ugoœæ okna czasowego, wed³ug którego podzielone zostan¹ dane bêdzie wiêc jednym z parametrów, który nale¿y dobraæ w celu uzyskania najlepszych rezultatów.
@@ -1026,7 +1044,7 @@ Po dodaniu \textit{dropout}'u wyniki nieznacznie siê poprawi³y do wartoœci œredn
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=14cm]{Rysunki/Rozdzial5/cnn-dropout.png}
+	\includegraphics[width=12cm]{Rysunki/Rozdzial5/cnn-dropout.png}
 	\caption{Wyniki modelu konwolucyjnej sieci neuronowej z warstwami \textit{Dropout}}
 	\label{fig:cnn_dropout}
 \end{figure}
@@ -1069,7 +1087,7 @@ def step_decay(epoch):
 Dynamiczna zmiana wspó³czynnika uczenia pozwoli³a na czêœciowe zredukowanie nadmiernego dopasowania sieci, jednak wci¹¿ zaobserwowaæ mo¿na jej przeuczanie. Mimo to skutecznoœæ zosta³a poprawiona do blisko \textbf{80,5\%} \ref{fig:adaptive_learning_rate}.
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=14cm]{Rysunki/Rozdzial5/conv-adaptive-rate.png}
+	\includegraphics[width=12cm]{Rysunki/Rozdzial5/conv-adaptive-rate.png}
 	\caption{Wyniki modelu po dodaniu zmiennego wspó³czynnika uczenia}
 	\label{fig:adaptive_learning_rate}
 \end{figure}
@@ -1399,12 +1417,3 @@ Best models average test accuracy: 0.779661
 \end{lstlisting}
 
 Osi¹gniête wyniki nie s¹ identyczne jak te uzyskane na danych walidacyjnych, jednak s¹ one wystarczaj¹co podobne, aby stwierdziæ, ¿e model dobrze radzi sobie z nowymi danymi. Wynik na poziomie prawie \textbf{77\%} (76.89\%) na danych testowych jest zadowalaj¹cy i przekracza za³o¿ony próg 70\% ustalony w rozdziale \ref{expectation}.
-
-\section{Mo¿liwoœci rozwoju}
-Choæ osi¹gniêty zosta³ cel pracy, w przysz³oœci mo¿e zostaæ podjêta próba udoskonalenia wyników. Dzia³ania, które mog¹ byæ wykonane to m.in.:
-
-\begin{itemize}
-\item Próba zwalczenia zjawiska nadmiernego dopasowania dla zaproponowanego modelu,
-\item Przetworzenie danych do innej postaci (\textit{ang. feature extraction}) np. wizualizacja aktywnoœci mózgu opisana w pozycji \cite{brain_visualization} lub stworzenie tzw. \textit{heat map}'y metod¹ \textit{matching pursuit} przedstawiona w ksi¹¿ce \cite{matching_pursuit},
-\item Wykorzystanie gotowych modeli sieci wbudowanych w bibliotekê \textit{Keras} np. \textit{Xception}, \textit{ResNet}, \textit{VGG19} itd. opisane w dokumentacji Keras \cite{keras_applications}.
-\end{itemize}

@@ -1,27 +1,30 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {2.1}{\ignorespaces Schemat procesu uczenia g\IeC {\l }\k ebokiej sieci neuronowej\relax }}{4}{figure.caption.2}
-\contentsline {figure}{\numberline {2.2}{\ignorespaces Por\'ownanie struktury sieci p\IeC {\l }ytkiej oraz g\IeC {\l }\k ebokiej\relax }}{5}{figure.caption.3}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Por\'ownanie struktury sieci p\IeC {\l }ytkiej oraz g\IeC {\l }\k ebokiej\relax }}{4}{figure.caption.3}
 \contentsline {figure}{\numberline {2.3}{\ignorespaces Dane liczbowe obrazka w formacie RGB\relax }}{6}{figure.caption.4}
-\contentsline {figure}{\numberline {2.4}{\ignorespaces Schemat dzia\IeC {\l }ania sieci splotowej. \'Zr\'od\IeC {\l }o: \cite {engmrk}\relax }}{7}{figure.caption.5}
-\contentsline {figure}{\numberline {2.5}{\ignorespaces Schemat rekurencyjnej sieci neuronowej\relax }}{8}{figure.caption.6}
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Schemat dzia\IeC {\l }ania sieci splotowej. \'Zr\'od\IeC {\l }o: \cite {engmrk}\relax }}{6}{figure.caption.5}
+\contentsline {figure}{\numberline {2.5}{\ignorespaces Schemat rekurencyjnej sieci neuronowej\relax }}{7}{figure.caption.6}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Wykres przedstawiaj\k acy odczyt EEG z zaznaczonym momentem wyst\k apienia ataku\relax }}{17}{figure.caption.7}
-\contentsline {figure}{\numberline {5.2}{\ignorespaces Podzia\IeC {\l } danych na zbiory: treningowy, walidacyjny i testowy\relax }}{23}{figure.caption.8}
-\contentsline {figure}{\numberline {5.3}{\ignorespaces Podzia\IeC {\l } danych wed\IeC {\l }ug metody k-krotnej walidacji krzy\.zowe\relax }}{24}{figure.caption.9}
-\contentsline {figure}{\numberline {5.4}{\ignorespaces Dynamicznie tworzone wykresy w programie TensorBoard\relax }}{30}{figure.caption.11}
-\contentsline {figure}{\numberline {5.5}{\ignorespaces Fragment schematu modelu wygenerowany przez TensorBoard\relax }}{31}{figure.caption.12}
-\contentsline {figure}{\numberline {5.6}{\ignorespaces Wyniki skuteczno\'sci sieci typu \textit {fully-connected}\relax }}{33}{figure.caption.13}
-\contentsline {figure}{\numberline {5.7}{\ignorespaces Wyniki prostej sieci splotowej z 1-wymiarowym filtrem\relax }}{35}{figure.caption.14}
-\contentsline {figure}{\numberline {5.8}{\ignorespaces Wyniki prostej sieci splotowej z 2-wymiarowym filtrem\relax }}{37}{figure.caption.17}
-\contentsline {figure}{\numberline {5.9}{\ignorespaces Wyniki prostej sieci rekurencyjnej\relax }}{38}{figure.caption.20}
-\contentsline {figure}{\numberline {5.10}{\ignorespaces Wyniki sieci konwoluncyjnej po\IeC {\l }\k aczonej z rekurencyjn\k a\relax }}{40}{figure.caption.23}
-\contentsline {figure}{\numberline {5.11}{\ignorespaces Wyniki modelu pocz\k atkowego konwolucyjnej sieci neuronowej\relax }}{41}{figure.caption.25}
-\contentsline {figure}{\numberline {5.12}{\ignorespaces Wyniki modelu konwolucyjnej sieci neuronowej z warstwami \textit {BatchNormalization}\relax }}{43}{figure.caption.26}
-\contentsline {figure}{\numberline {5.13}{\ignorespaces Wyniki modelu konwolucyjnej sieci neuronowej z warstwami \textit {Dropout}\relax }}{44}{figure.caption.27}
-\contentsline {figure}{\numberline {5.14}{\ignorespaces Wyniki modelu po dodaniu zmiennego wsp\'o\IeC {\l }czynnika uczenia\relax }}{45}{figure.caption.30}
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Rozmieszczenie elektrod w systemie 10-20. \'Zr\'od\IeC {\l }o: \cite {10_20}\relax }}{13}{figure.caption.7}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Wykres przedstawiaj\k acy odczyt EEG z zaznaczonym momentem wyst\k apienia ataku\relax }}{16}{figure.caption.8}
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Odczyty ze wszystkich 16 kana\IeC {\l }\'ow z zaznaczonymi miejscami wyst\k apienia atak\'ow\relax }}{17}{figure.caption.9}
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Podzia\IeC {\l } danych na zbiory: treningowy, walidacyjny i testowy\relax }}{23}{figure.caption.10}
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Podzia\IeC {\l } danych wed\IeC {\l }ug metody k-krotnej walidacji krzy\.zowe\relax }}{24}{figure.caption.11}
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Dynamicznie tworzone wykresy w programie TensorBoard\relax }}{30}{figure.caption.13}
+\contentsline {figure}{\numberline {5.7}{\ignorespaces Fragment schematu modelu wygenerowany przez TensorBoard\relax }}{31}{figure.caption.14}
+\contentsline {figure}{\numberline {5.8}{\ignorespaces Wyniki skuteczno\'sci sieci typu \textit {fully-connected}\relax }}{33}{figure.caption.15}
+\contentsline {figure}{\numberline {5.9}{\ignorespaces Wyniki prostej sieci splotowej z 1-wymiarowym filtrem\relax }}{35}{figure.caption.16}
+\contentsline {figure}{\numberline {5.10}{\ignorespaces Wyniki prostej sieci splotowej z 2-wymiarowym filtrem\relax }}{37}{figure.caption.19}
+\contentsline {figure}{\numberline {5.11}{\ignorespaces Wyniki prostej sieci rekurencyjnej\relax }}{38}{figure.caption.22}
+\contentsline {figure}{\numberline {5.12}{\ignorespaces Wyniki sieci konwoluncyjnej po\IeC {\l }\k aczonej z rekurencyjn\k a\relax }}{40}{figure.caption.25}
+\contentsline {figure}{\numberline {5.13}{\ignorespaces Wyniki modelu pocz\k atkowego konwolucyjnej sieci neuronowej\relax }}{41}{figure.caption.27}
+\contentsline {figure}{\numberline {5.14}{\ignorespaces Wyniki modelu konwolucyjnej sieci neuronowej z warstwami \textit {BatchNormalization}\relax }}{43}{figure.caption.28}
+\contentsline {figure}{\numberline {5.15}{\ignorespaces Wyniki modelu konwolucyjnej sieci neuronowej z warstwami \textit {Dropout}\relax }}{44}{figure.caption.29}
+\contentsline {figure}{\numberline {5.16}{\ignorespaces Wyniki modelu po dodaniu zmiennego wsp\'o\IeC {\l }czynnika uczenia\relax }}{45}{figure.caption.32}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {A.1}{\ignorespaces Przyk\IeC {\l }adowe dane ze zbioru MNIST\relax }}{53}{figure.caption.32}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {A.1}{\ignorespaces Przyk\IeC {\l }adowe dane ze zbioru MNIST\relax }}{53}{figure.caption.34}
 \addvspace {10\p@ }
